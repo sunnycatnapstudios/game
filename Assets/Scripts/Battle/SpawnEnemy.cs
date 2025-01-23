@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EmemyStartBattle : MonoBehaviour
+public class SpawnEnemy : MonoBehaviour 
 {
     [SerializeField]
     private GameObject enemyEncounterPrefab;
@@ -15,7 +15,7 @@ public class EmemyStartBattle : MonoBehaviour
     }
     private void OnSceneLoaded (Scene scene, LoadSceneMode mode) 
     {
-        if(scene.name == "Battle") 
+        if(scene.name == "Battle Scene") 
         {
             if(this.spawning) 
             {
@@ -27,7 +27,6 @@ public class EmemyStartBattle : MonoBehaviour
     }
     void OnTriggerEnter2D (Collider2D other) 
     {
-        Debug.Log("ENTERED WITH" + other.gameObject.name);
         if(other.gameObject.CompareTag("Player")) 
         {
             this.spawning = true;
