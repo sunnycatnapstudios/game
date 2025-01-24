@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBattle : MonoBehaviour
+public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
 {
     // TODO Build all types of characters off one base prefab.
     // private Character characterBase
@@ -148,5 +148,11 @@ public class CharacterBattle : MonoBehaviour
     public void ShowSelectionCircle()
     {
         selectionCircleGameObject.SetActive(true);
+    }
+
+    // Use to sort characters by their speed
+    public int CompareTo(CharacterBattle other)
+    {
+        return other.unitStats.GetSpeed().CompareTo(unitStats.GetSpeed());
     }
 }
