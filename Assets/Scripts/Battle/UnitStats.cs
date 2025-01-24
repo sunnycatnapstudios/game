@@ -5,24 +5,67 @@ using UnityEngine;
 
 public class UnitStats : MonoBehaviour
 {
-    public float health = 10;
-    public float attack = 1;
-    public float speed = 1;
+    
+    [SerializeField] private int health;
+    [SerializeField] private int healthMax;
+    [SerializeField] private int attack;
+    [SerializeField] private int speed;
 
-    public int nextActTurn;
     private bool dead = false;
 
-    public void calculateNextActTurn(int currentTurn)
+    public void TakeDamage(int damage)
     {
-        nextActTurn = currentTurn + (int)Math.Ceiling(100.0f / speed);
-    }
-    
-    public int CompareTo (object otherStats)
-    {
-        return nextActTurn.CompareTo(((UnitStats)otherStats).nextActTurn);
+        health -= damage;
+        if (health <= 0)
+        {
+            dead = true;
+        }
     }
 
-    public bool isDead()
+    public void HealHealth(int heal)
+    {
+        health += heal;
+        if (health > healthMax)
+        {
+            health = healthMax;
+        }
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return (float) health / healthMax;
+    }
+    public int GetAttack()
+    {
+        return attack;
+    }
+    
+    public int GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetHealth(int health)
+    {
+        this.health = health;
+    }
+
+    public void SetAttack(int attack)
+    {
+        this.attack = attack;
+    }
+
+    public void SetSpeed(int speed)
+    {
+        this.speed = speed;
+    }
+
+    public bool IsDead()
     {
         return dead;
     }

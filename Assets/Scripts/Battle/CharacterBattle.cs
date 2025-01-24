@@ -12,6 +12,9 @@ public class CharacterBattle : MonoBehaviour
     private Action onSlideComplete;         // Callback on slide complete
 
     private bool isPlayerTeam;              // true - player team | false - enemy team
+    private GameObject selectionCircleGameObject;   // The selctionCircle for a character
+    
+    private UnitStats unitStats;        // Stats system for a character
     
     private enum State
     {
@@ -22,6 +25,8 @@ public class CharacterBattle : MonoBehaviour
     private void Awake()
     {
         characterBase = GetComponent<Player>();
+        selectionCircleGameObject = GameObject.Find("SelectionCircle");
+        HideSelectionCircle();
         state = State.Idle;
     }
 
@@ -62,12 +67,19 @@ public class CharacterBattle : MonoBehaviour
             // TODO if enemy, orientate characters and play their idle animation
             characterBase.anim.Play("Walk Left");
         }
+        unitStats = GetComponent<UnitStats>();
     }
     
     // Return the current position of this character
     public Vector3 GetPosition()
     {
         return transform.position;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        unitStats.TakeDamage(damageAmount);
+        Debug.Log("Hit! Current Health = " + unitStats.GetHealth());
     }
     
     // Attack the targeted character
@@ -82,7 +94,10 @@ public class CharacterBattle : MonoBehaviour
             // After Slide complete, play attack animation
             Vector3 attackDir = targetCharacterBattle.GetPosition() - GetPosition().normalized;     // Direction vector toward enemy
             characterBase.anim.Play("Walk Up");     // TODO Attack animation, wait for anim complete
-            characterBase.anim.Play("Walk Left");
+            characterBase.anim.Play("Walk Left");   // TODO create a dedicated animation player to handle logic during, at, and after an animation
+            
+            // unitStats.TakeDamage(unitStats.GetAttack());
+            TakeDamage(unitStats.GetAttack());      // Deal damage to opponent
             
             // Attack Complete, slide back
             SlideToPosition(startingPosition, onSlideComplete: () =>
@@ -95,6 +110,10 @@ public class CharacterBattle : MonoBehaviour
         
     }
 
+    public bool IsDead()
+    {
+        return unitStats.IsDead();
+    }
 
     private void SlideToPosition(Vector3 slideTargetPositon, Action onSlideComplete)
     {
@@ -109,5 +128,15 @@ public class CharacterBattle : MonoBehaviour
         {
             // TODO play slide left animation
         }
+    }
+
+    public void HideSelectionCircle()
+    {
+        selectionCircleGameObject.SetActive(false);
+    }
+
+    public void ShowSelectionCircle()
+    {
+        selectionCircleGameObject.SetActive(true);
     }
 }
