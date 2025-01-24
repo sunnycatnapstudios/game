@@ -16,20 +16,19 @@ public class BattleHandler : MonoBehaviour
    // Place the player party and enemy encounter under their own empty parent object
    [SerializeField] private Transform playerParty; 
    [SerializeField] private Transform enemyEncounter;
-
-   
-   // TODO replace with list of char
-   //private CharacterBattle playerCharacterBattle;
-   //private CharacterBattle enemyCharacterBattle;
    
    private List<CharacterBattle> playerCharacterBattles = new List<CharacterBattle>();    // List of all player characters (scripts)
    private List<CharacterBattle> enemiesCharacterBattles = new List<CharacterBattle>();   // List of all enemy characters scripts
+   private List<CharacterBattle> characterBattlesTurnOrder = new List<CharacterBattle>();
    
+   //private int currentTurn;
    private int playerOffset = 0;
    private int enemyOffset = 0;
    
    private CharacterBattle activeCharacterBattle;     // The active character in battle
-
+   private int activeCharacterIndex = 0;
+   private int totalCharacterCount;
+   
    private State state;    // Current state of combat
    
    private enum State
@@ -54,7 +53,9 @@ public class BattleHandler : MonoBehaviour
          enemiesCharacterBattles.Add(SpawnCharacter(child, false));
       }
 
-      SetActiveCharacterBattle(playerCharacterBattles[0]);  // TODO Set turn order by speed
+      // Determine the turn order
+      createTurnOrder();
+      SetActiveCharacterBattle(characterBattlesTurnOrder[activeCharacterIndex++]);  // Fastest Character Goes first
       state = State.WaitingForPlayer;
    }
 
@@ -121,10 +122,12 @@ public class BattleHandler : MonoBehaviour
          return;
       }
       
-      if (playerCharacterBattles.Contains(activeCharacterBattle))
+      // Get the next character
+      SetActiveCharacterBattle(GetNextCharacterBattler());
+      
+      // If it's an enemy they auto attack
+      if (enemiesCharacterBattles.Contains(activeCharacterBattle))
       {
-         SetActiveCharacterBattle(enemiesCharacterBattles[(enemyOffset + 1) % enemiesCharacterBattles.Count]);   // TODO need speed calculations
-         
          // TODO Enemy Auto attack (random) player
          activeCharacterBattle.Attack(playerCharacterBattles[0], onAttackComplete: () =>
          {
@@ -133,11 +136,36 @@ public class BattleHandler : MonoBehaviour
       }
       else
       {
-         SetActiveCharacterBattle(playerCharacterBattles[(playerOffset + 1) % playerCharacterBattles.Count]);
+         // Back to waiting on player input
          state = State.WaitingForPlayer;
       }
    }
 
+   // Decide the turn order based on speed
+   // For now alternates between player and opponent
+   private void createTurnOrder()
+   {
+      for (int i = 0; i < playerCharacterBattles.Count; i++)
+      {
+         characterBattlesTurnOrder.Add(playerCharacterBattles[i]);
+      }
+
+      for (int i = 0; i < enemiesCharacterBattles.Count; i++)
+      {
+         characterBattlesTurnOrder.Add(enemiesCharacterBattles[i]);
+      }
+      characterBattlesTurnOrder.Sort();
+      totalCharacterCount = characterBattlesTurnOrder.Count;
+   }
+
+   // Get the next person in the turn order list
+   private CharacterBattle GetNextCharacterBattler()
+   {
+      int next = activeCharacterIndex;
+      activeCharacterIndex = (activeCharacterIndex + 1) % totalCharacterCount;
+      return characterBattlesTurnOrder[next];
+   }
+   
    private bool TestBattleOver()
    {
       bool gameOver = true;
