@@ -573,10 +573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b763453337749eb95a174889ff1f2de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 20
+  healthMax: 0
   attack: 5
   speed: 1
-  nextActTurn: 0
 --- !u!114 &-5351568091605517106
 MonoBehaviour:
   m_ObjectHideFlags: 0

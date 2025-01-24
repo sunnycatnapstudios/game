@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleHandler : MonoBehaviour
@@ -12,15 +13,24 @@ public class BattleHandler : MonoBehaviour
       return instance;
    }
    
-   [SerializeField] private Transform pfCharacterBattle;
+   // Place the player party and enemy encounter under their own empty parent object
+   [SerializeField] private Transform playerParty; 
+   [SerializeField] private Transform enemyEncounter;
+
    
    // TODO replace with list of char
-   private CharacterBattle playerCharacterBattle;
-   private CharacterBattle enemyCharacterBattle;
+   //private CharacterBattle playerCharacterBattle;
+   //private CharacterBattle enemyCharacterBattle;
+   
+   private List<CharacterBattle> playerCharacterBattles = new List<CharacterBattle>();    // List of all player characters (scripts)
+   private List<CharacterBattle> enemiesCharacterBattles = new List<CharacterBattle>();   // List of all enemy characters scripts
+   
+   private int playerOffset = 0;
+   private int enemyOffset = 0;
    
    private CharacterBattle activeCharacterBattle;     // The active character in battle
 
-   private State state;
+   private State state;    // Current state of combat
    
    private enum State
    {
@@ -34,11 +44,17 @@ public class BattleHandler : MonoBehaviour
 
    private void Start()
    {
-      // TEMP
-      playerCharacterBattle = SpawnCharacter(true);
-      enemyCharacterBattle = SpawnCharacter(false);
+      foreach (Transform child in playerParty)
+      {
+         playerCharacterBattles.Add(SpawnCharacter(child, true));
+      }
 
-      SetActiveCharacterBattle(playerCharacterBattle);
+      foreach (Transform child in enemyEncounter)
+      {
+         enemiesCharacterBattles.Add(SpawnCharacter(child, false));
+      }
+
+      SetActiveCharacterBattle(playerCharacterBattles[0]);  // TODO Set turn order by speed
       state = State.WaitingForPlayer;
    }
 
@@ -49,7 +65,9 @@ public class BattleHandler : MonoBehaviour
          if (Input.GetKeyDown(KeyCode.Space))   // TODO attack when pressing space bar for now
          {
             state = State.Busy;
-            playerCharacterBattle.Attack(enemyCharacterBattle, onAttackComplete: () =>
+            
+            // TODO need to get selection on who's being attacked
+            activeCharacterBattle.Attack(enemiesCharacterBattles[1], onAttackComplete: () =>
             {
                ChooseNextActiveCharacter();     // Next character gets turn
             });
@@ -57,18 +75,21 @@ public class BattleHandler : MonoBehaviour
       }
    }
 
-   private CharacterBattle SpawnCharacter(bool isPlayerTeam)
+   private CharacterBattle SpawnCharacter(Transform pfCharacterBattle, bool isPlayerTeam)
    {
       Vector3 position;
+
       
       // Spawn on either left or right hand side
       if (isPlayerTeam)
       {
-         position = new Vector3(-5, 0);
+         position = new Vector3(-3 - playerOffset, 0);
+         playerOffset += 1;
       }
       else
       {
-         position = new Vector3(5, 0);
+         position = new Vector3(3 + enemyOffset, 0);
+         enemyOffset += 1;
       }
       
       Transform characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity); // Spawn into scene
@@ -100,34 +121,54 @@ public class BattleHandler : MonoBehaviour
          return;
       }
       
-      if (activeCharacterBattle == playerCharacterBattle)
+      if (playerCharacterBattles.Contains(activeCharacterBattle))
       {
-         SetActiveCharacterBattle(enemyCharacterBattle);
+         SetActiveCharacterBattle(enemiesCharacterBattles[(enemyOffset + 1) % enemiesCharacterBattles.Count]);   // TODO need speed calculations
          
-         // TODO Enemy Auto attack player
-         enemyCharacterBattle.Attack(playerCharacterBattle, onAttackComplete: () =>
+         // TODO Enemy Auto attack (random) player
+         activeCharacterBattle.Attack(playerCharacterBattles[0], onAttackComplete: () =>
          {
             ChooseNextActiveCharacter();     // Next character gets turn
          });
       }
       else
       {
-         SetActiveCharacterBattle(playerCharacterBattle);
+         SetActiveCharacterBattle(playerCharacterBattles[(playerOffset + 1) % playerCharacterBattles.Count]);
          state = State.WaitingForPlayer;
       }
    }
 
    private bool TestBattleOver()
    {
-      if (playerCharacterBattle.IsDead())
+      bool gameOver = true;
+      foreach (CharacterBattle character in playerCharacterBattles)
       {
-         // Player dead, enemy wins
+         if (!character.IsDead())
+         {
+            gameOver = false;
+            break;
+         }
+      }
+
+      if (gameOver)
+      {
+         // Players dead, enemy wins
          return true;
       }
 
-      if (enemyCharacterBattle.IsDead())
+      gameOver = true;
+      foreach (CharacterBattle character in enemiesCharacterBattles)
       {
-         // Enemy dead, player wins
+         if (!character.IsDead())
+         {
+            gameOver = false;
+            break;
+         }
+      }
+
+      if (gameOver)
+      {
+         // Enemies dead, player wins
          return true;
       }
 

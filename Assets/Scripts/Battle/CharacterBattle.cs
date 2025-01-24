@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class CharacterBattle : MonoBehaviour
 {
-    private Player characterBase;           // Reference to a [player] object
+    // TODO Build all types of characters off one base prefab.
+    // private Character characterBase
+    //private Player characterBase;           // Reference to a [player] object
+    //private Enemy enemyCharacterBase;           // Reference to a [enemy] object
+    
     private State state;                    // State of current entity
     
     private Vector3 slideTargetPositon;     // position to slide to 
@@ -24,8 +28,8 @@ public class CharacterBattle : MonoBehaviour
     }
     private void Awake()
     {
-        characterBase = GetComponent<Player>();
-        selectionCircleGameObject = GameObject.Find("SelectionCircle");
+        //characterBase = GetComponent<Player>();
+        selectionCircleGameObject = transform.Find("SelectionCircle").gameObject;
         HideSelectionCircle();
         state = State.Idle;
     }
@@ -37,7 +41,7 @@ public class CharacterBattle : MonoBehaviour
             case State.Idle:
                 break;
             case State.Sliding:
-                float slideSpeed = 6f;
+                float slideSpeed = 4f;
                 transform.position += (slideTargetPositon - GetPosition()) * (slideSpeed * Time.deltaTime);
 
                 float reachedDistance = 1f;
@@ -57,15 +61,15 @@ public class CharacterBattle : MonoBehaviour
     public void Setup(bool isPlayerTeam)
     {
         this.isPlayerTeam = isPlayerTeam;
-        if (isPlayerTeam)
+        if (this.isPlayerTeam)
         {
             // TODO if player, orientate characters and play their idle animation
-            characterBase.anim.Play("Walk Down");
-        }
+            //characterBase.anim.Play("Walk Down");
+        } 
         else
         {
             // TODO if enemy, orientate characters and play their idle animation
-            characterBase.anim.Play("Walk Left");
+            //characterBase.anim.Play("Walk Left");
         }
         unitStats = GetComponent<UnitStats>();
     }
@@ -80,6 +84,12 @@ public class CharacterBattle : MonoBehaviour
     {
         unitStats.TakeDamage(damageAmount);
         Debug.Log("Hit! Current Health = " + unitStats.GetHealth());
+        
+        if (IsDead())
+        {
+            // TODO play death animation if this character dead
+            //characterBase.die
+        }
     }
     
     // Attack the targeted character
@@ -93,8 +103,8 @@ public class CharacterBattle : MonoBehaviour
             state = State.Busy;
             // After Slide complete, play attack animation
             Vector3 attackDir = targetCharacterBattle.GetPosition() - GetPosition().normalized;     // Direction vector toward enemy
-            characterBase.anim.Play("Walk Up");     // TODO Attack animation, wait for anim complete
-            characterBase.anim.Play("Walk Left");   // TODO create a dedicated animation player to handle logic during, at, and after an animation
+            //characterBase.anim.Play("Walk Up");     // TODO Attack animation, wait for anim complete
+            //characterBase.anim.Play("Walk Left");   // TODO create a dedicated animation player to handle logic during, at, and after an animation
             
             // unitStats.TakeDamage(unitStats.GetAttack());
             TakeDamage(unitStats.GetAttack());      // Deal damage to opponent
