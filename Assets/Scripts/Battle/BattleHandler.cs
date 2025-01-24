@@ -14,8 +14,11 @@ public class BattleHandler : MonoBehaviour
    
    [SerializeField] private Transform pfCharacterBattle;
    
+   // TODO replace with list of char
    private CharacterBattle playerCharacterBattle;
    private CharacterBattle enemyCharacterBattle;
+   
+   private CharacterBattle activeCharacterBattle;     // The active character in battle
 
    private State state;
    
@@ -35,6 +38,7 @@ public class BattleHandler : MonoBehaviour
       playerCharacterBattle = SpawnCharacter(true);
       enemyCharacterBattle = SpawnCharacter(false);
 
+      SetActiveCharacterBattle(playerCharacterBattle);
       state = State.WaitingForPlayer;
    }
 
@@ -47,7 +51,7 @@ public class BattleHandler : MonoBehaviour
             state = State.Busy;
             playerCharacterBattle.Attack(enemyCharacterBattle, onAttackComplete: () =>
             {
-               state = State.WaitingForPlayer;  // Return to waiting state after attack
+               ChooseNextActiveCharacter();     // Next character gets turn
             });
          }
       }
@@ -72,5 +76,61 @@ public class BattleHandler : MonoBehaviour
       characterBattle.Setup(isPlayerTeam);
       
       return characterBattle;
+   }
+   
+   // Assign activeCharacterBattle variable. Used in ChooseNextActiveCharacter
+   private void SetActiveCharacterBattle(CharacterBattle characterBattle)
+   {
+      // Hide the selection circle
+      if (activeCharacterBattle != null)
+      {
+         activeCharacterBattle.HideSelectionCircle();
+      }
+      
+      // Set new character, show selection circle
+      activeCharacterBattle = characterBattle;
+      activeCharacterBattle.ShowSelectionCircle();
+   }
+
+   // Give the turn to the next character
+   private void ChooseNextActiveCharacter()
+   {
+      if (TestBattleOver())
+      {
+         return;
+      }
+      
+      if (activeCharacterBattle == playerCharacterBattle)
+      {
+         SetActiveCharacterBattle(enemyCharacterBattle);
+         
+         // TODO Enemy Auto attack player
+         enemyCharacterBattle.Attack(playerCharacterBattle, onAttackComplete: () =>
+         {
+            ChooseNextActiveCharacter();     // Next character gets turn
+         });
+      }
+      else
+      {
+         SetActiveCharacterBattle(playerCharacterBattle);
+         state = State.WaitingForPlayer;
+      }
+   }
+
+   private bool TestBattleOver()
+   {
+      if (playerCharacterBattle.IsDead())
+      {
+         // Player dead, enemy wins
+         return true;
+      }
+
+      if (enemyCharacterBattle.IsDead())
+      {
+         // Enemy dead, player wins
+         return true;
+      }
+
+      return false;
    }
 }
