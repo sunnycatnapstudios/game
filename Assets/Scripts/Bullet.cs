@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Animator anim;
     public Transform target;
     public float speed, counter = 0;
     public bool shoot = false;
     public Vector3 DIR;
     public SpriteRenderer sprender;
-    public CircleCollider2D circollider2D;
+    private CircleCollider2D circollider2D;
+    public LayerMask enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         sprender = GetComponent<SpriteRenderer>();
         circollider2D = GetComponent<CircleCollider2D>();
+        anim =  GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!shoot){
+        if(!shoot || Physics2D.OverlapCircle((transform.position), .2f, enemy)){
 
             sprender.enabled = false;
             circollider2D.enabled = false;
