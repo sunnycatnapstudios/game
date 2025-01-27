@@ -1,35 +1,64 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine;
 
 public class Player : MonoBehaviour
 {
 
     // public float Speed;
-    public Animator anim;
-    private SpriteRenderer spritestate;
+    [HideInInspector] public Animator anim;
+    [HideInInspector] public SpriteRenderer spritestate;
 
-    public float moveSpeed = 5, movementInputDelay = 0.05f;
-    private float moveSprint, moveSneak;
-    public float moveConstant, sprintConstant, sneakConstant;
-    public Vector3 pointRef;
-    public Transform movePoint;
+    public float moveSpeed = 5, movementInputDelay = 0.05f, moveConstant, sprintConstant, sneakConstant;
+    [HideInInspector] public float moveSprint, moveSneak;
+    private Vector3 pointRef;
+    [HideInInspector] public Transform movePoint;
     public List<Vector3> moveHist = new List<Vector3>();
     public LayerMask noPass;
     public int partyCount = 4;
 
     public GameObject memTemplate;
-    GameObject memSpawn;
     public AudioSource walkAudi;
     private int walkAudiCount;
+    GameObject memSpawn;
 
     public CinemachineVirtualCamera vcam;
     public float camMax, camMin;
-    private bool camZoom;
+    public bool camZoom;
 
+    private float currStamina, maxStamina = 100;
+    public float sprintCost = 35;
+    public Image staminaBar;
+    private Coroutine recharge;
+    public bool recharging;
 
-    // Start is called before the first frame update
+    private IEnumerator RechargeStamina() {
+        yield return new WaitForSeconds(1f);
+        while (currStamina < maxStamina) {
+            currStamina += (sprintCost*1.5f)*Time.deltaTime;
+            if (currStamina > maxStamina) {recharging = false; currStamina = maxStamina;}
+            staminaBar.fillAmount = currStamina/maxStamina;
+            yield return new WaitForSeconds(.01f);
+        }
+    }
+
+    void viewMap()
+    {
+        if(Input.GetKey(KeyCode.Q)) // Controlls CamZoom
+		{
+            camZoom = true;
+			if(vcam.m_Lens.OrthographicSize >= camMax){vcam.m_Lens.OrthographicSize = camMax;}
+            else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize + camMax*Time.deltaTime*2;}
+		} else
+		{
+            camZoom = false;
+			if(vcam.m_Lens.OrthographicSize <= camMin){vcam.m_Lens.OrthographicSize = camMin;}
+            else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize - camMin*Time.deltaTime*2;}
+		}
+    }
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -41,6 +70,8 @@ public class Player : MonoBehaviour
         moveConstant = moveSpeed;
         moveSprint = moveSpeed*sprintConstant;
         moveSneak = moveSpeed*sneakConstant;
+
+        currStamina = maxStamina;
 
         moveHist = new List<Vector3>{movePoint.position, movePoint.position, movePoint.position};
 
@@ -89,32 +120,34 @@ public class Player : MonoBehaviour
 
         // Controls Movement Speed
         if(Input.GetMouseButton(1)){moveSpeed = moveSneak;}
-        else if(Input.GetKey(KeyCode.LeftShift)){moveSpeed = moveSprint;}
-        else{moveSpeed = moveConstant;}
+        else if(Input.GetKey(KeyCode.LeftShift)){
 
-        // Controls Camera Scale
-        // if (Input.GetKey(KeyCode.Q) && personalCamera.orthographicSize <= 8) {
-        //     personalCamera.orthographicSize += 1;
-        // }
-        if(Input.GetKey(KeyCode.Q)) // Controlls CamZoom
-		{
-            camZoom = true;
-			if(vcam.m_Lens.OrthographicSize >= camMax)
-			{
-                vcam.m_Lens.OrthographicSize = camMax;
-			} else{
-                vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize + camMax*Time.deltaTime*2;
-            }
-		} else
-		{
-            camZoom = false;
-			if(vcam.m_Lens.OrthographicSize <= camMin)
-			{
-                vcam.m_Lens.OrthographicSize = camMin;
-			} else{
-                vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize - camMin*Time.deltaTime*2;
-            }
-		}
+            if (currStamina>0 && !recharging){
+                moveSpeed = moveSprint;
+                currStamina -= sprintCost*Time.deltaTime;
+                if (currStamina<0) {currStamina = 0; recharging = true;}
+                staminaBar.fillAmount = currStamina/maxStamina;
+
+                if (recharge != null) {StopCoroutine(recharge);}
+                recharge = StartCoroutine(RechargeStamina());
+
+            } else{moveSpeed = moveConstant;}
+
+        }else{moveSpeed = moveConstant;}
+
+
+        viewMap();
+        // if(Input.GetKey(KeyCode.Q)) // Controlls CamZoom
+		// {
+        //     camZoom = true;
+		// 	if(vcam.m_Lens.OrthographicSize >= camMax){vcam.m_Lens.OrthographicSize = camMax;}
+        //     else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize + camMax*Time.deltaTime*2;}
+		// } else
+		// {
+        //     camZoom = false;
+		// 	if(vcam.m_Lens.OrthographicSize <= camMin){vcam.m_Lens.OrthographicSize = camMin;}
+        //     else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize - camMin*Time.deltaTime*2;}
+		// }
 
 
         if (Vector3.Distance(transform.position, movePoint.position) <= movementInputDelay && !camZoom){
