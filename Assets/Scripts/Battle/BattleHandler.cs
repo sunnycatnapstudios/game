@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BattleHandler : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class BattleHandler : MonoBehaviour
    private int totalCharacterCount;
    
    private State state;    // Current state of combat
+   private int selectedEnemyIndex = 0;    // Index of which enemy the player is targeting
    
    private enum State
    {
@@ -43,18 +45,21 @@ public class BattleHandler : MonoBehaviour
 
    private void Start()
    {
+      // Spawn the entities into the scene
       foreach (Transform child in playerParty)
       {
          playerCharacterBattles.Add(SpawnCharacter(child, true));
       }
-
       foreach (Transform child in enemyEncounter)
       {
          enemiesCharacterBattles.Add(SpawnCharacter(child, false));
       }
+      
+      // Default target first enemy
+      enemiesCharacterBattles[0].ShowSelectionCircle();
 
       // Determine the turn order
-      createTurnOrder();
+      CreateTurnOrder();
       SetActiveCharacterBattle(characterBattlesTurnOrder[activeCharacterIndex++]);  // Fastest Character Goes first
       state = State.WaitingForPlayer;
    }
@@ -63,12 +68,38 @@ public class BattleHandler : MonoBehaviour
    {
       if (state == State.WaitingForPlayer)
       {
+         // Left/Right Arrow keys switches enemy target to next alive enemy. Also hides and show circle
+         if (Input.GetKeyDown(KeyCode.LeftArrow))
+         {
+            do
+            {
+               enemiesCharacterBattles[selectedEnemyIndex].HideSelectionCircle();
+               if (selectedEnemyIndex == 0)     // C# doesnt handle negative module
+               {
+                  selectedEnemyIndex = enemiesCharacterBattles.Count - 1;
+               }
+               else
+               {
+                  selectedEnemyIndex = (selectedEnemyIndex - 1) % enemiesCharacterBattles.Count;
+               }
+            } while (enemiesCharacterBattles[selectedEnemyIndex].IsDead());
+            enemiesCharacterBattles[selectedEnemyIndex].ShowSelectionCircle();
+         }
+         if (Input.GetKeyDown(KeyCode.RightArrow))
+         {
+            do
+            {
+               enemiesCharacterBattles[selectedEnemyIndex].HideSelectionCircle();
+               selectedEnemyIndex = (selectedEnemyIndex + 1) % enemiesCharacterBattles.Count;
+            } while (enemiesCharacterBattles[selectedEnemyIndex].IsDead());
+            enemiesCharacterBattles[selectedEnemyIndex].ShowSelectionCircle();
+         }
+         
          if (Input.GetKeyDown(KeyCode.Space))   // TODO attack when pressing space bar for now
          {
             state = State.Busy;
-            
-            // TODO need to get selection on who's being attacked
-            activeCharacterBattle.Attack(enemiesCharacterBattles[1], onAttackComplete: () =>
+            Debug.Log("Attacking enemy" + selectedEnemyIndex);
+            activeCharacterBattle.Attack(enemiesCharacterBattles[selectedEnemyIndex], onAttackComplete: () =>
             {
                ChooseNextActiveCharacter();     // Next character gets turn
             });
@@ -119,7 +150,8 @@ public class BattleHandler : MonoBehaviour
    {
       if (TestBattleOver())
       {
-         return;
+         // TODO End the battle. Show splash screen. Nav back to scene
+         return;  
       }
       
       // Get the next character
@@ -128,7 +160,7 @@ public class BattleHandler : MonoBehaviour
       // If it's an enemy they auto attack
       if (enemiesCharacterBattles.Contains(activeCharacterBattle))
       {
-         // TODO Enemy Auto attack (random) player
+         // TODO Enemy Auto attack (random, for now just first) player
          activeCharacterBattle.Attack(playerCharacterBattles[0], onAttackComplete: () =>
          {
             ChooseNextActiveCharacter();     // Next character gets turn
@@ -142,18 +174,20 @@ public class BattleHandler : MonoBehaviour
    }
 
    // Decide the turn order based on speed
-   // For now alternates between player and opponent
-   private void createTurnOrder()
+   // TODO alternates between player and opponent. For now all players move first
+   private void CreateTurnOrder()
    {
-      for (int i = 0; i < playerCharacterBattles.Count; i++)
+
+      foreach (CharacterBattle playercb in playerCharacterBattles)
       {
-         characterBattlesTurnOrder.Add(playerCharacterBattles[i]);
+         characterBattlesTurnOrder.Add(playercb);
       }
 
-      for (int i = 0; i < enemiesCharacterBattles.Count; i++)
+      foreach (CharacterBattle enemycb in enemiesCharacterBattles)
       {
-         characterBattlesTurnOrder.Add(enemiesCharacterBattles[i]);
+         characterBattlesTurnOrder.Add(enemycb);
       }
+
       characterBattlesTurnOrder.Sort();
       totalCharacterCount = characterBattlesTurnOrder.Count;
    }
