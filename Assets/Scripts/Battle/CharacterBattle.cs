@@ -140,6 +140,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
         }
     }
 
+    // Show and hide characters selection circle
     public void HideSelectionCircle()
     {
         selectionCircleGameObject.SetActive(false);
