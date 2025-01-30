@@ -5,9 +5,9 @@ using UnityEngine;
 public class AlertAnim : MonoBehaviour
 {
     public Enemy Enemy;
-    public Animator Alert;
-    public AudioSource alertAudi;
-    public int playCount;
+    [HideInInspector] public Animator Alert; public AudioSource alertAudi;
+    public int playCount, animPlayCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +19,25 @@ public class AlertAnim : MonoBehaviour
     void Update()
     {
         if (Enemy.attack){
-            // Alert.SetTrigger("AlertActive");
-            Alert.Play("Alert");
+
+            // Alert.Play("Alert");
+            Alert.ResetTrigger("AlertNone"); Alert.ResetTrigger("AlertLost");
+            Alert.SetTrigger("AlertActive");
             if (!alertAudi.isPlaying && playCount <=0 ) {alertAudi.Play(); playCount+=1;}
+
+        } else if (Enemy.searching){
+
+            // if (animPlayCount == 0) {Alert.Play("AlertLost"); animPlayCount+
+            Alert.ResetTrigger("AlertActive"); Alert.ResetTrigger("AlertNone");
+            Alert.SetTrigger("AlertLost");
         }
         else{
-            Alert.Play("AlertNone");
+
+            // Alert.Play("AlertNone");
+            Alert.ResetTrigger("AlertLost"); Alert.ResetTrigger("AlertActive");
+            Alert.SetTrigger("AlertNone");
             playCount = 0;
+            animPlayCount = 0;
         }
     }
 }

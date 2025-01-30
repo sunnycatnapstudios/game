@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using Cinemachine;
 
 public class Player : MonoBehaviour
 {
 
     // public float Speed;
+    public bool infSprint;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer spritestate;
 
@@ -24,40 +26,110 @@ public class Player : MonoBehaviour
     private int walkAudiCount;
     GameObject memSpawn;
 
+    public ParticleSystem partiSystem;
+
     public CinemachineVirtualCamera vcam;
     public float camMax, camMin;
-    public bool camZoom;
+    public bool isZooming;
 
-    private float currStamina, maxStamina = 100;
-    public float sprintCost = 35;
+    public float currStamina, maxStamina = 100, sprintCost = 35;
     public Image staminaBar;
     private Coroutine recharge;
-    public bool recharging;
+    private Coroutine checkKey;
+    public bool recharging, isMoving;
+    [HideInInspector] public bool faceLeft, faceRight, faceUp, faceDown = true;
+    int animCount;
 
+    public float horizontalInput, verticalInput;
+    public string lastInput;
+    public bool up_,down_, left_, right_;
+
+    private PlayerInputActions playerInputActions;
+    private InputAction movement, move;
+    public Vector2 moveInput;
+
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+
+    }
+
+    private void OnEnable()
+    {
+        movement = playerInputActions.Player.Movement;
+        movement.Enable();
+
+        playerInputActions.Player.Sprint.performed += DoJump;
+        playerInputActions.Player.Sprint.Enable();
+
+        move = playerInputActions.Player.Move;
+        move.performed += DoMove;
+        move.Enable();
+    }
+
+    private void OnDisable()
+    {
+        movement.Disable();
+        playerInputActions.Player.Sprint.Enable();
+        
+        move.canceled -= DoMove;
+        move.Enable();
+        // move.Disable();
+    }
+
+    private void DoJump(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Idk lol");
+    }
+
+    private void DoMove(InputAction.CallbackContext obj)
+    {
+        // moveInput = move.ReadValue<Vector2>();
+        // Debug.Log("Last Key Pressed " + moveInput);
+        Debug.Log("Last Key Pressed " + obj);
+    }
+
+    private void FixedUpdate()
+    {
+        // Debug.Log("Movement Values "+ movement.ReadValue<Vector2>());
+        // Debug.Log("Last Key Pressed " + move.ReadValue<Vector2>());
+        // Debug.Log("Last Key Pressed " + moveInput);
+    }
+
+
+    
     private IEnumerator RechargeStamina() {
         yield return new WaitForSeconds(1f);
         while (currStamina < maxStamina) {
-            currStamina += (sprintCost*1.5f)*Time.deltaTime;
+            currStamina += (sprintCost*3f)*Time.deltaTime;
             if (currStamina > maxStamina) {recharging = false; currStamina = maxStamina;}
             staminaBar.fillAmount = currStamina/maxStamina;
             yield return new WaitForSeconds(.01f);
         }
     }
 
+    private IEnumerator MovementDirection()
+    {
+        up_ = ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)));
+        down_ = ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)));
+        left_ = ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)));
+        right_ = ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)));
+
+        if (up_) {lastInput = "Up";}
+        if (down_) {lastInput = "Down";}
+        if (left_) {lastInput = "Left";}
+        if (right_) {lastInput = "Right";}
+        yield return new WaitForSeconds(.2f);
+    } 
+
     void viewMap()
     {
-        if(Input.GetKey(KeyCode.Q)) // Controlls CamZoom
-		{
-            camZoom = true;
-			if(vcam.m_Lens.OrthographicSize >= camMax){vcam.m_Lens.OrthographicSize = camMax;}
-            else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize + camMax*Time.deltaTime*2;}
-		} else
-		{
-            camZoom = false;
-			if(vcam.m_Lens.OrthographicSize <= camMin){vcam.m_Lens.OrthographicSize = camMin;}
-            else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize - camMin*Time.deltaTime*2;}
-		}
+        isZooming = Input.GetKey(KeyCode.Q);
+        float targetSize = isZooming ? camMax : camMin;
+
+        vcam.m_Lens.OrthographicSize = Mathf.MoveTowards(vcam.m_Lens.OrthographicSize,targetSize,targetSize * Time.deltaTime * 2);
     }
+
 
     void Start()
     {
@@ -65,11 +137,13 @@ public class Player : MonoBehaviour
         spritestate = GetComponent<SpriteRenderer>();
         walkAudi = GetComponent<AudioSource>();
 
+        // checkKey = MovementDirection();
+
+        if (checkKey != null) {StopCoroutine(checkKey);}
+        checkKey = StartCoroutine(MovementDirection());
 
         movePoint.parent = null;
-        moveConstant = moveSpeed;
-        moveSprint = moveSpeed*sprintConstant;
-        moveSneak = moveSpeed*sneakConstant;
+        moveConstant = moveSpeed; moveSprint = moveSpeed*sprintConstant; moveSneak = moveSpeed*sneakConstant;
 
         currStamina = maxStamina;
 
@@ -79,7 +153,6 @@ public class Player : MonoBehaviour
         for (int x = 0; x<partyCount; x++) {
             memSpawn = GameObject.Instantiate(memTemplate);
             memSpawn.name = $"Follower {x+1}";
-            // memSpawn.order = x;
             memSpawn.GetComponent<Follower>().order = x+1;
         }
         
@@ -88,6 +161,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Input"+move);
         // // Movement controls V1
         // if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
         //     transform.position+= Vector3.up*Time.deltaTime*Speed;
@@ -115,50 +189,115 @@ public class Player : MonoBehaviour
         // }
 
 
-        // Movement Conteols V2
+        // Movement Controls V2
+        Vector3 startRef = transform.position;
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed*Time.deltaTime);
+        Vector3 endRef = transform.position;
+
+        isMoving = startRef!=endRef;
 
         // Controls Movement Speed
         if(Input.GetMouseButton(1)){moveSpeed = moveSneak;}
-        else if(Input.GetKey(KeyCode.LeftShift)){
+        else if(Input.GetKey(KeyCode.LeftShift) && !recharging){
 
-            if (currStamina>0 && !recharging){
+            if (currStamina>0 && !recharging && isMoving){
+                // if (Input.GetKeyDown(KeyCode.LeftShift)) {partiSystem.Play();}
+
                 moveSpeed = moveSprint;
-                currStamina -= sprintCost*Time.deltaTime;
+                if (animCount<=0){partiSystem.Play(); animCount+=1;}
+                if (!infSprint) {currStamina -= sprintCost*Time.deltaTime;}
+
                 if (currStamina<0) {currStamina = 0; recharging = true;}
                 staminaBar.fillAmount = currStamina/maxStamina;
 
                 if (recharge != null) {StopCoroutine(recharge);}
                 recharge = StartCoroutine(RechargeStamina());
 
-            } else{moveSpeed = moveConstant;}
+            } else{moveSpeed = moveConstant; animCount=0; partiSystem.Stop();}
+        
+        } else{moveSpeed = moveConstant; animCount=0; partiSystem.Stop();}
+        // if (Input.GetKeyUp(KeyCode.LeftShift)){partiSystem.Stop();}
 
-        }else{moveSpeed = moveConstant;}
-
-
+    
         viewMap();
-        // if(Input.GetKey(KeyCode.Q)) // Controlls CamZoom
-		// {
-        //     camZoom = true;
-		// 	if(vcam.m_Lens.OrthographicSize >= camMax){vcam.m_Lens.OrthographicSize = camMax;}
-        //     else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize + camMax*Time.deltaTime*2;}
-		// } else
-		// {
-        //     camZoom = false;
-		// 	if(vcam.m_Lens.OrthographicSize <= camMin){vcam.m_Lens.OrthographicSize = camMin;}
-        //     else{vcam.m_Lens.OrthographicSize = vcam.m_Lens.OrthographicSize - camMin*Time.deltaTime*2;}
-		// }
 
-
-        if (Vector3.Distance(transform.position, movePoint.position) <= movementInputDelay && !camZoom){
+        if (Vector3.Distance(transform.position, movePoint.position) <= movementInputDelay && !isZooming){
 
             pointRef = movePoint.position;
+
+            float horizontalInput = Input.GetAxisRaw("Horizontal"), verticalInput = Input.GetAxisRaw("Vertical");
+
+            // bool up_ = ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)));
+            // bool down_ = ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)));
+            // bool left_ = ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)));
+            // bool right_ = ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)));
+            // string lastInput = "";
+
+            // if (Mathf.Abs(horizontalInput) == 1f) {lastInput = "Horizontal";}
+            // if (Mathf.Abs(verticalInput) == 1f) {lastInput = "Vertical";}
+
+            // if (up_||down_) {lastInput = "Horizontal";}
+            // if (left_||right_) {lastInput = "Vertical";}
+
+            // if (up_) {lastInput = "Up";}
+            // if (down_) {lastInput = "Down";}
+            // if (left_) {lastInput = "Left";}
+            // if (right_) {lastInput = "Right";}
+
+            // if (up_) {lastInput = "Vertical";}
+            // if (down_) {lastInput = "Vertical";}
+            // if (left_) {lastInput = "Horizontal";}
+            // if (right_) {lastInput = "Horizontal";}
+
+            // if (left_||right_) {lastInput = "Horizontal";}
+            // if (up_||down_) {lastInput = "Vertical";}
+
+            // if (lastInput == "Up"){movePoint.position += new Vector3(0, verticalInput, 0);}
+            // else if (lastInput == "Down"){movePoint.position += new Vector3(0, verticalInput, 0);}
+
+            // else if (lastInput == "Left"){movePoint.position += new Vector3(horizontalInput, 0, 0);}
+            // else if (lastInput == "Right"){movePoint.position += new Vector3(horizontalInput, 0, 0);}
+
+            // if (lastInput == "Horizontal" && !Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontalInput, 0, 0), .2f, noPass)) {
+            //     movePoint.position += new Vector3(horizontalInput, 0, 0);
+            //     if (horizontalInput<0) {
+            //         spritestate.flipX = true;
+            //         partiSystem.transform.eulerAngles = new Vector3(0, 90f, 90f);
+            //         faceLeft = true; faceUp=faceRight=faceDown=false;
+            //     } else {
+            //         spritestate.flipX = false;
+            //         partiSystem.transform.eulerAngles = new Vector3(0f, -90f, 90f);
+            //         faceRight = true; faceUp=faceLeft=faceDown=false;
+            //     }
+            //     anim.Play("Walk Left");
+            // }
+            // if (lastInput == "Vertical" && !Physics2D.OverlapCircle(movePoint.position + new Vector3(0, verticalInput, 0), .2f, noPass)) {
+            //     movePoint.position += new Vector3(0, verticalInput, 0);
+            //     if (verticalInput>0) {
+            //         partiSystem.transform.eulerAngles = new Vector3(90f, 0, 0);
+            //         faceUp = true; faceDown=faceLeft=faceRight=false;
+            //         anim.Play("Walk Up");
+            //     } else if (verticalInput<0) {
+            //         partiSystem.transform.eulerAngles = new Vector3(-90f, 0, 0);
+            //         faceDown = true; faceUp=faceLeft=faceRight=false;
+            //         anim.Play("Walk Down");
+            //     }
+            // }
             
+
+
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f){
                 if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, noPass)){
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                    if (Input.GetAxisRaw("Horizontal") < 0f) {spritestate.flipX = true;}
-                    else {spritestate.flipX = false;}
+                    if (Input.GetAxisRaw("Horizontal") < 0f) {
+                        spritestate.flipX = true;
+                        partiSystem.transform.eulerAngles = new Vector3(0f, 90f, 90f);
+                        faceLeft = true; faceUp=faceRight=faceDown=false;
+                    } else {
+                        spritestate.flipX = false;
+                        partiSystem.transform.eulerAngles = new Vector3(0f, -90f, 90f);
+                        faceRight = true; faceUp=faceLeft=faceDown=false;
+                    }
                     anim.Play("Walk Left");
                 }
             }
@@ -167,11 +306,18 @@ public class Player : MonoBehaviour
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                     if (Input.GetAxisRaw("Vertical") > 0f) {
                         anim.Play("Walk Up");
+                        partiSystem.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+                        faceUp = true; faceDown=faceLeft=faceRight=false;
                     } else if (Input.GetAxisRaw("Vertical") < 0f) {
                         anim.Play("Walk Down");
+                        partiSystem.transform.eulerAngles = new Vector3(-90f, 0f, 0f);
+                        faceDown = true; faceUp=faceLeft=faceRight=false;
                     }
                 }
             }
+
+
+
             if (!walkAudi.isPlaying && walkAudiCount <=0 ) {walkAudi.Play(); walkAudiCount+=1; walkAudi.Play();}
             else {walkAudi.Stop(); walkAudiCount = 0;}
 

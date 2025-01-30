@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy Walk Down
+  m_Name: Enem Down
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,10 +20,10 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 5358839413381811020, guid: 353cc2da3a877d14d8f5328768cb9e03,
+      value: {fileID: -8569794252034787880, guid: 32f52ed5d3fb62440b6913cfac12f8ec,
         type: 3}
     - time: 0.25
-      value: {fileID: -6177387638664437001, guid: 353cc2da3a877d14d8f5328768cb9e03,
+      value: {fileID: 9008783148372659933, guid: 32f52ed5d3fb62440b6913cfac12f8ec,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -44,8 +44,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 5358839413381811020, guid: 353cc2da3a877d14d8f5328768cb9e03, type: 3}
-    - {fileID: -6177387638664437001, guid: 353cc2da3a877d14d8f5328768cb9e03, type: 3}
+    - {fileID: -8569794252034787880, guid: 32f52ed5d3fb62440b6913cfac12f8ec, type: 3}
+    - {fileID: 9008783148372659933, guid: 32f52ed5d3fb62440b6913cfac12f8ec, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
