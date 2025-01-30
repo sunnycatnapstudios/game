@@ -44,57 +44,58 @@ public class Player : MonoBehaviour
     public string lastInput;
     public bool up_,down_, left_, right_;
 
+    // New Input controls
     private PlayerInputActions playerInputActions;
     private InputAction movement, move;
     public Vector2 moveInput;
 
-    private void Awake()
-    {
-        playerInputActions = new PlayerInputActions();
+    // private void Awake()
+    // {
+    //     playerInputActions = new PlayerInputActions();
 
-    }
+    // }
 
-    private void OnEnable()
-    {
-        movement = playerInputActions.Player.Movement;
-        movement.Enable();
+    // private void OnEnable()
+    // {
+    //     movement = playerInputActions.Player.Movement;
+    //     movement.Enable();
 
-        playerInputActions.Player.Sprint.performed += DoJump;
-        playerInputActions.Player.Sprint.Enable();
+    //     playerInputActions.Player.Sprint.performed += DoJump;
+    //     playerInputActions.Player.Sprint.Enable();
 
-        move = playerInputActions.Player.Move;
-        move.performed += DoMove;
-        move.Enable();
-    }
+    //     move = playerInputActions.Player.Move;
+    //     move.performed += DoMove;
+    //     move.Enable();
+    // }
 
-    private void OnDisable()
-    {
-        movement.Disable();
-        playerInputActions.Player.Sprint.Enable();
+    // private void OnDisable()
+    // {
+    //     movement.Disable();
+    //     playerInputActions.Player.Sprint.Enable();
         
-        move.canceled -= DoMove;
-        move.Enable();
-        // move.Disable();
-    }
+    //     move.canceled -= DoMove;
+    //     move.Enable();
+    //     // move.Disable();
+    // }
 
-    private void DoJump(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Idk lol");
-    }
+    // private void DoJump(InputAction.CallbackContext obj)
+    // {
+    //     Debug.Log("Idk lol");
+    // }
 
-    private void DoMove(InputAction.CallbackContext obj)
-    {
-        // moveInput = move.ReadValue<Vector2>();
-        // Debug.Log("Last Key Pressed " + moveInput);
-        Debug.Log("Last Key Pressed " + obj);
-    }
+    // private void DoMove(InputAction.CallbackContext obj)
+    // {
+    //     // moveInput = move.ReadValue<Vector2>();
+    //     // Debug.Log("Last Key Pressed " + moveInput);
+    //     Debug.Log("Last Key Pressed " + obj);
+    // }
 
-    private void FixedUpdate()
-    {
-        // Debug.Log("Movement Values "+ movement.ReadValue<Vector2>());
-        // Debug.Log("Last Key Pressed " + move.ReadValue<Vector2>());
-        // Debug.Log("Last Key Pressed " + moveInput);
-    }
+    // private void FixedUpdate()
+    // {
+    //     // Debug.Log("Movement Values "+ movement.ReadValue<Vector2>());
+    //     // Debug.Log("Last Key Pressed " + move.ReadValue<Vector2>());
+    //     // Debug.Log("Last Key Pressed " + moveInput);
+    // }
 
 
     
