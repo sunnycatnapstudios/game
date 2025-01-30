@@ -22,13 +22,13 @@ public class Inventory : MonoBehaviour
     private void addItem(Item item)
 
     {
-        if (!inventory.ContainsKey(item.GetName()))
+        if (!inventory.ContainsKey(item.GetName()))//adding if no prev item
         {
             Slot slot = new Slot(item);
             inventory.Add(item.GetName(), slot);
             slot.incCount();
         }
-        else
+        else//if have inc item
         {
             Slot itemSlot = inventory[item.GetName()];
             itemSlot.incCount();
@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)//if colliding with an item add to pickupable
     {
 
         // Add the GameObject collided with to the list.
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))//pickup item
         {
             if (itemsInRange.Count > 0)
             {
@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    void OnTriggerExit2D(Collider2D col)//when leaving item remove from pickupable
     {
 
         // Remove the GameObject collided with from the list.

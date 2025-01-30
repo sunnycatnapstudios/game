@@ -17,7 +17,7 @@ public class Pickupable : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collison)
+    private void OnTriggerEnter2D(Collider2D collison)//TODO if we need items to be pickupable / not pickupable for some reason
     {
         if (collison.gameObject.tag == "Player")
         {
