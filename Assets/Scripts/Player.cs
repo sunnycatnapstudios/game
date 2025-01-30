@@ -162,7 +162,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Input"+move);
         // // Movement controls V1
         // if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
         //     transform.position+= Vector3.up*Time.deltaTime*Speed;
