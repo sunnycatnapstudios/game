@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EnemyUnit
-  - PlayerParty
   - EnemyEncounter
+  - EnemyUnit
+  - Item
+  - PlayerParty
   layers:
   - Default
   - TransparentFX
