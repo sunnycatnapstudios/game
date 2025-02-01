@@ -94,19 +94,9 @@ public class BattleHandler : MonoBehaviour
             } while (enemiesCharacterBattles[selectedEnemyIndex].IsDead());
             enemiesCharacterBattles[selectedEnemyIndex].ShowSelectionCircle();
          }
-         
-         if (Input.GetKeyDown(KeyCode.Space))   // TODO attack when pressing space bar for now
-         {
-            state = State.Busy;
-            Debug.Log("Attacking enemy" + selectedEnemyIndex);
-            activeCharacterBattle.Attack(enemiesCharacterBattles[selectedEnemyIndex], onAttackComplete: () =>
-            {
-               ChooseNextActiveCharacter();     // Next character gets turn
-            });
-         }
       }
    }
-
+   
    private CharacterBattle SpawnCharacter(Transform pfCharacterBattle, bool isPlayerTeam)
    {
       Vector3 position;
@@ -151,6 +141,7 @@ public class BattleHandler : MonoBehaviour
       if (TestBattleOver())
       {
          // TODO End the battle. Show splash screen. Nav back to scene
+         Debug.Log("Battle Over");
          return;  
       }
       
@@ -235,5 +226,36 @@ public class BattleHandler : MonoBehaviour
       }
 
       return false;
+   }
+   
+   // Public scripts called by player UI
+   // Used in attack button to attack currently targeted enemy
+   public void AttackOpponent()
+   {
+      if (state != State.Busy)
+      {
+         state = State.Busy;
+         Debug.Log("Attacking enemy" + selectedEnemyIndex);
+         activeCharacterBattle.Attack(enemiesCharacterBattles[selectedEnemyIndex], onAttackComplete: () =>
+         {
+            ChooseNextActiveCharacter();     // Next character gets turn
+         });
+      }
+   }
+   
+   // Used in inventory button to open inventory. Blocks all other actions until success
+   public void OpenInventory()
+   {
+      state = State.Busy;
+      // TODO implement
+      state = State.WaitingForPlayer;
+   }
+
+   // Used in escape button. Attempts an escape
+   public void EscapeBattle()
+   {
+      state = State.Busy;
+      // TODO implement
+      state = State.WaitingForPlayer;
    }
 }
