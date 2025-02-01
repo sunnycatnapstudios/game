@@ -140,8 +140,8 @@ public class Player : MonoBehaviour
 
         // checkKey = MovementDirection();
 
-        if (checkKey != null) {StopCoroutine(checkKey);}
-        checkKey = StartCoroutine(MovementDirection());
+        // if (checkKey != null) {StopCoroutine(checkKey);}
+        // checkKey = StartCoroutine(MovementDirection());
 
         movePoint.parent = null;
         moveConstant = moveSpeed; moveSprint = moveSpeed*sprintConstant; moveSneak = moveSpeed*sneakConstant;
