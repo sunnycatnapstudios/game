@@ -144,6 +144,8 @@ public class BattleHandler : MonoBehaviour
          Debug.Log("Battle Over");
          return;  
       }
+
+      bool enemyToPlayer = !activeCharacterBattle.IsPlayerTeam;
       
       // Get the next character
       SetActiveCharacterBattle(GetNextCharacterBattler());
@@ -151,6 +153,11 @@ public class BattleHandler : MonoBehaviour
       // If it's an enemy they auto attack
       if (enemiesCharacterBattles.Contains(activeCharacterBattle))
       {
+         if (!enemyToPlayer)
+         {
+            // We are going from player to enemy. Clear selection circle
+            enemiesCharacterBattles[selectedEnemyIndex].HideSelectionCircle();
+         }
          // TODO Enemy Auto attack (random, for now just first) player
          activeCharacterBattle.Attack(playerCharacterBattles[0], onAttackComplete: () =>
          {
@@ -159,6 +166,11 @@ public class BattleHandler : MonoBehaviour
       }
       else
       {
+         if (enemyToPlayer)
+         {
+            // We are going from enemy to player. Reset selection
+            enemiesCharacterBattles[selectedEnemyIndex].ShowSelectionCircle();
+         }
          // Back to waiting on player input
          state = State.WaitingForPlayer;
       }

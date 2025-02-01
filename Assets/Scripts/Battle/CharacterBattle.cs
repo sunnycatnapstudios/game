@@ -16,6 +16,8 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
     private Action onSlideComplete;         // Callback on slide complete
 
     private bool isPlayerTeam;              // true - player team | false - enemy team
+    public bool IsPlayerTeam { get => isPlayerTeam;}
+    
     private GameObject selectionCircleGameObject;   // The selctionCircle for a character
     
     private UnitStats unitStats;        // Stats system for a character
