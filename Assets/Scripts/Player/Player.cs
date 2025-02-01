@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private Vector3 pointRef;
     [HideInInspector] public Transform movePoint;
     public List<Vector3> moveHist = new List<Vector3>();
-    public LayerMask noPass;
+    public LayerMask noPass, NPC;
     public int partyCount = 4;
 
     public GameObject memTemplate;
@@ -37,17 +37,19 @@ public class Player : MonoBehaviour
     private Coroutine recharge;
     private Coroutine checkKey;
     public bool recharging, isMoving;
-    [HideInInspector] public bool faceLeft, faceRight, faceUp, faceDown = true;
+    public bool faceLeft, faceRight, faceUp, faceDown = true;
     int animCount;
 
     public float horizontalInput, verticalInput;
-    public string lastInput;
+    // public string lastInput;
     public bool up_,down_, left_, right_;
 
     // New Input controls
     private PlayerInputActions playerInputActions;
     private InputAction movement, move;
     public Vector2 moveInput;
+    public Vector2 lastInput;
+    public Vector2 playerInput;
 
     // private void Awake()
     // {
@@ -109,20 +111,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator MovementDirection()
-    {
-        up_ = ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)));
-        down_ = ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)));
-        left_ = ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)));
-        right_ = ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)));
-
-        if (up_) {lastInput = "Up";}
-        if (down_) {lastInput = "Down";}
-        if (left_) {lastInput = "Left";}
-        if (right_) {lastInput = "Right";}
-        yield return new WaitForSeconds(.2f);
-    } 
-
     void viewMap()
     {
         isZooming = Input.GetKey(KeyCode.Q);
@@ -138,10 +126,6 @@ public class Player : MonoBehaviour
         spritestate = GetComponent<SpriteRenderer>();
         walkAudi = GetComponent<AudioSource>();
 
-        // checkKey = MovementDirection();
-
-        // if (checkKey != null) {StopCoroutine(checkKey);}
-        // checkKey = StartCoroutine(MovementDirection());
 
         movePoint.parent = null;
         moveConstant = moveSpeed; moveSprint = moveSpeed*sprintConstant; moveSneak = moveSpeed*sneakConstant;
@@ -286,36 +270,87 @@ public class Player : MonoBehaviour
             
 
 
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f){
-                if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, noPass)){
-                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                    if (Input.GetAxisRaw("Horizontal") < 0f) {
-                        spritestate.flipX = true;
-                        partiSystem.transform.eulerAngles = new Vector3(0f, 90f, 90f);
-                        faceLeft = true; faceUp=faceRight=faceDown=false;
-                    } else {
-                        spritestate.flipX = false;
-                        partiSystem.transform.eulerAngles = new Vector3(0f, -90f, 90f);
-                        faceRight = true; faceUp=faceLeft=faceDown=false;
-                    }
-                    anim.Play("Walk Left");
-                }
+            // if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f){
+            //     if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, noPass)){
+            //         if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, NPC)){
+            //             movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            //             if (Input.GetAxisRaw("Horizontal") < 0f) {
+            //                 spritestate.flipX = true;
+            //                 partiSystem.transform.eulerAngles = new Vector3(0f, 90f, 90f);
+            //                 faceLeft = true; faceUp=faceRight=faceDown=false;
+            //             } else {
+            //                 spritestate.flipX = false;
+            //                 partiSystem.transform.eulerAngles = new Vector3(0f, -90f, 90f);
+            //                 faceRight = true; faceUp=faceLeft=faceDown=false;
+            //             }
+            //             anim.Play("Walk Left");
+            //         }
+            //     }
+            // }
+            // else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f){
+            //     if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, noPass)){
+            //         if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Vertical"), 0f, 0f), .2f, NPC)){
+            //             movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+            //             if (Input.GetAxisRaw("Vertical") > 0f) {
+            //                 anim.Play("Walk Up");
+            //                 partiSystem.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+            //                 faceUp = true; faceDown=faceLeft=faceRight=false;
+            //             } else if (Input.GetAxisRaw("Vertical") < 0f) {
+            //                 anim.Play("Walk Down");
+            //                 partiSystem.transform.eulerAngles = new Vector3(-90f, 0f, 0f);
+            //                 faceDown = true; faceUp=faceLeft=faceRight=false;
+            //             }
+            //         }
+            //     }
+            // }
+
+            
+            playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            Vector3 moveDir = Vector3.zero;
+
+            if (playerInput.x != 0 && lastInput.x == 0) {
+                lastInput = new Vector2(playerInput.x, 0f);
             }
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f){
-                if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, noPass)){
-                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                    if (Input.GetAxisRaw("Vertical") > 0f) {
-                        anim.Play("Walk Up");
-                        partiSystem.transform.eulerAngles = new Vector3(90f, 0f, 0f);
-                        faceUp = true; faceDown=faceLeft=faceRight=false;
-                    } else if (Input.GetAxisRaw("Vertical") < 0f) {
-                        anim.Play("Walk Down");
-                        partiSystem.transform.eulerAngles = new Vector3(-90f, 0f, 0f);
-                        faceDown = true; faceUp=faceLeft=faceRight=false;
-                    }
-                }
+            else if (playerInput.y != 0 && lastInput.y == 0) {
+                lastInput = new Vector2(0f, playerInput.y);
             }
 
+            if (playerInput == Vector2.zero) {lastInput = Vector2.zero;}
+            moveDir = new Vector3(lastInput.x, lastInput.y, 0f);
+
+            // if (playerInput!=Vector2.zero)
+            if (moveDir != Vector3.zero)
+            {
+                // Vector3 moveDir = new Vector3(playerInput.x, playerInput.y, 0f).normalized;
+
+                if (!Physics2D.OverlapCircle(movePoint.position+moveDir, .2f, noPass) && 
+                    !Physics2D.OverlapCircle(movePoint.position+moveDir, .2f, NPC))
+                {
+                    movePoint.position+=moveDir;
+
+                    // if (playerInput.x!=0)
+                    if (moveDir.x!=0)
+                    {
+                        spritestate.flipX = moveDir.x<0;
+                        partiSystem.transform.eulerAngles = new Vector3(0f, moveDir.x < 0 ? 90f : -90f, 90f);
+
+                        faceLeft = moveDir.x < 0; faceRight = moveDir.x > 0;
+                        faceUp = faceDown = false;
+
+                        anim.Play("Walk Left");
+                    }
+                    else if (moveDir.y!=0)
+                    {
+                        bool movingUp = moveDir.y > 0;
+                        anim.Play(movingUp ? "Walk Up" : "Walk Down");
+                        partiSystem.transform.eulerAngles = new Vector3(movingUp ? 90f : -90f, 0f, 0f);
+
+                        faceUp = movingUp; faceDown = !movingUp;
+                        faceLeft = faceRight = false;
+                    }
+                }
+            }
+        
 
 
             if (!walkAudi.isPlaying && walkAudiCount <=0 ) {walkAudi.Play(); walkAudiCount+=1; walkAudi.Play();}
