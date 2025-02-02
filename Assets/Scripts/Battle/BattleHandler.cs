@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Button = UnityEngine.UIElements.Button;
 
 public class BattleHandler : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class BattleHandler : MonoBehaviour
    private List<CharacterBattle> enemiesCharacterBattles = new List<CharacterBattle>();   // List of all enemy characters scripts
    private List<CharacterBattle> characterBattlesTurnOrder = new List<CharacterBattle>();
    
+   private GameObject ResultScreen;    // The GameObject ResultScreen with text and button;
+
    //private int currentTurn;
    private int playerOffset = 0;
    private int enemyOffset = 0;
@@ -62,6 +67,10 @@ public class BattleHandler : MonoBehaviour
       CreateTurnOrder();
       SetActiveCharacterBattle(characterBattlesTurnOrder[activeCharacterIndex++]);  // Fastest Character Goes first
       state = State.WaitingForPlayer;
+      
+      // Fetch and hide the result screen
+      ResultScreen = GameObject.Find("ResultScreen");
+      ResultScreen.SetActive(false);
    }
 
    private void Update()
@@ -218,6 +227,9 @@ public class BattleHandler : MonoBehaviour
       if (gameOver)
       {
          // Players dead, enemy wins
+         // Set winners text
+         ResultScreen.transform.Find("WinnerText").GetComponent<Text>().text = "You've Won!";
+         ResultScreen.SetActive(true);
          return true;
       }
 
@@ -234,6 +246,8 @@ public class BattleHandler : MonoBehaviour
       if (gameOver)
       {
          // Enemies dead, player wins
+         ResultScreen.transform.Find("WinnerText").GetComponent<Text>().text = "You've Lost!";
+         ResultScreen.SetActive(true);
          return true;
       }
 
@@ -269,5 +283,11 @@ public class BattleHandler : MonoBehaviour
       state = State.Busy;
       // TODO implement
       state = State.WaitingForPlayer;
+   }
+
+   public void ReturnToSceneTransition()
+   {
+      // TODO return to original scene
+      SceneManager.LoadScene("Testing Scene");
    }
 }
