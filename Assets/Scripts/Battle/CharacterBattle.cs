@@ -19,6 +19,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
     public bool IsPlayerTeam { get => isPlayerTeam;}
     
     private GameObject selectionCircleGameObject;   // The selctionCircle for a character
+    private HealthBar healthBarController;         // The healthbar script for a character
     
     private UnitStats unitStats;        // Stats system for a character
     
@@ -32,6 +33,8 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
     {
         //characterBase = GetComponent<Player>();
         selectionCircleGameObject = transform.Find("SelectionCircle").gameObject;
+        healthBarController = transform.Find("HealthBar").GetComponent<HealthBar>();
+
         HideSelectionCircle();
         state = State.Idle;
     }
@@ -74,6 +77,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
             //characterBase.anim.Play("Walk Left");
         }
         unitStats = GetComponent<UnitStats>();
+        healthBarController.SetBarSize(unitStats.GetHealthPercentage());    // Set to current health
     }
     
     // Return the current position of this character
@@ -86,6 +90,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
     {
         unitStats.TakeDamage(damageAmount);
         Debug.Log("Hit! Current Health = " + unitStats.GetHealth());
+        healthBarController.SetBarSize(unitStats.GetHealthPercentage());
         
         if (IsDead())
         {
@@ -108,8 +113,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
             //characterBase.anim.Play("Walk Up");     // TODO Attack animation, wait for anim complete
             //characterBase.anim.Play("Walk Left");   // TODO create a dedicated animation player to handle logic during, at, and after an animation
             
-            // unitStats.TakeDamage(unitStats.GetAttack());
-            TakeDamage(unitStats.GetAttack());      // Deal damage to opponent
+            targetCharacterBattle.TakeDamage(unitStats.GetAttack());      // Deal damage to opponent
             
             // Attack Complete, slide back
             SlideToPosition(startingPosition, onSlideComplete: () =>
