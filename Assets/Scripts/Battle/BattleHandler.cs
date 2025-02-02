@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -68,6 +69,9 @@ public class BattleHandler : MonoBehaviour
       
       // Default target first enemy
       enemiesCharacterBattles[0].ShowSelectionCircle();
+      
+      // Auto focus on attack button
+      EventSystem.current.SetSelectedGameObject(GameObject.Find("AttackButton").gameObject);
 
       // Determine the turn order
       CreateTurnOrder();
@@ -186,10 +190,7 @@ public class BattleHandler : MonoBehaviour
             enemiesCharacterBattles[selectedEnemyIndex].HideSelectionCircle();
          }
          // TODO Enemy Auto attack (random, for now just first) player
-         activeCharacterBattle.Attack(playerCharacterBattles[0], onAttackComplete: () =>
-         {
-            ChooseNextActiveCharacter();     // Next character gets turn
-         });
+         AttackCharacter(playerCharacterBattles[0]);
       }
       else
       {
@@ -230,7 +231,8 @@ public class BattleHandler : MonoBehaviour
       return characterBattlesTurnOrder[next];
    }
 
-   // TODO Called on ChooseNextActiveCharacter. Update the sprites to match new turn
+   // Called on ChooseNextActiveCharacter. Update the sprites to match new turn
+   // TODO change sprite to reference a different, more detailed face portrait
    private void RenderNewTurnListView()
    {
       for (int i = 1; i <= 4; i++)
@@ -239,9 +241,11 @@ public class BattleHandler : MonoBehaviour
 
       }
       // Update the hidden 5th sprite with the 5th character
-      TurnOrderSprites[4].sprite = characterBattlesTurnOrder[(activeCharacterIndex+4)%totalCharacterCount].GetPortraitSprite();
+      TurnOrderSprites[4].sprite = characterBattlesTurnOrder[(activeCharacterIndex+4)%totalCharacterCount]
+         .GetPortraitSprite();
    }
    
+   // Check if battle is over. End the scene if yes
    private bool TestBattleOver()
    {
       bool gameOver = true;
@@ -283,20 +287,26 @@ public class BattleHandler : MonoBehaviour
 
       return false;
    }
+
+   // Deal damage to targeted character, then select next character to give action
+   private void AttackCharacter(CharacterBattle targetCharacterBattle)
+   {
+      if (state != State.Busy || targetCharacterBattle.IsPlayerTeam)
+      {
+         state = State.Busy;
+         activeCharacterBattle.Attack(targetCharacterBattle, onAttackComplete: () =>
+         {
+            ChooseNextActiveCharacter();     // Next character gets turn
+         });
+      }
+   }
+   
    
    // Public scripts called by player UI
    // Used in attack button to attack currently targeted enemy
    public void AttackOpponent()
    {
-      if (state != State.Busy)
-      {
-         state = State.Busy;
-         Debug.Log("Attacking enemy" + selectedEnemyIndex);
-         activeCharacterBattle.Attack(enemiesCharacterBattles[selectedEnemyIndex], onAttackComplete: () =>
-         {
-            ChooseNextActiveCharacter();     // Next character gets turn
-         });
-      }
+      AttackCharacter(enemiesCharacterBattles[selectedEnemyIndex]);
    }
    
    // Used in inventory button to open inventory. Blocks all other actions until success
