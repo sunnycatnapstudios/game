@@ -20,25 +20,31 @@ public class BattleHandler : MonoBehaviour
    // Place the player party and enemy encounter under their own empty parent object
    [SerializeField] private Transform playerParty; 
    [SerializeField] private Transform enemyEncounter;
+   [SerializeField] private float XSpawnOffset;
+   [SerializeField] private float XSpaceBetween;
+   [SerializeField] private float YSpawnOffset;
    
+   // To offset spawning of entities
+   private float playerOffset = 0;
+   private float enemyOffset = 0;
+   
+   // TODO compress lists into just one
    private List<CharacterBattle> playerCharacterBattles = new List<CharacterBattle>();    // List of all player characters (scripts)
    private List<CharacterBattle> enemiesCharacterBattles = new List<CharacterBattle>();   // List of all enemy characters scripts
-   private List<CharacterBattle> characterBattlesTurnOrder = new List<CharacterBattle>();
+   private List<CharacterBattle> characterBattlesTurnOrder = new List<CharacterBattle>(); // Turn order of enemy and characters (sorted by speed)
    
    private GameObject ResultScreen;    // The GameObject ResultScreen with text and button;
-
-   //private int currentTurn;
-   private int playerOffset = 0;
-   private int enemyOffset = 0;
+   private GameObject TurnOrderView;    // The GameObject TurnOrderView with 4 (+ 1 hidden) Sprite renderer;
+   private List<SpriteRenderer> TurnOrderSprites = new List<SpriteRenderer>();     // References to the sprite renderers in TurnOrderView
    
-   private CharacterBattle activeCharacterBattle;     // The active character in battle
-   private int activeCharacterIndex = 0;
-   private int totalCharacterCount;
+   private CharacterBattle activeCharacterBattle;     // The active characterBattle object in battle
+   private int activeCharacterIndex = 0;              // Active index in characterBattleTurnOrder
+   private int totalCharacterCount;                   // Total number of entities in combat
    
-   private State state;    // Current state of combat
-   private int selectedEnemyIndex = 0;    // Index of which enemy the player is targeting
+   private State state;                      // Current player state in combat
+   private int selectedEnemyIndex = 0;       // Index of which enemy the player is targeting
    
-   private enum State
+   private enum State      // Block input when Busy
    {
       WaitingForPlayer,
       Busy,
@@ -71,8 +77,17 @@ public class BattleHandler : MonoBehaviour
       // Fetch and hide the result screen
       ResultScreen = GameObject.Find("ResultScreen");
       ResultScreen.SetActive(false);
+      
+      // Fetch the turn order view and set the sprites
+      TurnOrderView = GameObject.Find("TurnOrderView");
+      for (int i = 1; i <= 5; i++)
+      {
+         TurnOrderSprites.Add(TurnOrderView.transform.Find("Portraits").Find("Sprite" + i).gameObject.GetComponent<SpriteRenderer>());
+         TurnOrderSprites[i - 1].sprite = characterBattlesTurnOrder[i%totalCharacterCount].GetPortraitSprite();
+      }
    }
 
+   // Check for user input
    private void Update()
    {
       if (state == State.WaitingForPlayer)
@@ -106,21 +121,21 @@ public class BattleHandler : MonoBehaviour
       }
    }
    
+   // Set the character location. Fetch, setup, return
    private CharacterBattle SpawnCharacter(Transform pfCharacterBattle, bool isPlayerTeam)
    {
       Vector3 position;
-
       
       // Spawn on either left or right hand side
       if (isPlayerTeam)
       {
-         position = new Vector3(-3 - playerOffset, 0);
-         playerOffset += 1;
+         position = new Vector3(playerOffset-XSpawnOffset, YSpawnOffset);
+         playerOffset -= XSpaceBetween;
       }
       else
       {
-         position = new Vector3(3 + enemyOffset, 0);
-         enemyOffset += 1;
+         position = new Vector3(enemyOffset+ XSpawnOffset, YSpawnOffset);
+         enemyOffset += XSpaceBetween;
       }
       
       Transform characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity); // Spawn into scene
@@ -158,6 +173,9 @@ public class BattleHandler : MonoBehaviour
       
       // Get the next character
       SetActiveCharacterBattle(GetNextCharacterBattler());
+      
+      // Update the turn list
+      RenderNewTurnListView();
       
       // If it's an enemy they auto attack
       if (enemiesCharacterBattles.Contains(activeCharacterBattle))
@@ -210,6 +228,18 @@ public class BattleHandler : MonoBehaviour
       int next = activeCharacterIndex;
       activeCharacterIndex = (activeCharacterIndex + 1) % totalCharacterCount;
       return characterBattlesTurnOrder[next];
+   }
+
+   // TODO Called on ChooseNextActiveCharacter. Update the sprites to match new turn
+   private void RenderNewTurnListView()
+   {
+      for (int i = 1; i <= 4; i++)
+      {
+         TurnOrderSprites[i-1].sprite = TurnOrderSprites[i].sprite;
+
+      }
+      // Update the hidden 5th sprite with the 5th character
+      TurnOrderSprites[4].sprite = characterBattlesTurnOrder[(activeCharacterIndex+4)%totalCharacterCount].GetPortraitSprite();
    }
    
    private bool TestBattleOver()

@@ -19,6 +19,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
     public bool IsPlayerTeam { get => isPlayerTeam;}
     
     private GameObject selectionCircleGameObject;   // The selctionCircle for a character
+    private SpriteRenderer spriteRenderer;              // TODO the sprite renderer. Should reference a portrait for turn order view
     private HealthBar healthBarController;         // The healthbar script for a character
     
     private UnitStats unitStats;        // Stats system for a character
@@ -33,6 +34,7 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
     {
         //characterBase = GetComponent<Player>();
         selectionCircleGameObject = transform.Find("SelectionCircle").gameObject;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         healthBarController = transform.Find("HealthBar").GetComponent<HealthBar>();
 
         HideSelectionCircle();
@@ -146,6 +148,12 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
         }
     }
 
+    // TODO return the portrait of the character. For now just return the default sprite
+    public Sprite GetPortraitSprite()
+    {
+        return spriteRenderer.sprite;
+    }
+    
     // Show and hide characters selection circle
     public void HideSelectionCircle()
     {
