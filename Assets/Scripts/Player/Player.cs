@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     public Vector2 lastInput;
     public Vector2 playerInput;
 
+
+
     // private void Awake()
     // {
     //     playerInputActions = new PlayerInputActions();
@@ -126,6 +128,12 @@ public class Player : MonoBehaviour
         spritestate = GetComponent<SpriteRenderer>();
         walkAudi = GetComponent<AudioSource>();
 
+        // Sets Up Variables to prevent confusion
+        moveSpeed = 5f; sprintConstant = 1.7f; sneakConstant = .5f; movementInputDelay = .1f;
+        partyCount = 4;
+        camMax = 10; camMin = 6;
+        maxStamina = 100f; sprintCost = 35f;
+
 
         movePoint.parent = null;
         moveConstant = moveSpeed; moveSprint = moveSpeed*sprintConstant; moveSneak = moveSpeed*sneakConstant;
@@ -140,6 +148,7 @@ public class Player : MonoBehaviour
             memSpawn.name = $"Follower {x+1}";
             memSpawn.GetComponent<Follower>().order = x+1;
         }
+
         
     }
 

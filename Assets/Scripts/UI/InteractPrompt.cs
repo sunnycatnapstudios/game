@@ -2,45 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InteractPrompt : MonoBehaviour
 {
-    // Start is called before the first frame update
     public LayerMask playerLayer;
     public Player player;
     private float interactRange = 1.5f;
     private int interactCount = 0;
-    public GameObject popUpBox;
-    public Text popUpText;
-    public Animator animator;
+
+    // public GameObject popUpBox;
+    // public TMP_Text popUpText;
+    // public Animator animator;
+
+    public GameObject popUpPrefab;
+    private GameObject currentPopUp;
+    private TMP_Text popUpText;
+    private Animator animator;
+
+
+    void OnDrawGizmos() { // Draws a Debug for NPC interact radius
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, interactRange);
+    }
 
     public void PopUp(string text)
     {
-        popUpBox.SetActive(true);
-        popUpText.text = text;
-        animator.SetTrigger("pop");
+        if (currentPopUp){
+            popUpText.text = text;
+            // animator.SetTrigger("pop");
+        }
     }
 
 
 
     void Start()
     {
-        popUpBox.SetActive(false);
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, transform.localPosition+(Vector3.left*interactRange)); //Draws a Line Showing the Interact radiuse
-        popUpBox.transform.localPosition = transform.position + Vector3.up*50;
+        bool playerInRange = Physics2D.OverlapCircle(transform.position, interactRange, playerLayer);
 
-        if(Physics2D.OverlapCircle(transform.position, interactRange, playerLayer)){
-            popUpBox.SetActive(true);
+        if(playerInRange)
+        {
+            if (currentPopUp == null)
+            {
+                currentPopUp = Instantiate(popUpPrefab, Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f), Quaternion.identity, GameObject.Find("Overworld UI").transform);
+                popUpText = currentPopUp.GetComponentInChildren<TMP_Text>();
+                animator = currentPopUp.GetComponent<Animator>();
+            } else
+            {
+                currentPopUp.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f);
+            }
+
             if (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.Space)){
                 interactCount++;
                 Debug.Log("YEP, YOU'VE TAPPED ME "+interactCount+" TIMES!!!");
                 PopUp("E");
             }
-        }else {popUpBox.SetActive(false);}
+        } else
+        {
+            if (currentPopUp) {
+                Destroy(currentPopUp);
+                currentPopUp = null;
+            }
+        }
     }
 }
