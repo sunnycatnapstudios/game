@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public bool infSprint;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer spritestate;
+    [HideInInspector] public Inventory inventory;
 
     public float moveSpeed = 5, movementInputDelay = 0.05f, moveConstant, sprintConstant, sneakConstant;
     [HideInInspector] public float moveSprint, moveSneak;
@@ -126,7 +127,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         spritestate = GetComponent<SpriteRenderer>();
         walkAudi = GetComponent<AudioSource>();
-
+        inventory = GetComponent<Inventory>();
 
         movePoint.parent = null;
         moveConstant = moveSpeed; moveSprint = moveSpeed*sprintConstant; moveSneak = moveSpeed*sneakConstant;
