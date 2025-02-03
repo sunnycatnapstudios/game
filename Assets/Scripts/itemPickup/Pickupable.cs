@@ -21,7 +21,7 @@ public class Pickupable : MonoBehaviour
     {
         if (collison.gameObject.tag == "Player")
         {
-            
+            Debug.Log("YEP I GOTS IT");
             pickUp = true;
         }
 

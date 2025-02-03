@@ -8,6 +8,13 @@ TagManager:
   - EnemyUnit
   - Item
   - PlayerParty
+  - TargetEnemyUnit
+  - Interactable
+  - Overworld UI
+  - Dialogue Ui
+  - NPC
+  - Dialogue Text
+  - Name Card
   layers:
   - Default
   - TransparentFX

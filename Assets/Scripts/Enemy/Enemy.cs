@@ -19,6 +19,11 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteState;
 
 
+    void OnDrawGizmos() { // Draws a Debug for NPC interact radius
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+    }
+
 
     void EnemyPatrol()
     {

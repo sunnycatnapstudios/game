@@ -316,13 +316,15 @@ public class Player : MonoBehaviour
             
             playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Vector3 moveDir = Vector3.zero;
-
+            
             if (playerInput.x != 0 && lastInput.x == 0) {
                 lastInput = new Vector2(playerInput.x, 0f);
             }
             else if (playerInput.y != 0 && lastInput.y == 0) {
                 lastInput = new Vector2(0f, playerInput.y);
             }
+
+            if (playerInput.x * lastInput.x == 0-1f || playerInput.y * lastInput.y == 0-1f) {lastInput = playerInput;}
 
             if (playerInput == Vector2.zero) {lastInput = Vector2.zero;}
             moveDir = new Vector3(lastInput.x, lastInput.y, 0f);
