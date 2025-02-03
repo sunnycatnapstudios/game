@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private Vector3 pointRef;
     [HideInInspector] public Transform movePoint;
     public List<Vector3> moveHist = new List<Vector3>();
+    public List<GameObject> partyMembers = new List<GameObject>(); // List of party members
+
     public LayerMask noPass, NPC;
     public int partyCount = 4;
 
@@ -128,11 +130,11 @@ public class Player : MonoBehaviour
         spritestate = GetComponent<SpriteRenderer>();
         walkAudi = GetComponent<AudioSource>();
 
-        // Sets Up Variables to prevent confusion
-        moveSpeed = 5f; sprintConstant = 1.7f; sneakConstant = .5f; movementInputDelay = .1f;
-        partyCount = 4;
-        camMax = 10; camMin = 6;
-        maxStamina = 100f; sprintCost = 35f;
+        // // Sets Up Variables to prevent confusion
+        // moveSpeed = 5f; sprintConstant = 1.7f; sneakConstant = .5f; movementInputDelay = .1f;
+        // partyCount = 4;
+        // camMax = 10; camMin = 6;
+        // maxStamina = 100f; sprintCost = 35f;
 
 
         movePoint.parent = null;
@@ -147,6 +149,7 @@ public class Player : MonoBehaviour
             memSpawn = GameObject.Instantiate(memTemplate);
             memSpawn.name = $"Follower {x+1}";
             memSpawn.GetComponent<Follower>().order = x+1;
+            partyMembers.Add(memSpawn);
         }
 
         

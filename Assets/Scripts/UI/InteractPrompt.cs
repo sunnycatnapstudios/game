@@ -9,17 +9,19 @@ public class InteractPrompt : MonoBehaviour
     public LayerMask playerLayer;
     public Player player;
     private float interactRange = 1.5f;
-    private int interactCount = 0;
+    int interactCount = 0;
 
     public GameObject popUpPrefab;
     private GameObject currentPopUp;
     private TMP_Text popUpText;
     private Animator animator;
 
-    public GameObject dialogueBox; // Prefab for dialogue box
-    private GameObject currentDialogueBox;
+    public GameObject dialogueBox;
     private TMP_Text nameText, dialogueText;
-    private Animator dialogueAnimator;
+    private Animator dialogueAnimator, screenPanelAnimator;
+    private TypeWriter nameTypeWriter, bodyTypeWriter;
+    public Sprite characterProfile;
+    private Image charProfile;
 
     public bool isDialogueOpen = false;
 
@@ -37,67 +39,48 @@ public class InteractPrompt : MonoBehaviour
         }
     }
 
-    // void OpenDialogue(string text)
-    // {
-    //     if (currentDialogueBox == null)
-    //     {
-    //         // Gets the locations of text items
-    //         GameObject npcDialogue = GameObject.FindGameObjectWithTag("Dialogue Text");
-    //         GameObject nameCard = GameObject.FindGameObjectWithTag("Name Card");
-
-    //         dialogueText = npcDialogue.GetComponent<TMP_Text>();
-    //         nameText = nameCard.GetComponent<TMP_Text>();
-    //         nameText.text = this.name;
-    //         dialogueText.text = text;
-
-    //         // Instantiate dialogue box and parent to UI Canvas
-    //         GameObject canvas = GameObject.FindGameObjectWithTag("Overworld UI");
-    //         currentDialogueBox = Instantiate(dialogueBoxPrefab, canvas.transform);
-
-    //         RectTransform rectTransform = currentDialogueBox.GetComponent<RectTransform>();
-    //         rectTransform.anchoredPosition = new Vector2(0f, 75f);
-
-
-            
-
-    //         dialogueAnimator = currentDialogueBox.GetComponent<Animator>();
-    //     }
-        
-    //     dialogueAnimator.SetTrigger("SlideIn");
-    //     isDialogueOpen = true;
-    // }
-
     void OpenDialogue(string text)
     {
-        dialogueBox.SetActive(true);
-        dialogueText.text = text;
+        // dialogueBox.SetActive(true);
+        bodyTypeWriter.skipTyping = false;
         dialogueAnimator.SetTrigger("SlideIn");
-        isDialogueOpen = true;
-    }
+        screenPanelAnimator.SetTrigger("Darken Screen");
 
-    void CloseDialogue()
-    {
-        // if (currentDialogueBox != null && dialogueAnimator != null)
-        if (isDialogueOpen)
-        {
-            dialogueAnimator.ResetTrigger("SlideIn");
-            dialogueAnimator.Play("Dialogue Disappear");
-            dialogueAnimator.SetTrigger("SlideOut"); // Trigger the slide-out animation
-            // StartCoroutine(DestroyAfterAnimation(currentDialogueBox, 0.5f)); // Wait for animation to finish before destroying
-            StartCoroutine(DeactivateAfterDelay(0.5f));
-            isDialogueOpen = false;
-        }
+        if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
+        else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
+
+        isDialogueOpen = true;
+        Debug.Log("Dialogue Opened");
     }
 
     void UpdateDialogue(string text)
     {
-        dialogueText.text = text;
+        bodyTypeWriter.skipTyping = false;
+        if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
+        else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
+        Debug.Log("Dialogue Updated");
+    }
+
+    void CloseDialogue()
+    {
+        if (isDialogueOpen)
+        {
+            dialogueAnimator.ResetTrigger("SlideIn");
+            screenPanelAnimator.ResetTrigger("Darken Screen");
+            dialogueAnimator.Play("Dialogue Disappear");
+            screenPanelAnimator.Play("Lighten Screen");
+            dialogueAnimator.SetTrigger("SlideOut");
+            screenPanelAnimator.SetTrigger("Lighten Screen");
+            StartCoroutine(DeactivateAfterDelay(0.5f));
+            isDialogueOpen = false;
+            bodyTypeWriter.skipTyping = true;
+        }
     }
 
     IEnumerator DeactivateAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        dialogueBox.SetActive(false);
+        charProfile.sprite = null;
     }
 
     void Start()
@@ -105,12 +88,19 @@ public class InteractPrompt : MonoBehaviour
         if (CompareTag("NPC")) {
 
             nameText = GameObject.FindGameObjectWithTag("Name Card").GetComponent<TMP_Text>();
-            nameText.text = this.name;
             dialogueText = GameObject.FindGameObjectWithTag("Dialogue Text").GetComponent<TMP_Text>();
+            charProfile = GameObject.FindGameObjectWithTag("Character Profile").GetComponent<Image>();
 
+            nameText.text = this.name;
+
+            nameTypeWriter = nameText.GetComponent<TypeWriter>();
+            bodyTypeWriter = dialogueText.GetComponent<TypeWriter>();
+
+            screenPanelAnimator = GameObject.FindGameObjectWithTag("Dark Screen").GetComponent<Animator>();
+            screenPanelAnimator.Play("Blank");
             dialogueAnimator = dialogueBox.GetComponent<Animator>();
-            
-            dialogueBox.SetActive(false);
+            dialogueAnimator.Play("Dialogue Hidden");
+            // dialogueBox.SetActive(false);
         }
     }
 
@@ -118,29 +108,37 @@ public class InteractPrompt : MonoBehaviour
     {
         bool playerInRange = Physics2D.OverlapCircle(transform.position, interactRange, playerLayer);
 
-        if(playerInRange)
+        if (playerInRange)
         {
             if (currentPopUp == null)
             {
                 currentPopUp = Instantiate(popUpPrefab, Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f), Quaternion.identity, GameObject.FindGameObjectWithTag("Overworld UI").transform);
                 popUpText = currentPopUp.GetComponentInChildren<TMP_Text>();
                 animator = currentPopUp.GetComponent<Animator>();
-            } else
-            {
+            } else {
                 currentPopUp.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f);
             }
 
-            if (Input.GetKeyDown(KeyCode.E)){
+            if (Input.GetKeyDown(KeyCode.E))
+            {
                 interactCount++;
-                if (CompareTag("Interactable")) {
+                if (CompareTag("Interactable"))
+                {
                     Debug.Log($"YEP, YOU'VE TAPPED {this.name} {interactCount} TIMES!!!");
-                    // PopUp("E");
                 }
-                else if (CompareTag("NPC")) {
-                    Debug.Log($"Yep, Dialogue's supposed to appear here {interactCount} times...");
-                    if (!isDialogueOpen) {isDialogueOpen = true; OpenDialogue("Yo?");}
-                    else {UpdateDialogue("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");}
-                    
+                else if (CompareTag("NPC"))
+                {
+                    Debug.Log($"Dialogue Interacted with {interactCount} times");
+                    if (!isDialogueOpen && !bodyTypeWriter.isTyping)
+                    {
+                        // isDialogueOpen = true;
+                        charProfile.sprite = characterProfile;
+                        OpenDialogue("Testng 1, 2\nTesting 1, 2...");
+                    }
+                    else if (!bodyTypeWriter.isTyping)
+                    {
+                        UpdateDialogue("Yep, this seems to be working");
+                    }
                 }
             }
         } else
@@ -151,6 +149,7 @@ public class InteractPrompt : MonoBehaviour
             }
             if (isDialogueOpen) {
                 CloseDialogue();
+                // charProfile.sprite = null;
             }
         }
     }

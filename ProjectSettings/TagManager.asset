@@ -15,6 +15,8 @@ TagManager:
   - NPC
   - Dialogue Text
   - Name Card
+  - Dark Screen
+  - Character Profile
   layers:
   - Default
   - TransparentFX
