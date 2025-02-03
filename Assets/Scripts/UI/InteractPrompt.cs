@@ -23,7 +23,9 @@ public class InteractPrompt : MonoBehaviour
     public Sprite characterProfile;
     private Image charProfile;
 
-    public bool isDialogueOpen = false;
+    public bool isDialogueOpen = false, dialogueFinished = false;
+
+    public NPCDialogueHandler NPCDialogueHandler;
 
 
     void OnDrawGizmos() { // Draws a Debug for NPC interact radius
@@ -80,7 +82,7 @@ public class InteractPrompt : MonoBehaviour
     IEnumerator DeactivateAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        charProfile.sprite = null;
+        // charProfile.sprite = null;
     }
 
     void Start()
@@ -101,6 +103,7 @@ public class InteractPrompt : MonoBehaviour
             dialogueAnimator = dialogueBox.GetComponent<Animator>();
             dialogueAnimator.Play("Dialogue Hidden");
             // dialogueBox.SetActive(false);
+            NPCDialogueHandler = GetComponent<NPCDialogueHandler>();
         }
     }
 
@@ -133,11 +136,20 @@ public class InteractPrompt : MonoBehaviour
                     {
                         // isDialogueOpen = true;
                         charProfile.sprite = characterProfile;
-                        OpenDialogue("Testng 1, 2\nTesting 1, 2...");
+                        NPCDialogueHandler.ResetDialogue();
+                        string nextLine = NPCDialogueHandler.GetNextLine();
+
+                        if (nextLine != null) {OpenDialogue(nextLine); dialogueFinished = false;}
+                        // OpenDialogue("Testng 1, 2\nTesting 1, 2...");
                     }
                     else if (!bodyTypeWriter.isTyping)
                     {
-                        UpdateDialogue("Yep, this seems to be working");
+                        string nextLine = NPCDialogueHandler.GetNextLine();
+
+                        if (nextLine != null) {UpdateDialogue(nextLine);}
+                        else {CloseDialogue();Debug.Log("Finished Dialogue Segment"); dialogueFinished = true;}
+
+                        // UpdateDialogue("Yep, this seems to be working");
                     }
                 }
             }

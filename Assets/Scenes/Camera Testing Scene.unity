@@ -5644,6 +5644,8 @@ GameObject:
   - component: {fileID: 285647459}
   - component: {fileID: 285647458}
   - component: {fileID: 285647457}
+  - component: {fileID: 285647460}
+  - component: {fileID: 285647461}
   - component: {fileID: 285647456}
   - component: {fileID: 285647455}
   m_Layer: 12
@@ -5720,6 +5722,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 1853602022}
   characterProfile: {fileID: 21300000, guid: 233e090b78912f445af3f602a407830f, type: 3}
   isDialogueOpen: 0
+  NPCDialogueHandler: {fileID: 0}
 --- !u!212 &285647458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5784,6 +5787,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285647460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285647454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b84d6d12fca4df40bad1c3c1be94f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Blorp
+  - Eggs
+  - EFJDNFJNUIEOANKFJNNVUIR
+  - feaASMmrkmsakdfm
+  - fniuwejifkmkjrnvbwoifc
+--- !u!114 &285647461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285647454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f8311b9d1d73c4ead0a8c55bd4f397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCDialogueHandler: {fileID: 0}
+  dialogueLines: []
 --- !u!1 &301964500
 GameObject:
   m_ObjectHideFlags: 0
@@ -8039,6 +8074,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 0}
   characterProfile: {fileID: 0}
   isDialogueOpen: 0
+  NPCDialogueHandler: {fileID: 0}
 --- !u!50 &1166367098
 Rigidbody2D:
   serializedVersion: 4
@@ -13655,6 +13691,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 0}
   characterProfile: {fileID: 0}
   isDialogueOpen: 0
+  NPCDialogueHandler: {fileID: 0}
 --- !u!212 &1887495468
 SpriteRenderer:
   m_ObjectHideFlags: 0
