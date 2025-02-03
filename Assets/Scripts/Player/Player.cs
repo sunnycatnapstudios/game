@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     public GameObject memTemplate;
     public AudioSource walkAudi;
-    private int walkAudiCount;
+    public int walkAudiCount;
     GameObject memSpawn;
 
     public ParticleSystem partiSystem;
@@ -362,13 +362,13 @@ public class Player : MonoBehaviour
                 }
             }
         
-
-
-            if (!walkAudi.isPlaying && walkAudiCount <=0 ) {walkAudi.Play(); walkAudiCount+=1; walkAudi.Play();}
-            else {walkAudi.Stop(); walkAudiCount = 0;}
-
             if (movePoint.position != pointRef){moveHist.Add(pointRef);}
             if (moveHist.Count > partyCount){moveHist.RemoveAt(0);}
+
         }
+        if (!walkAudi.isPlaying && walkAudiCount <=0 && isMoving) {
+            walkAudi.Play(); walkAudiCount+=1; walkAudi.Play();
+        }
+        else if (!isMoving) {walkAudi.Stop(); walkAudiCount = 0;}
     }
 }

@@ -24,6 +24,10 @@ public class Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (order > Player.partyCount){
+            Destroy(gameObject);
+        }
+
         float refX = transform.position.x, refY = transform.position.y;
         // // Movement V1
         // followSpeed = Player.moveSpeed;
