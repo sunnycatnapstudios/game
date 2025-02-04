@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 210012170400930959}
   - component: {fileID: -5351568091605517106}
   - component: {fileID: -4604008991133164472}
-  - component: {fileID: -5211503919424644867}
   - component: {fileID: 8129783758635369271}
   - component: {fileID: -6956490875491023562}
+  - component: {fileID: 6990810145461938591}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -142,6 +142,7 @@ MonoBehaviour:
   infSprint: 0
   anim: {fileID: 210012170400930958}
   spritestate: {fileID: 0}
+  inventory: {fileID: 0}
   moveSpeed: 5
   movementInputDelay: 0
   moveConstant: 0
@@ -242,7 +243,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 36956492a74c8eb47992c690c800402b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -327,18 +328,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-5211503919424644867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210012170400930955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af969bce80ba55d408ab665c1c1c5052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &8129783758635369271
 Rigidbody2D:
   serializedVersion: 4
@@ -376,6 +365,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &6990810145461938591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210012170400930955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af969bce80ba55d408ab665c1c1c5052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2533101456322773200
 GameObject:
   m_ObjectHideFlags: 0
