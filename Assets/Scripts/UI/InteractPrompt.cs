@@ -47,6 +47,7 @@ public class InteractPrompt : MonoBehaviour
         bodyTypeWriter.skipTyping = false;
         dialogueAnimator.SetTrigger("SlideIn");
         screenPanelAnimator.SetTrigger("Darken Screen");
+        bodyTypeWriter.hasStartedTyping = true;
 
         if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
         else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
@@ -58,6 +59,7 @@ public class InteractPrompt : MonoBehaviour
     void UpdateDialogue(string text)
     {
         bodyTypeWriter.skipTyping = false;
+        bodyTypeWriter.hasStartedTyping = true;
         if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
         else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
         Debug.Log("Dialogue Updated");
@@ -94,8 +96,9 @@ public class InteractPrompt : MonoBehaviour
             charProfile = GameObject.FindGameObjectWithTag("Character Profile").GetComponent<Image>();
 
             nameText.text = this.name;
+            Debug.Log("" + nameText.text);
 
-            nameTypeWriter = nameText.GetComponent<TypeWriter>();
+            // nameTypeWriter = nameText.GetComponent<TypeWriter>();
             bodyTypeWriter = dialogueText.GetComponent<TypeWriter>();
 
             screenPanelAnimator = GameObject.FindGameObjectWithTag("Dark Screen").GetComponent<Animator>();

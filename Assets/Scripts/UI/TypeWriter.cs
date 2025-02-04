@@ -71,6 +71,7 @@ public class TypeWriter : MonoBehaviour
 			writer = _tmpProText.text;
 			_tmpProText.text = "";
 
+			// StartCoroutine("TypeWriterTMP");
 		}
     }
 
@@ -79,15 +80,10 @@ public class TypeWriter : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.E) && isTyping) {skipTyping = true;}
 
-        if (_tmpProText != null && _tmpProText.gameObject.activeInHierarchy && !hasStartedTyping)
-        {
-            isTextActive = true;
-        }
-
         // Start typing only after activation and delay
-        else if (isTextActive && !hasStartedTyping)
+		if (hasStartedTyping && !isTyping)
         {
-            hasStartedTyping = true;
+            hasStartedTyping = false;
             StartCoroutine("TypeWriterTMP");
         }
     }
