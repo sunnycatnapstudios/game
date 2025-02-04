@@ -43,7 +43,7 @@ public class BattleHandler : MonoBehaviour
    private int totalCharacterCount;                   // Total number of entities in combat
    
    private State state;                      // Current player state in combat
-   private int selectedEnemyIndex = 0;       // Index of which enemy the player is targeting
+   private int selectedEnemyIndex;       // Index of which enemy the player is targeting
    
    private enum State      // Block input when Busy
    {
@@ -84,10 +84,10 @@ public class BattleHandler : MonoBehaviour
       
       // Fetch the turn order view and set the sprites
       TurnOrderView = GameObject.Find("TurnOrderView");
-      for (int i = 1; i <= 5; i++)
+      for (int i = 0; i < 5; i++)
       {
-         TurnOrderSprites.Add(TurnOrderView.transform.Find("Portraits").Find("Sprite" + i).gameObject.GetComponent<SpriteRenderer>());
-         TurnOrderSprites[i - 1].sprite = characterBattlesTurnOrder[i%totalCharacterCount].GetPortraitSprite();
+         TurnOrderSprites.Add(TurnOrderView.transform.Find("Portraits").Find("Sprite" + (i+1)).gameObject.GetComponent<SpriteRenderer>());
+         TurnOrderSprites[i].sprite = characterBattlesTurnOrder[(i+1)%totalCharacterCount].GetPortraitSprite();
       }
    }
 
@@ -169,7 +169,6 @@ public class BattleHandler : MonoBehaviour
       if (TestBattleOver())
       {
          // TODO End the battle. Show splash screen. Nav back to scene
-         Debug.Log("Battle Over");
          return;  
       }
 
@@ -189,8 +188,10 @@ public class BattleHandler : MonoBehaviour
             // We are going from player to enemy. Clear selection circle
             enemiesCharacterBattles[selectedEnemyIndex].HideSelectionCircle();
          }
-         // TODO Enemy Auto attack (random, for now just first) player
-         AttackCharacter(playerCharacterBattles[0]);
+         // Enemy Auto attack player
+         // TODO can replace with modular AI script
+         int atk = activeCharacterBattle.AutoPickTarget(playerCharacterBattles);
+         AttackCharacter(playerCharacterBattles[atk]);
       }
       else
       {
@@ -235,10 +236,9 @@ public class BattleHandler : MonoBehaviour
    // TODO change sprite to reference a different, more detailed face portrait
    private void RenderNewTurnListView()
    {
-      for (int i = 1; i <= 4; i++)
+      for (int i = 0; i < 4; i++)
       {
-         TurnOrderSprites[i-1].sprite = TurnOrderSprites[i].sprite;
-
+         TurnOrderSprites[i].sprite = TurnOrderSprites[i+1].sprite;
       }
       // Update the hidden 5th sprite with the 5th character
       TurnOrderSprites[4].sprite = characterBattlesTurnOrder[(activeCharacterIndex+4)%totalCharacterCount]
@@ -262,7 +262,7 @@ public class BattleHandler : MonoBehaviour
       {
          // Players dead, enemy wins
          // Set winners text
-         ResultScreen.transform.Find("WinnerText").GetComponent<Text>().text = "You've Won!";
+         ResultScreen.transform.Find("WinnerText").GetComponent<Text>().text = "You've Lost!";
          ResultScreen.SetActive(true);
          return true;
       }
@@ -280,7 +280,7 @@ public class BattleHandler : MonoBehaviour
       if (gameOver)
       {
          // Enemies dead, player wins
-         ResultScreen.transform.Find("WinnerText").GetComponent<Text>().text = "You've Lost!";
+         ResultScreen.transform.Find("WinnerText").GetComponent<Text>().text = "You've Won!";
          ResultScreen.SetActive(true);
          return true;
       }
@@ -296,6 +296,48 @@ public class BattleHandler : MonoBehaviour
          state = State.Busy;
          activeCharacterBattle.Attack(targetCharacterBattle, onAttackComplete: () =>
          {
+            if (targetCharacterBattle.IsDead())
+            {
+               // target was killed.
+               // TODO update sprite to dead sprite
+               targetCharacterBattle.HideSelectionCircle();
+               
+               // remove from turn order list
+               characterBattlesTurnOrder.Remove(targetCharacterBattle);
+               // playerCharacterBattles.Remove(targetCharacterBattle);
+               // enemiesCharacterBattles.Remove(targetCharacterBattle);
+               
+               // Set new values
+               totalCharacterCount -= 1;
+
+               // Edge case where active was the last element in list
+               if (activeCharacterIndex >= totalCharacterCount)
+               {
+                  activeCharacterIndex = 0;
+               }
+               
+               // If we killed an enemy, shift target to next available enemy
+               if (!targetCharacterBattle.IsPlayerTeam)
+               {
+                  int temp = selectedEnemyIndex;
+                  do
+                  {
+                     selectedEnemyIndex = (selectedEnemyIndex + 1) % enemiesCharacterBattles.Count;
+                     if (!enemiesCharacterBattles[selectedEnemyIndex].IsDead())
+                     {
+                        enemiesCharacterBattles[selectedEnemyIndex].ShowSelectionCircle(); // To reset circle
+                        break;
+                     }
+                  } while (temp != selectedEnemyIndex);
+               }
+               
+               // TODO update turn list. Lazy method regenerate whole list
+               for (int i = 0; i < 5 && totalCharacterCount > 1; i++)
+               {
+                  TurnOrderSprites[i].sprite = characterBattlesTurnOrder[(activeCharacterIndex + i)%totalCharacterCount].GetPortraitSprite();
+               }
+            }
+            
             ChooseNextActiveCharacter();     // Next character gets turn
          });
       }

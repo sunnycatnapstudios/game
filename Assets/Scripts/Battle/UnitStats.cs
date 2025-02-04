@@ -44,7 +44,8 @@ public class UnitStats : MonoBehaviour
     public int GetAttack()
     {
         // Vary attack amount by 75% to 125%
-        int randomAttack = attack + UnityEngine.Random.Range(-attack/4, attack/4);
+        // TODO removing randomess
+        int randomAttack = attack; //+ UnityEngine.Random.Range(-attack/4, attack/4);
         return randomAttack;
     }
     

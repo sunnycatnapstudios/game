@@ -128,6 +128,24 @@ public class CharacterBattle : MonoBehaviour, IComparable<CharacterBattle>
         
     }
 
+    // Uses list of targets to auto target an opponent. 
+    // TODO can replace with modular AI script
+    public int AutoPickTarget(List<CharacterBattle> targets)
+    {
+        int targetIndex = 0;
+        // For now just target the front player member
+        foreach (CharacterBattle target in targets)
+        {
+            if (!target.IsDead())
+            {
+                return targetIndex;
+            }
+            targetIndex++;
+        }
+
+        return -1;  // Should never reach here
+    }
+    
     public bool IsDead()
     {
         return unitStats.IsDead();
