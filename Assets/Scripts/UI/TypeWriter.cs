@@ -20,6 +20,7 @@ public class TypeWriter : MonoBehaviour
 
 	public void StartTypewriter(string newText)
 	{
+		_tmpProText.text = "";
 		if (isTyping) StopAllCoroutines();
 		writer = newText;
 		StartCoroutine("TypeWriterTMP");

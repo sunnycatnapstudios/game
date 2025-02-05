@@ -17,6 +17,11 @@ TagManager:
   - Name Card
   - Dark Screen
   - Character Profile
+  - L0
+  - L1
+  - L2
+  - Same Level
+  - Diff Level
   layers:
   - Default
   - TransparentFX

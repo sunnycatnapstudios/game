@@ -14,7 +14,14 @@ public class InteractPrompt : MonoBehaviour
     public GameObject popUpPrefab;
     private GameObject currentPopUp;
     private TMP_Text popUpText;
-    private Animator animator;
+    private Animator popUpAnimator;
+
+    
+    public GameObject interactBoxPrefab;
+    private GameObject currentInteractBox;
+    private TMP_Text interactBoxText;
+    private Animator interactBoxAnimator;
+    public string interactBoxTextReplacement;
 
     public GameObject dialogueBox;
     private TMP_Text nameText, dialogueText;
@@ -33,13 +40,13 @@ public class InteractPrompt : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, interactRange);
     }
 
-    public void PopUp(string text)
-    {
-        if (currentPopUp){
-            popUpText.text = text;
-            // animator.SetTrigger("pop");
-        }
-    }
+    // public void PopUp(string text)
+    // {
+    //     if (currentPopUp){
+    //         popUpText.text = text;
+    //         // popUpAnimator.SetTrigger("pop");
+    //     }
+    // }
 
     void OpenDialogue(string text)
     {
@@ -96,7 +103,7 @@ public class InteractPrompt : MonoBehaviour
             charProfile = GameObject.FindGameObjectWithTag("Character Profile").GetComponent<Image>();
 
             nameText.text = this.name;
-            Debug.Log("" + nameText.text);
+            // Debug.Log("" + nameText.text);
 
             // nameTypeWriter = nameText.GetComponent<TypeWriter>();
             bodyTypeWriter = dialogueText.GetComponent<TypeWriter>();
@@ -108,6 +115,9 @@ public class InteractPrompt : MonoBehaviour
             // dialogueBox.SetActive(false);
             NPCDialogueHandler = GetComponent<NPCDialogueHandler>();
         }
+        // if (CompareTag("Interactable")) {
+        //     Debug.Log("YEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHH");
+        // }
     }
 
     void Update()
@@ -120,9 +130,21 @@ public class InteractPrompt : MonoBehaviour
             {
                 currentPopUp = Instantiate(popUpPrefab, Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f), Quaternion.identity, GameObject.FindGameObjectWithTag("Overworld UI").transform);
                 popUpText = currentPopUp.GetComponentInChildren<TMP_Text>();
-                animator = currentPopUp.GetComponent<Animator>();
+                popUpAnimator = currentPopUp.GetComponent<Animator>();
             } else {
                 currentPopUp.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f);
+            }
+
+            if (currentInteractBox == null && CompareTag("Interactable"))
+            {
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    currentInteractBox = Instantiate(interactBoxPrefab, Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.7f), Quaternion.identity, GameObject.FindGameObjectWithTag("Overworld UI").transform);
+                    interactBoxText = currentInteractBox.GetComponentInChildren<TMP_Text>();
+                    interactBoxText.text = this.interactBoxTextReplacement;
+                    popUpAnimator = currentInteractBox.GetComponent<Animator>();
+                }
+            } else if (CompareTag("Interactable")) {
+                currentInteractBox.transform.position = Camera.main.WorldToScreenPoint((transform.position + Vector3.up*1.7f));
             }
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -134,7 +156,7 @@ public class InteractPrompt : MonoBehaviour
                 }
                 else if (CompareTag("NPC"))
                 {
-                    Debug.Log($"Dialogue Interacted with {interactCount} times");
+                    // Debug.Log($"Dialogue Interacted with {interactCount} times");
                     if (!isDialogueOpen && !bodyTypeWriter.isTyping)
                     {
                         // isDialogueOpen = true;
@@ -161,6 +183,10 @@ public class InteractPrompt : MonoBehaviour
             if (currentPopUp) {
                 Destroy(currentPopUp);
                 currentPopUp = null;
+            }
+            if (currentInteractBox) {
+                Destroy(currentInteractBox);
+                currentInteractBox = null;
             }
             if (isDialogueOpen) {
                 CloseDialogue();

@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
 
     private PartyManager partyManager;
 
+    public bool isPlayerInControl;
+
     
     private IEnumerator RechargeStamina() {
         yield return new WaitForSeconds(1f);
@@ -126,26 +128,26 @@ public class Player : MonoBehaviour
         isMoving = startRef!=endRef;
 
         // Controls Movement Speed
-        if(Input.GetMouseButton(1)){moveSpeed = moveSneak;}
-        else if(Input.GetKey(KeyCode.LeftShift) && !recharging){
+        if (!isPlayerInControl)
+        {
+            if(Input.GetMouseButton(1)){moveSpeed = moveSneak;}
+            else if(Input.GetKey(KeyCode.LeftShift) && !recharging){
 
-            if (currStamina>0 && !recharging && isMoving){
-                // if (Input.GetKeyDown(KeyCode.LeftShift)) {partiSystem.Play();}
+                if (currStamina>0 && !recharging && isMoving)
+                {
+                    moveSpeed = moveSprint;
+                    if (animCount<=0){partiSystem.Play(); animCount+=1;}
+                    if (!infSprint) {currStamina -= sprintCost*Time.deltaTime;}
 
-                moveSpeed = moveSprint;
-                if (animCount<=0){partiSystem.Play(); animCount+=1;}
-                if (!infSprint) {currStamina -= sprintCost*Time.deltaTime;}
+                    if (currStamina<0) {currStamina = 0; recharging = true;}
+                    staminaBar.fillAmount = currStamina/maxStamina;
 
-                if (currStamina<0) {currStamina = 0; recharging = true;}
-                staminaBar.fillAmount = currStamina/maxStamina;
+                    if (recharge != null) {StopCoroutine(recharge);}
+                    recharge = StartCoroutine(RechargeStamina());
 
-                if (recharge != null) {StopCoroutine(recharge);}
-                recharge = StartCoroutine(RechargeStamina());
-
+                } else{moveSpeed = moveConstant; animCount=0; partiSystem.Stop();}
             } else{moveSpeed = moveConstant; animCount=0; partiSystem.Stop();}
-        
-        } else{moveSpeed = moveConstant; animCount=0; partiSystem.Stop();}
-        // if (Input.GetKeyUp(KeyCode.LeftShift)){partiSystem.Stop();}
+        }
 
     
         viewMap();
