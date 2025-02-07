@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,12 +19,93 @@ public class Enemy : MonoBehaviour
     public Animator enemyAnim;
     public SpriteRenderer spriteState;
 
+    int currentTargetIndex;
+
+    public GameObject overworldUI, combatUI;
+
 
     void OnDrawGizmos() { // Draws a Debug for NPC interact radius
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 
+    void EnterCombat(bool iscaught)
+    {
+        if (iscaught && !caught)
+        {
+            caught = true;
+            
+            StartCoroutine(CaptureScreen());
+            Time.timeScale = 0;
+        }
+    }
+
+    public IEnumerator CaptureScreen()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return null;
+
+        Camera.main.Render();
+
+        Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();
+
+        GameObject screenOverlay = new GameObject("ScreenOverlay");
+        combatUI.SetActive(true);
+        overworldUI.SetActive(false);
+        screenOverlay.transform.SetParent(combatUI.transform, false);
+
+        RawImage overlayImage = screenOverlay.AddComponent<RawImage>();
+        overlayImage.texture = screenTexture;
+
+        RectTransform overlayRect = screenOverlay.GetComponent<RectTransform>();
+        overlayRect.sizeDelta = new Vector2(Screen.width, Screen.height);
+        overlayRect.anchorMin = Vector2.zero;
+        overlayRect.anchorMax = Vector2.one;
+        overlayRect.pivot = new Vector2(0.5f, 0.5f);
+        
+        // Start the animation
+        StartCoroutine(ZoomInAnimation(screenOverlay, overlayImage));
+    }
+
+    IEnumerator ZoomInAnimation(GameObject overlay, RawImage overlayImage)
+    {
+        RectTransform rect = overlay.GetComponent<RectTransform>();
+
+        // Start with slightly zoomed out
+        float initialScale = .8f;
+        rect.localScale = new Vector3(initialScale, initialScale, 1f);
+
+        // Wait for a short delay
+        yield return new WaitForSecondsRealtime(0.8f);
+
+        float duration = 1.5f;  // Animation duration
+        float time = 0f;
+        
+        Color startColor = overlayImage.color;
+        Color targetColor = new Color(0, 0, 0, 0);  // Fully dark and transparent
+        
+        while (time < duration)
+        {
+            time += Time.unscaledDeltaTime;
+            float t = time / duration;  // Normalize time (0 to 1)
+
+            // Zoom in effect
+            float scale = Mathf.Lerp(initialScale, 2.5f, t);
+            rect.localScale = new Vector3(scale, scale, 1f);
+
+            // Rotation effect
+            float rotation = Mathf.Lerp(0f, 30f, t);
+            rect.rotation = Quaternion.Euler(0, 0, rotation);
+
+            // Darkening & Opacity fade-out
+            overlayImage.color = Color.Lerp(startColor, targetColor, t);
+
+            yield return null;
+        }
+        // Destroy object after animation completes
+        Destroy(overlay);
+        // caught = false;
+    }
 
     void EnemyPatrol()
     {
@@ -50,11 +132,25 @@ public class Enemy : MonoBehaviour
                 }
             }
         } else { // Handles Square Paths
-            
+            Vector3[] squarePoints = new Vector3[]
+            {
+                startPos,
+                startPos + new Vector3(pathDist.x, 0, 0),
+                startPos + new Vector3(pathDist.x, pathDist.y, 0),
+                startPos + new Vector3(0, pathDist.y, 0)
+            };
+            counter_+=Time.deltaTime;
+            if (counter_>=1.5) {
+                transform.position = Vector3.MoveTowards(transform.position, squarePoints[currentTargetIndex], enemySpeed * Time.deltaTime);
+
+                if (transform.position == squarePoints[currentTargetIndex]) {
+                    counter_ = 0f;
+                    currentTargetIndex = (currentTargetIndex + 1) % 4;
+                }
+            }
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         startPos = transform.position;
@@ -64,7 +160,6 @@ public class Enemy : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         playerDist = Vector3.Distance(target.position, transform.position);
@@ -78,7 +173,7 @@ public class Enemy : MonoBehaviour
             
             if (!demotestFreeze){transform.position = Vector3.MoveTowards(transform.position, target.position, attackSpeed*Time.deltaTime);}
             attack = true;
-            caught = Physics2D.OverlapCircle((transform.position), caughtRange, player);
+            EnterCombat(Physics2D.OverlapCircle((transform.position), caughtRange, player));
             searchTimer = 0f; detectRange = baseRange; intervalCheck = .4f; searching = false;
             if (playerDist >= pursueRange){
                 attack = false;

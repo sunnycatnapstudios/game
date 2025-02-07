@@ -33,18 +33,31 @@ public class PartyManager : MonoBehaviour
         { "MemberD", new PartyMember("MemberD", 80, 25, true)},
         { "MemberE", new PartyMember("MemberE", 200, 42, true)}
     };
+    // public Dictionary<string, RuntimeAnimatorController> partyAnimControllers = new Dictionary<string, RuntimeAnimatorController>();
+    public List<RuntimeAnimatorController> partyAnimControllers = new List<RuntimeAnimatorController>();
 
     public List<PartyMember> currentPartyMembers = new List<PartyMember>();
     public List<GameObject> spawnedPartyMembers = new List<GameObject>();
     public List<PartyMember> partyMemberList = new List<PartyMember>();
 
+    void AssignAnimator(GameObject memberObject, string memberName)
+    {
+        Animator anim = memberObject.GetComponent<Animator>();
+
+        for (int i = 0; i < partyMemberList.Count; i++)
+        {
+            if (partyMemberList[i].Name == memberName && i < partyAnimControllers.Count)
+            {
+                anim.runtimeAnimatorController = partyAnimControllers[i];
+                break;
+            }
+        }
+    }
+
     void UpdatePartyCount()
     {
         //Refresh Onscreen Party when there is a change
-        foreach (var obj in spawnedPartyMembers)
-        {
-            Destroy(obj);
-        }
+        foreach (var obj in spawnedPartyMembers) {Destroy(obj);}
         spawnedPartyMembers.Clear();
 
         // Spawn GameObjects for each current party member
@@ -54,6 +67,8 @@ public class PartyManager : MonoBehaviour
 
             newPartyObject.name = currentPartyMembers[i].Name;
             newPartyObject.GetComponent<Follower>().order = i+1;
+            AssignAnimator(newPartyObject, currentPartyMembers[i].Name);
+
             spawnedPartyMembers.Add(newPartyObject);
 
             partyCount = currentPartyMembers.Count;
@@ -94,17 +109,6 @@ public class PartyManager : MonoBehaviour
     void Start()
     {
         partyMemberList = new List<PartyMember>(allPartyMembers.Values);
-
-        // AddToParty("Alice");
-        // AddToParty("Bob");
-        
-        // Party Members Spawning
-        // for (int x = 0; x<partyCount; x++) {
-        //     partySpawn = GameObject.Instantiate(partyMemberTemplate);
-        //     partySpawn.name = $"Follower {x+1}";
-        //     partySpawn.GetComponent<Follower>().order = x+1;
-        //     partyMembers.Add(partySpawn);
-        // }
     }
 
     void Update()
