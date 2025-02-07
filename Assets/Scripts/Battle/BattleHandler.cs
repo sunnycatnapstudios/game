@@ -89,6 +89,9 @@ public class BattleHandler : MonoBehaviour
          TurnOrderSprites.Add(TurnOrderView.transform.Find("Portraits").Find("Sprite" + (i+1)).gameObject.GetComponent<SpriteRenderer>());
          TurnOrderSprites[i].sprite = characterBattlesTurnOrder[(i+1)%totalCharacterCount].GetPortraitSprite();
       }
+      
+      // TODO Start bgm music
+      AudioManager.Instance.PlayTestSound();
    }
 
    // Check for user input
