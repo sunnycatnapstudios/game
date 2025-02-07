@@ -7,12 +7,14 @@ public class PartyMember
     public string Name { get; private set; }
     public int Health { get; set; }
     public int Damage { get; set; }
+    public bool Combatant { get; set; }
 
-    public PartyMember(string name, int health, int damage)
+    public PartyMember(string name, int health, int damage, bool combatant)
     {
         Name = name;
         Health = health;
         Damage = damage;
+        Combatant = combatant;
     }
 }
 
@@ -23,20 +25,29 @@ public class PartyManager : MonoBehaviour
     public List<GameObject> partyMembers = new List<GameObject>();
     GameObject partySpawn;
 
-    public Dictionary<string, PartyMember> allPartyMembers = new Dictionary<string, PartyMember>();
+    public Dictionary<string, PartyMember> allPartyMembers = new Dictionary<string, PartyMember>
+    {
+        { "MemberA", new PartyMember("MemberA", 100, 20, true)},
+        { "MemberB", new PartyMember("MemberB", 120, 15, false)},
+        { "MemberC", new PartyMember("MemberC", 150, 17, false)},
+        { "MemberD", new PartyMember("MemberD", 80, 25, true)},
+        { "MemberE", new PartyMember("MemberE", 200, 42, true)}
+    };
+
     public List<PartyMember> currentPartyMembers = new List<PartyMember>();
-    public  List<GameObject> spawnedPartyMembers = new List<GameObject>();
+    public List<GameObject> spawnedPartyMembers = new List<GameObject>();
+    public List<PartyMember> partyMemberList = new List<PartyMember>();
 
     void UpdatePartyCount()
     {
-        // Clear existing spawned objects
+        //Refresh Onscreen Party when there is a change
         foreach (var obj in spawnedPartyMembers)
         {
             Destroy(obj);
         }
         spawnedPartyMembers.Clear();
 
-        // Spawn objects for each current party member
+        // Spawn GameObjects for each current party member
         for (int i = 0; i < currentPartyMembers.Count; i++)
         {
             GameObject newPartyObject = Instantiate(partyMemberTemplate);
@@ -82,11 +93,7 @@ public class PartyManager : MonoBehaviour
 
     void Start()
     {
-        allPartyMembers.Add("MemberA", new PartyMember("MemberA", 100, 20));
-        allPartyMembers.Add("MemberB", new PartyMember("MemberB", 120, 15));
-        allPartyMembers.Add("MemberC", new PartyMember("MemberC", 150, 17));
-        allPartyMembers.Add("MemberD", new PartyMember("MemberD", 80, 25));
-        allPartyMembers.Add("MemberE", new PartyMember("MemberE", 200, 42));
+        partyMemberList = new List<PartyMember>(allPartyMembers.Values);
 
         // AddToParty("Alice");
         // AddToParty("Bob");
@@ -103,14 +110,38 @@ public class PartyManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) {
-            // Debug.Log("Added PartyMember");
-            AddToParty("MemberD");
-            AddToParty("MemberA");
+            if (currentPartyMembers.Count<allPartyMembers.Count)
+            {
+                // Debug.Log("Added PartyMember");
+                // AddToParty("MemberD");
+                // AddToParty("MemberA");
 
+                // AddToParty(partyMemberList[currentPartyMembers.Count].Name);
+
+                foreach (PartyMember member in partyMemberList){
+                    if (!currentPartyMembers.Contains(member))
+                    {
+                        AddToParty(member.Name);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("Spawned All Party Members");
+            }
         }
         if (Input.GetKeyDown(KeyCode.O)) {
-            // Debug.Log("Removed PartyMember");
-            RemoveFromParty("MemberD");
+            if (currentPartyMembers.Count>0)
+            {
+                // Debug.Log("Removed PartyMember");
+                
+                RemoveFromParty(currentPartyMembers[Random.Range(0, currentPartyMembers.Count-1)].Name);
+            }
+            else
+            {
+                Debug.Log("Culled All Party Members");
+            }
         }
     }
 }

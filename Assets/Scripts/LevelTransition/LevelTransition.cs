@@ -18,41 +18,43 @@ public class LevelTransition : MonoBehaviour
     public Vector3 refPosition;
     public bool changedLevel, inTransition;
 
-    private LevelTransition lastTransition;
-    
     private void OnTriggerEnter2D(Collider2D other) {
 
         // if (other.CompareTag(tagTarget)&& !inTransition)
-        if (other.CompareTag(tagTarget)&&CompareTag("Same Level"))
+        if (other.CompareTag(tagTarget))
         {
-            // if (lastTransition == this) {return;}
+            // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
+            {
+                Debug.Log(tagTarget + " has entered " + name);
 
-            Debug.Log(tagTarget + " has entered " + name);
-
-            Player = other.gameObject;
-            Player.GetComponent<Player>().movePoint.transform.position += entranceDirection;
-            Player.GetComponent<Player>().isPlayerInControl = true;
-            Player.GetComponent<Player>().moveSpeed = 3f;
-            
-            // inTransition = true;
-            sceneAnimation.SetTrigger("Leave Scene");
+                Player = other.gameObject;
+                Player.GetComponent<Player>().movePoint.transform.position += entranceDirection;
+                Player.GetComponent<Player>().isPlayerInControl = true;
+                Player.GetComponent<Player>().moveSpeed = 3f;
+                
+                // inTransition = true;
+                sceneAnimation.SetTrigger("Leave Scene");
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag(tagTarget)&&CompareTag("Same Level"))
+        if (other.CompareTag(tagTarget))
         {
-            Debug.Log(tagTarget + " has left "+ name);
-            Player.GetComponent<Player>().isPlayerInControl = false;
-            
-            changedLevel = true;
+            // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
+            {
+                Debug.Log(tagTarget + " has left "+ name);
+                Player.GetComponent<Player>().isPlayerInControl = false;
+                
+                changedLevel = true;
+            }
         }
     }
 
     void ChangeLevel()
     {
         // if (CompareTag("Same Level") && !inTransition)
-        if (CompareTag("Same Level"))
+        // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
         {
             sceneAnimation.SetTrigger("Enter Scene");
 
@@ -70,7 +72,6 @@ public class LevelTransition : MonoBehaviour
             
             changedLevel = false;
 
-            // lastTransition = this;
             // inTransition = true;
         }
     }
@@ -90,7 +91,7 @@ public class LevelTransition : MonoBehaviour
 
     void Update()
     {
-        if (CompareTag("Same Level"))
+        // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
         {
             if (changedLevel && !sceneAnimation.GetCurrentAnimatorStateInfo(0).IsName("Scene Transition In"))
             {
