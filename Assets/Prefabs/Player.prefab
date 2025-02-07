@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8129783758635369271}
   - component: {fileID: -6956490875491023562}
   - component: {fileID: 6990810145461938591}
+  - component: {fileID: 8920071011522045586}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -157,9 +158,8 @@ MonoBehaviour:
   NPC:
     serializedVersion: 2
     m_Bits: 0
-  partyCount: 4
-  memTemplate: {fileID: 7390693599374058831}
   walkAudi: {fileID: -4604008991133164472}
+  walkAudiCount: 0
   partiSystem: {fileID: 4434343550034611817}
   vcam: {fileID: 1102627701647781629}
   camMax: 0
@@ -175,15 +175,10 @@ MonoBehaviour:
   faceRight: 0
   faceUp: 0
   faceDown: 1
-  horizontalInput: 0
-  verticalInput: 0
-  up_: 0
-  down_: 0
-  left_: 0
-  right_: 0
   moveInput: {x: 0, y: 0}
   lastInput: {x: 0, y: 0}
   playerInput: {x: 0, y: 0}
+  isPlayerInControl: 0
 --- !u!95 &210012170400930958
 Animator:
   serializedVersion: 3
@@ -364,6 +359,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af969bce80ba55d408ab665c1c1c5052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8920071011522045586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210012170400930955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8577893da9576a041b0c400fb999b302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partyCount: 0
+  partyMemberTemplate: {fileID: 7390693599374058831}
+  partyMembers: []
+  spawnedPartyMembers: []
 --- !u!1 &2533101456322773200
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +914,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 210012170400930956}
+    - target: {fileID: 4072896816711425516, guid: 54c2f8df8da185331884c4905174e3aa,
+        type: 3}
+      propertyPath: partyManager
+      value: 
+      objectReference: {fileID: 8920071011522045586}
     - target: {fileID: 4072896816711425522, guid: 54c2f8df8da185331884c4905174e3aa,
         type: 3}
       propertyPath: m_RootOrder
