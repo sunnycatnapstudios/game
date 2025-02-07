@@ -5,7 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-<<<<<<< HEAD
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -15,14 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Camera Testing Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-=======
-  - enabled: 1
-    path: Assets/Scenes/Testing Scene.unity
-    guid: 10a66e4806a520940aff94c3cbd7828c
-  - enabled: 1
-    path: Assets/Scenes/Battle.unity
-    guid: b34edbf4bdd35c4f0a3de867b4cf653d
->>>>>>> 1f5400be2a2fe448fca3c10fe81860520c3d31e9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 427da3dc14e60364ba37ed659f1e212b,
       type: 2}
