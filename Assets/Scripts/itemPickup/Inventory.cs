@@ -17,7 +17,6 @@ public class Inventory : MonoBehaviour
         inventory = new Dictionary<string, Slot>();
         itemsInRange = new List<GameObject>();
 
-
     }
     private void addItem(Item item)
 
@@ -33,9 +32,19 @@ public class Inventory : MonoBehaviour
             Slot itemSlot = inventory[item.GetName()];
             itemSlot.incCount();
         }
-
     }
 
+    public bool hasItemByName(string name) {
+        return inventory.ContainsKey(name);
+    }
+
+    public void removeItemByName(string name) {
+        Slot slot = inventory[name];
+        slot.decCount();
+        if (slot.getCount() == 0) {
+            inventory.Remove(name);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D col)//if colliding with an item add to pickupable
     {
@@ -52,8 +61,8 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))//pickup item
-        {
+        // pickup item
+        if (Input.GetKey(KeyCode.E)) {
             if (itemsInRange.Count > 0)
             {
                 GameObject curObj = itemsInRange[0];

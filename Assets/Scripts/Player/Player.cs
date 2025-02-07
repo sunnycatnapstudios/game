@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     public bool infSprint;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer spritestate;
+    [HideInInspector] public Inventory inventory;
 
     public float moveSpeed = 5f, movementInputDelay = 0.05f, moveConstant, sprintConstant = 1.7f, sneakConstant = .5f;
     [HideInInspector] public float moveSprint, moveSneak;
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         spritestate = GetComponent<SpriteRenderer>();
         walkAudi = GetComponent<AudioSource>();
+        inventory = GetComponent<Inventory>();
         partyManager = GetComponent<PartyManager>();
 
         // // Sets Up Variables to prevent confusion
@@ -176,8 +179,7 @@ public class Player : MonoBehaviour
             {
                 // Vector3 moveDir = new Vector3(playerInput.x, playerInput.y, 0f).normalized;
 
-                if (!Physics2D.OverlapCircle(movePoint.position+moveDir, .2f, noPass) && 
-                    !Physics2D.OverlapCircle(movePoint.position+moveDir, .2f, NPC))
+                if (isTraversable(movePoint.position+moveDir))
                 {
                     movePoint.position+=moveDir;
 
@@ -212,5 +214,15 @@ public class Player : MonoBehaviour
             walkAudi.Play(); walkAudiCount+=1; walkAudi.Play();
         }
         else if (!isMoving) {walkAudi.Stop(); walkAudiCount = 0;}
+    }
+
+    bool isTraversable(Vector2 pos) {
+        if (Physics2D.OverlapCircleAll(pos, .2f, noPass).Any(c => !c.isTrigger)) {
+            return false;
+        }
+        if (Physics2D.OverlapCircleAll(pos, .2f, NPC).Any(c => !c.isTrigger)) {
+            return false;
+        }
+        return true;
     }
 }
