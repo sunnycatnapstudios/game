@@ -91,7 +91,6 @@ public class BattleHandler : MonoBehaviour
       }
       
       // TODO Start bgm music
-      AudioManager.Instance.PlayTestSound();
    }
 
    // Check for user input

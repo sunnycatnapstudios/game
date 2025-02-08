@@ -39,19 +39,27 @@ public class AudioManager : MonoBehaviour
         _audioClipDatabase.PopulateDatabase();
     }
 
+    // TODO add more options later
+    // Set the master volume of all sounds
     public void SetMasterVolume(float volume)
     {
         mixer.SetFloat("MasterVolume", volume);
     }
     
-    public void PlayTestSound() // TODO remove after more sounds are added
+    // Play sound from an audio source. Defaults to audioSource if no alternative source is provided
+    public void PlaySound(String clipName, AudioSource source) //= audioSource)
     {
-        AudioClip c = _audioClipDatabase.GetAudioClip("just-synth");
-        audioSource.clip = c;
-        audioSource.outputAudioMixerGroup = soundGroup;
-        audioSource.Play();
+        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);    // Fetch the clip from database
+        source.clip = c;    // Set the source to play the clip
+        source.outputAudioMixerGroup = soundGroup;      // Attach unity soundmixer to this
+        source.Play();
     }
+    
+	public void PlaySound(String clipName){
+		PlaySound(clipName, audioSource);
+	}
 
+    // Play Ambient sound from ambient source
     public void PlayAmbienceSound(String clipName)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
@@ -60,14 +68,8 @@ public class AudioManager : MonoBehaviour
         ambienceSource.Play();
     }
     
-    public void PlaySound(String clipName)
-    {
-        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        audioSource.clip = c;
-        audioSource.outputAudioMixerGroup = soundGroup;
-        audioSource.Play();
-    }
-    
+
+    // Play music sound from the music source
     public void PlayMusicSound(String clipName)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
@@ -77,6 +79,7 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
     
+    // Play UI sounds from the UI source
     public void PlayUISound(String clipName)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
