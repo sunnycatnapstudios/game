@@ -8,6 +8,6 @@ public class TestOnScenePlayAudio : MonoBehaviour
     void Start()
     {
         // For now just play the forest ambient
-        AudioManager.Instance.PlayAmbienceSound("Ambient_Forest");
+        AudioManager.Instance.CrossFadeAmbienceSound("Ambient_Forest", 3);
     }
 }
