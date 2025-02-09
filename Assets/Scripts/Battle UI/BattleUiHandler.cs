@@ -114,7 +114,11 @@ public class BattleUiHandler : MonoBehaviour
         battleInProgress = true;
         turnIndicator.SetupTurnIndicator(battleOrder.Count);
         
+        // Stop all sounds, play new music
+        AudioManager.Instance.StopAmbienceSound();
+        AudioManager.Instance.PlayUISound("Sfx_BattleBell_Short");
         yield return new WaitForSecondsRealtime(2.0f);
+        AudioManager.Instance.PlayMusicSound("Music_JustSynth");
         StartCoroutine(TurnLoop());
     }
     public List<CharStats> ShuffleList(List<CharStats> list)
