@@ -510,8 +510,8 @@ MonoBehaviour:
   pathDist: {x: 5, y: 0}
   enemyAnim: {fileID: 0}
   spriteState: {fileID: 0}
-  overworldUI: {fileID: 0}
-  combatUI: {fileID: 0}
+  overworldUI: {fileID: 826657101}
+  combatUI: {fileID: 1031839793}
 --- !u!4 &173084821
 Transform:
   m_ObjectHideFlags: 0
@@ -5145,6 +5145,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &826657101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7866711808511602118, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 828495592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &828495592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6851,6 +6857,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1031839793 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 709600197106965942, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 828495592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1218851072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7467,12 +7479,17 @@ PrefabInstance:
     - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
         type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_RefCount
-      value: 35
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
         type: 3}
       propertyPath: m_TileColorArray.Array.data[1].m_RefCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
+        type: 3}
+      propertyPath: m_TileColorArray.Array.data[3].m_RefCount
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
         type: 3}
@@ -7646,6 +7663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
         type: 3}
+      propertyPath: m_Tiles.Array.data[1].second.m_AllTileFlags
+      value: 1073741825
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
+        type: 3}
       propertyPath: m_Tiles.Array.data[5].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
@@ -7807,6 +7829,11 @@ PrefabInstance:
     - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
         type: 3}
       propertyPath: m_Tiles.Array.data[0].second.m_TileColorIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[1].second.m_TileColorIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2323759060680550431, guid: f7bdee44e33f677478fe517aca334de9,
