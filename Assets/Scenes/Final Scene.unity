@@ -9063,7 +9063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4363cca338e644ab928a0e8a0c9a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionAnimator: {fileID: 0}
+  transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: 0, y: -2, z: 0}
   exitDirection: {x: 2, y: 0, z: 0}
   exitLocation: {x: -25.5, y: -3.5, z: 0}
@@ -9950,6 +9950,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014a27c53c143e244bf6d530cc699ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &705565803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7866711807455742269, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 705565799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &771855557
 GameObject:
   m_ObjectHideFlags: 0
@@ -10238,7 +10244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4363cca338e644ab928a0e8a0c9a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionAnimator: {fileID: 0}
+  transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: 2, y: 0, z: 0}
   exitDirection: {x: 0, y: 2, z: 0}
   exitLocation: {x: -1.5, y: -43.5, z: 0}
@@ -17498,7 +17504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4363cca338e644ab928a0e8a0c9a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionAnimator: {fileID: 0}
+  transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: -2, y: 0, z: 0}
   exitDirection: {x: 0, y: 2, z: 0}
   exitLocation: {x: -12.5, y: -11.5, z: 0}
@@ -20064,7 +20070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4363cca338e644ab928a0e8a0c9a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionAnimator: {fileID: 0}
+  transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: 0, y: -2, z: 0}
   exitDirection: {x: -2, y: 0, z: 0}
   exitLocation: {x: 1.5, y: -0.5, z: 0}
