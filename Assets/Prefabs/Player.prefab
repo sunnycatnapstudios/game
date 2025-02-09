@@ -785,6 +785,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4361409891661698687, guid: 81209976649bf36e8b8e7810ddbed323,
+        type: 3}
+      propertyPath: overworldUI
+      value: 
+      objectReference: {fileID: 7866711808511602118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81209976649bf36e8b8e7810ddbed323, type: 3}
 --- !u!224 &709600197106965938 stripped
@@ -968,6 +973,12 @@ MonoBehaviour:
 --- !u!224 &7866711808511602170 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3427452267074805719, guid: 724c167e3609f25d1a7884ba2bcdce4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4808979192667288109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7866711808511602118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3427452267074805739, guid: 724c167e3609f25d1a7884ba2bcdce4b,
     type: 3}
   m_PrefabInstance: {fileID: 4808979192667288109}
   m_PrefabAsset: {fileID: 0}
