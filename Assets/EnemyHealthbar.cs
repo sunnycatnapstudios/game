@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PartySlot : MonoBehaviour
+public class EnemyHealthbar : MonoBehaviour
 {
-    public string Name;
-    public Image profile;
+    
     public Image healthBarBar, healthBarTail;
     public float maxHealth;
 
@@ -20,6 +19,7 @@ public class PartySlot : MonoBehaviour
         healthBarBar.fillAmount = currentHealth / maxHealth;
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (healthBarTail.fillAmount >= healthBarBar.fillAmount){

@@ -1880,7 +1880,7 @@ MonoBehaviour:
   m_AtlasTextures:
   - {fileID: 609739490186554567}
   m_AtlasTextureIndex: 0
-  m_IsMultiAtlasTexturesEnabled: 0
+  m_IsMultiAtlasTexturesEnabled: 1
   m_UsedGlyphRects:
   - m_X: 0
     m_Y: 0
@@ -2532,7 +2532,7 @@ Texture2D:
   m_CompleteImageSize: 262144
   m_TextureFormat: 1
   m_MipCount: 1
-  m_IsReadable: 1
+  m_IsReadable: 0
   m_IgnoreMasterTextureLimit: 0
   m_IsPreProcessed: 0
   m_StreamingMipmaps: 0

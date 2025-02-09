@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharStats
 {
@@ -23,25 +24,31 @@ public class BattleUiHandler : MonoBehaviour
 {
     public Animator partyUIAnimator;
     public Animator enemyUIAnimator;
-    public bool attackOption = false, itemOption = false;
-    public GameObject overworldUI, combatUI;
+    public bool actOption = false, itemOption = false;
+    public GameObject overworldUI, combatUI, actOptionBList, itemOptionBList, enemySlot;
 
+    // public List<PartySlot> partySlots;
+    public List<GameObject> partySlots = new List<GameObject>();
     public PartyManager partyManager;
 
-    List<CharStats> battleOrder = new List<CharStats>();
-    private int currentTurnIndex = 0;
+    public List<CharStats> battleOrder = new List<CharStats>();
+    public int currentTurnIndex = 0;
     private bool battleInProgress = false;
 
     public Dictionary<string, CharStats> L1Enemies = new Dictionary<string, CharStats>
     {
-        { "Handy", new CharStats("Handy", 20, 100, true)},
-        { "Gregor", new CharStats("Gregor", 15, 120, true)},
-        { "Turf", new CharStats("Turf", 17, 150, true)}
+        { "Handy", new CharStats("Handy", 38, 100, true)},
+        { "Gregor", new CharStats("Gregor", 21, 120, true)},
+        { "Turf", new CharStats("Turf", 31, 150, true)}
     };
     public Dictionary<string, CharStats> L2Enemies = new Dictionary<string, CharStats>();
     public List<CharStats> currentEnemies = new List<CharStats>();
-
+    public List<Sprite> profileImages;
+    public TurnIndicator turnIndicator;
     public GameObject floatingTextPrefab;
+    public TextMeshProUGUI enemyName;
+    private string selectedAction = "";
+    CharStats enemyStats;
     
     void OnEnable()
     {
@@ -50,27 +57,64 @@ public class BattleUiHandler : MonoBehaviour
 
         currentEnemies = new List<CharStats>(L1Enemies.Values);
 
-        StartBattle();
+        StartCoroutine(StartBattle());
     }
-    public void StartBattle()
+    public IEnumerator StartBattle()
     {
         battleOrder.Clear();
 
+        foreach (var member in partyManager.currentPlayer)
+        {
+            CharStats playerStats = new CharStats(member.Name, member.Damage, member.Health, false);
+            battleOrder.Add(playerStats);
+            partySlots[0].GetComponent<PartySlot>().Name = member.Name;
+            partySlots[0].GetComponent<PartySlot>().SetHealth(member.Health);
+        }
+
+        int slotIndex = 1;
         foreach (var member in partyManager.currentPartyMembers)
         {
             if (member.isCombatant)
-            {   
-                battleOrder.Add(new CharStats(member.Name, member.Damage, member.Health, false));
+            {
+                CharStats newChar = new CharStats(member.Name, member.Damage, member.Health, false);
+                battleOrder.Add(newChar);
+
+                if (slotIndex < partySlots.Count)
+                {
+                    // Assign correct profile image
+                    // partySlots[slotIndex].profile.sprite = member.profileSprite; // Ensure PartyMember has profileSprite
+                    partySlots[slotIndex].GetComponent<PartySlot>().Name = member.Name;
+                    partySlots[slotIndex].GetComponent<PartySlot>().SetHealth(member.Health);
+                }
+                slotIndex++;
             }
         }
-        battleOrder.Add(currentEnemies[Random.Range(0, currentEnemies.Count)]);
+
+        enemyStats = currentEnemies[Random.Range(0, currentEnemies.Count)];
+        enemyName.text = ":"+enemyStats.Name;
+        enemySlot.GetComponent<EnemyHealthbar>().SetHealth(enemyStats.Health);
+        battleOrder.Add(enemyStats);
+
         battleOrder = ShuffleList(battleOrder);
+        
+        foreach (var profilePic in profileImages)
+        {
+            foreach (var slot in partySlots)
+            {
+                if (profilePic.name == slot.GetComponent<PartySlot>().Name) {
+                    slot.GetComponent<PartySlot>().profile.sprite = profilePic;
+                }
+            }
+        }
 
         foreach (var Char in battleOrder)
         {
-            Debug.Log($"Combatant: {Char.Name}, Attack: {Char.Attack}, Health: {Char.Health}");
+            Debug.Log($"{Char.Name}: {Char.Attack} Damage, {Char.Health} HP");
         }
         battleInProgress = true;
+        turnIndicator.SetupTurnIndicator(battleOrder.Count);
+        
+        yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(TurnLoop());
     }
     public List<CharStats> ShuffleList(List<CharStats> list)
@@ -85,6 +129,7 @@ public class BattleUiHandler : MonoBehaviour
 
     private IEnumerator TurnLoop()
     {
+
         while (battleInProgress)
         {
             if (currentTurnIndex >= battleOrder.Count)
@@ -114,17 +159,53 @@ public class BattleUiHandler : MonoBehaviour
             }
 
             currentTurnIndex++;
-            yield return new WaitForSecondsRealtime(1.0f); // Add a delay for better readability
+            
         }
     }
     private IEnumerator PlayerTurn(CharStats player)
     {
         Debug.Log($"{player.Name}'s turn. Choose an action!");
-        yield return new WaitForSecondsRealtime(2.0f); // Simulating time for player input
+
+        selectedAction = null;
+        while (selectedAction == null)
+        {
+            yield return null;
+        }
+
+        if (selectedAction == "Attack")
+        {
+            enemyStats.Health -= player.Attack;
+            Debug.Log($"{player.Name} attacks {enemyStats.Name} for {player.Attack} damage!");
+
+            ShowFloatingText(player.Attack, Color.red);
+
+            if (enemyStats.Health <= 0)
+            {
+                Debug.Log($"{enemyStats.Name} has been defeated!");
+                battleOrder.Remove(enemyStats);
+            }
+        }
+        if (selectedAction == "Defend")
+        {
+            
+        }
+        if (selectedAction == "Heal")
+        {
+            
+        }
+
+        enemySlot.GetComponent<EnemyHealthbar>().UpdateHealthBar(enemyStats.Health);
+        foreach (GameObject mem in partySlots) {
+            if (mem.GetComponent<PartySlot>().Name == player.Name) {mem.GetComponent<PartySlot>().UpdateHealthBar(player.Health);}
+        }
+
+        Debug.Log($"Player chose {selectedAction}");
+        yield return new WaitForSecondsRealtime(2.0f);
     }
 
     private IEnumerator EnemyTurn(CharStats enemy)
     {
+        yield return new WaitForSecondsRealtime(1.0f);
         // Select a random target from the player's party
         List<CharStats> playerParty = battleOrder.FindAll(c => !c.IsEnemy); // Exclude Will from selection
         if (playerParty.Count > 0)
@@ -134,8 +215,13 @@ public class BattleUiHandler : MonoBehaviour
             // Simulate attack
             Debug.Log($"{enemy.Name} attacks {target.Name} for {enemy.Attack} damage!");
             partyManager.TakeDamage(target.Name, enemy.Attack);
+            // partySlots.UpdateHealthBar(target.Health-enemy.Attack);
             target.Health -= enemy.Attack;
-            ShowFloatingText("egg", enemy.Attack, Color.red);
+            foreach (GameObject mem in partySlots) {
+                if (mem.GetComponent<PartySlot>().Name == target.Name) {mem.GetComponent<PartySlot>().UpdateHealthBar(target.Health);}
+            }
+
+            ShowFloatingText(enemy.Attack, Color.red);
 
             // Check if target is defeated
             if (target.Health <= 0)
@@ -148,15 +234,12 @@ public class BattleUiHandler : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
     }
 
-    void ShowFloatingText(string memberName, int damage, Color color)
+    void ShowFloatingText(int damage, Color color)
     {
-        // GameObject memberObject = GameObject.Find(memberName); // Find the GameObject representing the character
-        // if (memberObject != null && floatingTextPrefab != null)
         {
-            // Vector3 spawnPosition = memberObject.transform.position + new Vector3(0, 1.5f, 0);
             Vector3 spawnPosition = floatingTextPrefab.transform.position + new Vector3(0, 1.5f, 0);
-            // GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
-            GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+            GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity, GameObject.FindGameObjectWithTag("Combat UI").transform);
+            floatingText.SetActive(true);
             floatingText.GetComponent<DamageIndicator>().SetText(damage.ToString(), color);
         }
     }
@@ -171,32 +254,37 @@ public class BattleUiHandler : MonoBehaviour
         // return false;
     }
 
-    public void Attack()
+    public void OnActionButtonPressed(string action)
     {
-        Debug.Log("Attack Button Pressed");
+        selectedAction = action;
+    }
+
+    public void Act()
+    {
         if (partyUIAnimator != null)
         {
             partyUIAnimator.ResetTrigger("Open");
             partyUIAnimator.ResetTrigger("Close");
             partyUIAnimator.ResetTrigger("Reset");
 
-            if (attackOption) {
+            if (actOption) {
                 partyUIAnimator.SetTrigger("Close");
-                attackOption = false;
+                actOption = false;
             } else if (itemOption) {
                 partyUIAnimator.SetTrigger("Reset");
                 itemOption = false;
-                attackOption = true;
+                actOption = true;
             }
             else {
                 partyUIAnimator.SetTrigger("Open");
-                attackOption = true;
+                actOption = true;
             }
+            actOptionBList.SetActive(actOption);
+            itemOptionBList.SetActive(itemOption);
         }
     }
     public void Item()
     {
-        Debug.Log("Item Button Pressed");
         if (partyUIAnimator != null)
         {
             partyUIAnimator.ResetTrigger("Open");
@@ -206,44 +294,36 @@ public class BattleUiHandler : MonoBehaviour
             if (itemOption) {
                 partyUIAnimator.SetTrigger("Close");
                 itemOption = false;
-            } else if (attackOption) {
+            } else if (actOption) {
                 partyUIAnimator.SetTrigger("Reset");
-                attackOption = false;
+                actOption = false;
                 itemOption = true;
             }
             else {
                 partyUIAnimator.SetTrigger("Open");
                 itemOption = true;
             }
+            actOptionBList.SetActive(actOption);
+            itemOptionBList.SetActive(itemOption);
         }
     }
     public void Escape()
     {
-        Debug.Log("Escape Button Pressed");
         if (partyUIAnimator != null)
         {
             partyUIAnimator.ResetTrigger("Open");
             partyUIAnimator.ResetTrigger("Close");
             partyUIAnimator.ResetTrigger("Reset");
 
-            if (itemOption||attackOption) {
+            if (itemOption||actOption) {
                 partyUIAnimator.SetTrigger("Close");
-                attackOption = itemOption = false;
+                actOption = itemOption = false;
             }
         }
+        actOptionBList.SetActive(actOption);
+        itemOptionBList.SetActive(itemOption);
         overworldUI.SetActive(true);
         combatUI.SetActive(false);
         Time.timeScale = 1;
-    }
-    void Start()
-    {
-        // partyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-        // enemyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-
-        // currentEnemies = new List<CharStats>(L1Enemies.Values);
-    }
-    void Update()
-    {
-
     }
 }

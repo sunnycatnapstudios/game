@@ -9,7 +9,7 @@ public class PartyMember
     public int Health { get; set; }
     public bool isCombatant { get; set; }
 
-    public PartyMember(string name, int health, int damage, bool iscombatant)
+    public PartyMember(string name, int damage, int health, bool iscombatant)
     {
         Name = name;
         Damage = damage;
@@ -26,17 +26,22 @@ public class PartyManager : MonoBehaviour
     GameObject partySpawn;
     // public GameObject floatingTextPrefab;
 
+    public Dictionary<string, PartyMember> playerStats = new Dictionary<string, PartyMember>
+    {
+        { "Player", new PartyMember("Player", 50, 350, true)}
+    };
     public Dictionary<string, PartyMember> allPartyMembers = new Dictionary<string, PartyMember>
     {
-        { "MemberA", new PartyMember("MemberA", 20, 100, true)},
-        { "MemberB", new PartyMember("MemberB", 15, 120, false)},
-        { "MemberC", new PartyMember("MemberC", 17, 150, false)},
+        { "MemberA", new PartyMember("MemberA", 35, 100, true)},
+        { "MemberB", new PartyMember("MemberB", 7, 120, false)},
+        { "MemberC", new PartyMember("MemberC", 5, 150, false)},
         { "MemberD", new PartyMember("MemberD", 25, 80, true)},
-        { "MemberE", new PartyMember("MemberE", 42, 200, true)}
+        { "MemberE", new PartyMember("MemberE", 42, 170, true)}
     };
     public List<RuntimeAnimatorController> partyAnimControllers = new List<RuntimeAnimatorController>();
 
     public List<PartyMember> currentPartyMembers = new List<PartyMember>();
+    public List<PartyMember> currentPlayer = new List<PartyMember>();
     public List<GameObject> spawnedPartyMembers = new List<GameObject>();
     public List<PartyMember> partyMemberList = new List<PartyMember>();
 
@@ -109,12 +114,12 @@ public class PartyManager : MonoBehaviour
     public void TakeDamage(string memberName, int damage)
     {
         PartyMember member = currentPartyMembers.Find(m => m.Name == memberName);
+
         if (member != null)
         {
             member.Health -= damage;
             Debug.Log($"{member.Name} took {damage} damage!");
 
-            // ShowFloatingText(memberName, damage, Color.red);
 
             if (member.Health <= 0)
             {
@@ -141,12 +146,13 @@ public class PartyManager : MonoBehaviour
     void Start()
     {
         partyMemberList = new List<PartyMember>(allPartyMembers.Values);
+        currentPlayer.Add(playerStats["Player"]);
 
-        // AddToParty("MemberA");
-        // AddToParty("MemberB");
-        // AddToParty("MemberC");
-        // AddToParty("MemberD");
-        // AddToParty("MemberE");
+        AddToParty("MemberA");
+        AddToParty("MemberB");
+        AddToParty("MemberC");
+        AddToParty("MemberD");
+        AddToParty("MemberE");
     }
 
     void Update()
