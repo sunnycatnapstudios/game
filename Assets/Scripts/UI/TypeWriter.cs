@@ -79,7 +79,7 @@ public class TypeWriter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.E) && isTyping) {skipTyping = true;}
+		if (Input.GetKeyDown(KeyCode.E) && isTyping && _tmpProText.text.Length > 3) {skipTyping = true;}
 
         // Start typing only after activation and delay
 		if (hasStartedTyping && !isTyping)
