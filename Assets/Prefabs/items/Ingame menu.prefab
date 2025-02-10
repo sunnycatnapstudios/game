@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 3601746471365770686}
   - component: {fileID: 3601746471365770687}
   - component: {fileID: 3601746471365770673}
+  - component: {fileID: 8298292673501592191}
   m_Layer: 5
   m_Name: Party
   m_TagString: Untagged
@@ -207,6 +208,31 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 300
   m_LayoutPriority: 1
+--- !u!114 &8298292673501592191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601746471365770685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!1 &3601746471780751793
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,10 +694,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 867280692245077347, guid: 6d4014bb2003cef439d3399e73ab3802,
     type: 3}
+  memberPrefab: {fileID: -9134915361953300112, guid: c33fb5e4bb56e8a488c29f5cfd3702ed,
+    type: 3}
   test: {fileID: 11400000, guid: eeabc0c9d4c8c874994d2c1988ef2654, type: 2}
   quantity: 0
   title: 
   description: 
+  partyPanel: {fileID: 3601746471365770684}
   contentPanel: {fileID: 3601746471830807343}
   descriptionUI: {fileID: 3601746470529534515}
 --- !u!1 &3601746471975407862

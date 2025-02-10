@@ -10,10 +10,16 @@ public class UIInventory : MonoBehaviour
     [SerializeField]
     private UIItem itemPrefab;
 
+    [SerializeField]
+    private UIPartyMember memberPrefab;
+
     public Item test;
     //private Sprite image;
     public int quantity;
     public string title, description;
+
+    [SerializeField]
+    private RectTransform partyPanel;
 
 
     [SerializeField]
@@ -23,7 +29,8 @@ public class UIInventory : MonoBehaviour
     private UIDescription descriptionUI;
 
     List<UIItem> listOfItems= new List<UIItem>();
-
+    List<UIPartyMember> listOfMembers = new List<UIPartyMember>();
+    
 
     public void InitializeInventory(int inventorySlotsAmount) {
         for (int i = 0; i < inventorySlotsAmount; i++)
@@ -41,22 +48,63 @@ public class UIInventory : MonoBehaviour
         descriptionUI.ResetDescription();
 
     }
+    
+    public void InitializeParty(Dictionary<string, Survivor> survivors)
+    {
+        foreach (Survivor member in survivors.Values)
+        {
+            UIPartyMember person = Instantiate(memberPrefab, Vector3.zero, Quaternion.identity);
+            person.transform.SetParent(partyPanel);
+            listOfMembers.Add(person);
+            person.OnItemClicked += HandlePartySelection;
+
+        }
+    }
+
+    public void AddPartyMember()
+    {
+        UIPartyMember person = Instantiate(memberPrefab, Vector3.zero, Quaternion.identity);
+        person.transform.SetParent(partyPanel);
+        listOfMembers.Add(person);
+        person.OnItemClicked += HandlePartySelection;
+
+
+    }
+
+
+
+    private void HandlePartySelection(UIPartyMember member)
+    {
+        Debug.Log("here????");
+        
+           
+            Survivor held = member.GetMember();
+            if (held != null)
+            {
+                descriptionUI.SetDescription(held.GetName(), held.GetHealth().ToString());
+                ClearSelected();
+                member.Selected();
+            }
+        
+    }
 
     private void HandleItemSelection(UIItem item)
     {
-        if (item != null)
-        {
-            Debug.Log(item.getItem().GetName());
+       
+           
             Item held = item.getItem();
-
+        if (held != null)
+        {
             descriptionUI.SetDescription(held.GetName(), held.GetDesc());
+            ClearSelected();
             item.Selected();
         }
+        
        }
 
     public void DisplayItem() { }
 
-    public void Show(Dictionary<string, Slot> inventory)
+    public void Show(Dictionary<string, Slot> inventory, Dictionary<string, Survivor> survivors)
     {
         gameObject.SetActive(true);
         descriptionUI.ResetDescription();
@@ -66,9 +114,27 @@ public class UIInventory : MonoBehaviour
             counter++;
             
         }
-        //listOfItems[0].SetdisplayItem(test,quantity);
-        
+        counter = 0;
+        foreach (Survivor member in survivors.Values)
+        {
+            Debug.Log(counter);
+            listOfMembers[counter].SetdisplayItem(member);
+            counter++;
+       
 
+        }
+
+    }
+    public void ClearSelected()
+    {
+        foreach(UIItem item in listOfItems)
+        {
+            item.Deselect();
+        }
+        foreach(UIPartyMember member in listOfMembers)
+        {
+            member.Deselect();
+        }
     }
 
     public void Hide()

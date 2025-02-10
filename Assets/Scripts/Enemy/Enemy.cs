@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public bool attack, stun, searching, pathReturn, caught, demotestFreeze; // Enemy States
     public float enemySpeed = 3, attackSpeed = 5; // Enemy Speeds
     public float counter_ = 0f, stunTime = 3f, stunTimer, searchTimer, intervalCheck = .4f; // Enemy Timers
-    public float detectRange, caughtRange = 1f, baseRange = 3f, pursueRange = 5.5f, wakeRange = 4.5f, playerDist, refX, refY; // Enemy Navigation
+    public float detectRange, caughtRange = 1f, baseRange, pursueRange, wakeRange = 4.5f, playerDist, refX, refY; // Enemy Navigation
     [HideInInspector] public Vector3 startPos, pathBounds; // Enemy Positions
 
     public Transform target;
@@ -34,6 +34,10 @@ public class Enemy : MonoBehaviour
         if (iscaught && !caught)
         {
             caught = true;
+            // Leave enemy stunned after battle, because it looks cool
+            stun = true;
+            stunTimer = float.NegativeInfinity;
+            enemyAnim.Play("Stun Down");
             
             StartCoroutine(CaptureScreen());
             Time.timeScale = 0;
@@ -162,6 +166,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (caught) return;
         playerDist = Vector3.Distance(target.position, transform.position);
         refX = transform.position.x;
         refY = transform.position.y;
@@ -178,7 +183,7 @@ public class Enemy : MonoBehaviour
             if (playerDist >= pursueRange){
                 attack = false;
             }
-        } else if (Physics2D.OverlapCircle((transform.position), .2f, projectile)||stun) // Stun Enemy
+        } else if (Physics2D.OverlapCircle((transform.position), .5f, projectile)||stun) // Stun Enemy
         {
             searchTimer = 0f;
             if (stunTimer<=stunTime) {stunTimer+=Time.deltaTime; stun = true;} else {stun = false;}

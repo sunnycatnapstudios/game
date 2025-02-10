@@ -9,12 +9,16 @@ public class PartyMember
     public int Health { get; set; }
     public bool isCombatant { get; set; }
 
+    public int curHealth;
+
+
     public PartyMember(string name, int damage, int health, bool iscombatant)
     {
         Name = name;
         Damage = damage;
         Health = health;
         isCombatant = iscombatant;
+        curHealth = health;
     }
 }
 
@@ -148,11 +152,11 @@ public class PartyManager : MonoBehaviour
         partyMemberList = new List<PartyMember>(allPartyMembers.Values);
         currentPlayer.Add(playerStats["Player"]);
 
-        AddToParty("MemberA");
-        AddToParty("MemberB");
-        AddToParty("MemberC");
-        AddToParty("MemberD");
-        AddToParty("MemberE");
+//         AddToParty("MemberA");
+//         AddToParty("MemberB");
+//         AddToParty("MemberC");
+//         AddToParty("MemberD");
+//         AddToParty("MemberE");
     }
 
     void Update()

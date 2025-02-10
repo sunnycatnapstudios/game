@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JoinerDialogue : MonoBehaviour
+public class DamselDialogue : MonoBehaviour
 {
     private NPCDialogueHandler NPCDialogueHandler;
     private InteractPrompt InteractPrompt;
     public List<string> dialogueLines;
     private List<string> introLines, funnyRetort;
-    public Survivor survivor;
+
+    public Survivor Survivor;
 
     void Start ()
     {
@@ -17,8 +18,8 @@ public class JoinerDialogue : MonoBehaviour
         
         introLines = new List<string>
         {
-            "It's dangerous to go alone!",
-            "Take me."
+            "Thank you so much for saving me from that beast!",
+            "My hero <3"
         };
         dialogueLines = introLines;
         NPCDialogueHandler.dialogueLines = dialogueLines;
@@ -30,12 +31,13 @@ public class JoinerDialogue : MonoBehaviour
     void AfterDialogue() {
         Debug.Log("got hook");
         PartyManager partyManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>();
-        partyManager.AddToParty("MemberA");
+        partyManager.AddToParty("MemberB");
         Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 
-        
-        inventory.AddMember(survivor);
+
+        inventory.AddMember(Survivor);
+
+
         Destroy(gameObject);
     }
 }
-
