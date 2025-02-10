@@ -34,10 +34,6 @@ public class Enemy : MonoBehaviour
         if (iscaught && !caught)
         {
             caught = true;
-            // Leave enemy stunned after battle, because it looks cool
-            stun = true;
-            stunTimer = float.NegativeInfinity;
-            enemyAnim.Play("Stun Down");
             
             StartCoroutine(CaptureScreen());
             Time.timeScale = 0;
@@ -57,6 +53,11 @@ public class Enemy : MonoBehaviour
         combatUI.SetActive(true);
         overworldUI.SetActive(false);
         screenOverlay.transform.SetParent(combatUI.transform, false);
+
+        // Leave enemy stunned after battle, because it looks cool
+        stun = true;
+        stunTimer = float.NegativeInfinity;
+        enemyAnim.Play("Stun Down");
 
         RawImage overlayImage = screenOverlay.AddComponent<RawImage>();
         overlayImage.texture = screenTexture;
