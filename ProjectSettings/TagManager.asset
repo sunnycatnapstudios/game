@@ -8,6 +8,20 @@ TagManager:
   - EnemyUnit
   - Item
   - PlayerParty
+  - TargetEnemyUnit
+  - Interactable
+  - Overworld UI
+  - Dialogue Ui
+  - NPC
+  - Dialogue Text
+  - Name Card
+  - Dark Screen
+  - Character Profile
+  - Same Level
+  - Diff Level
+  - Battle UI Level
+  - Main Level
+  - Map Bounds
   layers:
   - Default
   - TransparentFX
