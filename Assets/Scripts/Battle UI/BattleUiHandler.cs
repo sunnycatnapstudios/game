@@ -159,6 +159,7 @@ public class BattleUiHandler : MonoBehaviour
             {
                 Debug.Log("Battle has ended!");
                 battleInProgress = false;
+                EndEncounter();
                 yield break;
             }
 
@@ -248,16 +249,41 @@ public class BattleUiHandler : MonoBehaviour
         }
     }
 
-
+    // Used to check whether all players or all enemies are dead
     private bool CheckForBattleEnd()
     {
         bool playersAlive = battleOrder.Exists(c => !c.IsEnemy);
         bool enemiesAlive = battleOrder.Exists(c => c.IsEnemy);
 
         return !playersAlive || !enemiesAlive;
-        // return false;
     }
 
+    // Called when the battle should end. Use to transition back to overworld 
+    private void EndEncounter()
+    {
+        if (partyUIAnimator != null)
+        {
+            partyUIAnimator.ResetTrigger("Open");
+            partyUIAnimator.ResetTrigger("Close");
+            partyUIAnimator.ResetTrigger("Reset");
+
+            if (itemOption||actOption) {
+                partyUIAnimator.SetTrigger("Close");
+                actOption = itemOption = false;
+            }
+        }
+        actOptionBList.SetActive(actOption);
+        itemOptionBList.SetActive(itemOption);
+        overworldUI.SetActive(true);
+        combatUI.SetActive(false);
+        
+        // Reset Music TODO replace with smarter system
+        AudioManager.Instance.StopMusicSound();
+        AudioManager.Instance.PlayAmbienceSound("Ambient_Forest");
+        
+        Time.timeScale = 1;
+    }
+    
     public void OnActionButtonPressed(string action)
     {
         selectedAction = action;
@@ -313,21 +339,6 @@ public class BattleUiHandler : MonoBehaviour
     }
     public void Escape()
     {
-        if (partyUIAnimator != null)
-        {
-            partyUIAnimator.ResetTrigger("Open");
-            partyUIAnimator.ResetTrigger("Close");
-            partyUIAnimator.ResetTrigger("Reset");
-
-            if (itemOption||actOption) {
-                partyUIAnimator.SetTrigger("Close");
-                actOption = itemOption = false;
-            }
-        }
-        actOptionBList.SetActive(actOption);
-        itemOptionBList.SetActive(itemOption);
-        overworldUI.SetActive(true);
-        combatUI.SetActive(false);
-        Time.timeScale = 1;
+        EndEncounter();
     }
 }
