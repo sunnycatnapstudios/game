@@ -203,7 +203,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 270.33914
+  m_PreferredHeight: 300
   m_FlexibleWidth: -1
   m_FlexibleHeight: 300
   m_LayoutPriority: 1
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 20, y: 20}
+  m_Spacing: {x: 1, y: 1}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &3601746471868519549
