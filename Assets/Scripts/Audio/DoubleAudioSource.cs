@@ -68,7 +68,7 @@ public class DoubleAudioSource : MonoBehaviour
     {
         if (delayBeforeCrossFade > 0)
         {
-            yield return new WaitForSeconds(delayBeforeCrossFade);
+            yield return new WaitForSecondsRealtime(delayBeforeCrossFade);
         }
 
         AudioSource curActiveSource, newActiveSource;
@@ -106,23 +106,21 @@ public class DoubleAudioSource : MonoBehaviour
         _newSourceFadeRoutine = StartCoroutine(fadeSource(newActiveSource, newActiveSource.volume, maxVolume, fadingTime));
 
         _curSource = !_curSource;   // Flip active source
-
-        yield break;
     }
     
     // Perform the actual fade coroutine
     private IEnumerator fadeSource(AudioSource sourceToFade, float startVolume, float endVolume, float duration)
     {
-        float startTime = Time.time;
+        float startTime = Time.unscaledTime;
 
         do
         {
-            float elapsed = Time.time - startTime;
+            float elapsed = Time.unscaledTime - startTime;
 
             sourceToFade.volume = Mathf.Clamp01(Mathf.Lerp(startVolume, endVolume, elapsed / duration));
             
             // If "close enough" to target goal, stop the fade
-            if (Math.Abs(sourceToFade.volume - endVolume) <= 0.01)
+            if (Math.Abs(sourceToFade.volume - endVolume) <= 0.1)
             {
                 sourceToFade.volume = endVolume;
                 if (endVolume == 0)
@@ -131,9 +129,9 @@ public class DoubleAudioSource : MonoBehaviour
                 }
                 break;
             }
-
             yield return null;
-        } while (Time.time < startTime + duration);
+
+        } while (Time.unscaledTime < startTime + duration);
     }
     
     //returns false if BOTH sources are not playing and there are no sounds are staged to be played.

@@ -42,6 +42,7 @@ public class AudioManager : MonoBehaviour
         musicDoubleSource.SetMixerGroup(musicGroup);
     }
 
+    // TODO add more options later
     // Set the master volume of all sounds
     public void SetMasterVolume(float volume)
     {
@@ -53,9 +54,8 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(String clipName, AudioSource source) //= audioSource)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);    // Fetch the clip from database
-        source.clip = c;    // Set the source to play the clip
         source.outputAudioMixerGroup = soundGroup;      // Attach unity soundmixer to this
-        source.Play();
+        source.PlayOneShot(c);      // Play the clip
     }
     
 	public void PlaySound(String clipName){
@@ -63,28 +63,17 @@ public class AudioManager : MonoBehaviour
 	}
     
     // Play UI sounds from the UI source
-    public void PlayUISound(String clipName)
+    public void PlayUiSound(String clipName)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        audioSource.clip = c;
         audioSource.outputAudioMixerGroup = uiGroup;
-        audioSource.Play();
+        audioSource.PlayOneShot(c);
     }
     
-    // TODO Phase these functions out with cross fades
-    // Play Ambient sound from ambient source
-    // TODO Use Cross fades instead
-    public void PlayAmbienceSound(String clipName)
+    // Stop the audio source (Generally shouldn't be necessary)
+    public void StopSound()
     {
-        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        ambienceDoubleSource.JustPlaySound(c);
-    }
-    // Play music sound from the music source
-    // TODO Use Cross fades instead
-    public void PlayMusicSound(String clipName)
-    {
-        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        musicDoubleSource.JustPlaySound(c);
+        audioSource.Stop();
     }
     
     // Cross-fade the ambient sounds
@@ -93,11 +82,49 @@ public class AudioManager : MonoBehaviour
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
         ambienceDoubleSource.CrossFade(c, fadeTime, maxVolume, delayBeforeCrossFade);
     }
+
+    // Fade the ambient source to silence.
+    public void CrossFadeAmbienceToZero(float fadeTime, float delayBeforeCrossFade = 0)
+    {
+        ambienceDoubleSource.CrossFadeToZero(fadeTime, delayBeforeCrossFade);
+    }
+    
+    // Just play ambient sound from ambient source (shouldn't be necessary)
+    public void JustPlayAmbienceSound(String clipName)
+    {
+        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
+        ambienceDoubleSource.JustPlaySound(c);
+    }
+    
+    // Just stop playing ambient sounds (shouldn't be necessary)
+    public void JustStopAmbienceSound()
+    {
+        ambienceDoubleSource.JustStopSound();
+    }
     
     // Cross-fade the music sounds
     public void CrossFadeMusicSound(String clipName, float fadeTime, float maxVolume = 1, float delayBeforeCrossFade = 0)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
         musicDoubleSource.CrossFade(c, fadeTime, maxVolume, delayBeforeCrossFade);
+    }
+    
+    // Fade the music source to silence.
+    public void CrossFadeMusicToZero(float fadeTime, float delayBeforeCrossFade = 0)
+    {
+        musicDoubleSource.CrossFadeToZero(fadeTime, delayBeforeCrossFade);
+    }
+    
+    // Just play music sound from music source (shouldn't be necessary)
+    public void JustPlayMusicSound(String clipName)
+    {
+        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
+        musicDoubleSource.JustPlaySound(c);
+    }
+    
+    // Just stop music sounds (shouldn't be necessary)
+    public void JustStopMusicSound()
+    {
+        musicDoubleSource.JustStopSound();
     }
 }
