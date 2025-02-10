@@ -160,6 +160,7 @@ public class InteractPrompt : MonoBehaviour
                     // Debug.Log($"Dialogue Interacted with {interactCount} times");
                     if (!isDialogueOpen && !bodyTypeWriter.isTyping)
                     {
+                        nameText.text = this.name;
                         // isDialogueOpen = true;
                         charProfile.sprite = characterProfile;
                         NPCDialogueHandler.ResetDialogue();
