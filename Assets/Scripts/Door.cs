@@ -65,7 +65,9 @@ public class Door : MonoBehaviour {
         spriteRenderer.sprite = closed;
         isOpen = false;
         this.gameObject.layer = LayerMask.NameToLayer("Can't Traverse");
-        audioSource.PlayOneShot(closeAudio);
+        if (interactable) {
+            audioSource.PlayOneShot(closeAudio);
+        }
     }
 
     void Open() {
