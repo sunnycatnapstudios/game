@@ -34,6 +34,10 @@ public class Enemy : MonoBehaviour
         if (iscaught && !caught)
         {
             caught = true;
+            // Leave enemy stunned after battle, because it looks cool
+            stun = true;
+            stunTimer = float.NegativeInfinity;
+            enemyAnim.Play("Stun Down");
             
             StartCoroutine(CaptureScreen());
             Time.timeScale = 0;
@@ -162,6 +166,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (caught) return;
         playerDist = Vector3.Distance(target.position, transform.position);
         refX = transform.position.x;
         refY = transform.position.y;
