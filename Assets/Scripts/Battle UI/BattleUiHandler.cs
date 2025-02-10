@@ -113,12 +113,13 @@ public class BattleUiHandler : MonoBehaviour
         }
         battleInProgress = true;
         turnIndicator.SetupTurnIndicator(battleOrder.Count);
-        
-        // Stop all sounds, play new music
-        AudioManager.Instance.StopAmbienceSound();
-        AudioManager.Instance.PlayUISound("Sfx_BattleBell_Short");
+
+        // Switch to new battle music
+        AudioManager.Instance.PlayUiSound("Sfx_BattleBell_Short");
+        AudioManager.Instance.CrossFadeAmbienceToZero(1f);
+        AudioManager.Instance.CrossFadeMusicSound("Music_JustSynth", 2f, 1f, 1f);
+            
         yield return new WaitForSecondsRealtime(2.0f);
-        AudioManager.Instance.PlayMusicSound("Music_JustSynth");
         StartCoroutine(TurnLoop());
     }
     public List<CharStats> ShuffleList(List<CharStats> list)
@@ -130,7 +131,7 @@ public class BattleUiHandler : MonoBehaviour
         }
         return list;
     }
-
+    
     private IEnumerator TurnLoop()
     {
 
@@ -307,8 +308,35 @@ public class BattleUiHandler : MonoBehaviour
         // return false;
     }
 
+    // Called when the battle should end. Use to transition back to overworld 
+    private void EndEncounter()
+    {
+        if (partyUIAnimator != null)
+        {
+            partyUIAnimator.ResetTrigger("Open");
+            partyUIAnimator.ResetTrigger("Close");
+            partyUIAnimator.ResetTrigger("Reset");
+
+            if (itemOption||actOption) {
+                partyUIAnimator.SetTrigger("Close");
+                actOption = itemOption = false;
+            }
+        }
+        actOptionBList.SetActive(actOption);
+        itemOptionBList.SetActive(itemOption);
+        overworldUI.SetActive(true);
+        combatUI.SetActive(false);
+        
+        // Switch back to environmental sounds
+        AudioManager.Instance.CrossFadeMusicToZero(1f);
+        AudioManager.Instance.CrossFadeAmbienceSound("Ambient_Forest", 1f, 1f, 1f);
+        
+        Time.timeScale = 1;
+    }
+    
     public void OnActionButtonPressed(string action)
     {
+        AudioManager.Instance.PlayUiSound("Ui_SelectButton");
         selectedAction = action;
     }
 
@@ -335,6 +363,8 @@ public class BattleUiHandler : MonoBehaviour
             actOptionBList.SetActive(actOption);
             itemOptionBList.SetActive(itemOption);
         }
+        
+        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
     }
     public void Item()
     {
@@ -359,24 +389,11 @@ public class BattleUiHandler : MonoBehaviour
             actOptionBList.SetActive(actOption);
             itemOptionBList.SetActive(itemOption);
         }
+        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
     }
     public void Escape()
     {
-        if (partyUIAnimator != null)
-        {
-            partyUIAnimator.ResetTrigger("Open");
-            partyUIAnimator.ResetTrigger("Close");
-            partyUIAnimator.ResetTrigger("Reset");
-
-            if (itemOption||actOption) {
-                partyUIAnimator.SetTrigger("Close");
-                actOption = itemOption = false;
-            }
-        }
-        actOptionBList.SetActive(actOption);
-        itemOptionBList.SetActive(itemOption);
-        overworldUI.SetActive(true);
-        combatUI.SetActive(false);
-        Time.timeScale = 1;
+        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
+        EndEncounter();
     }
 }

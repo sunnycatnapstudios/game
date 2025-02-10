@@ -12,9 +12,8 @@ public class AudioManager : MonoBehaviour
     
     [Header("Audio Sources")]               // Audio Source game objects within the scene 
     public AudioSource audioSource;         // Source for sound effects (sfx), including the UI
-    public AudioSource ambienceSource;      // Source for ambient sounds
-    public AudioSource musicSource;         // Source for background music (bgm)
-
+    public DoubleAudioSource ambienceDoubleSource;      // Double source for ambient sounds
+    public DoubleAudioSource musicDoubleSource;         // Double source for music sounds
     
     [Header("Audio Mixers")]                // Unity mixers and groups. Used for controlling volumes 
     public AudioMixer mixer;
@@ -37,6 +36,10 @@ public class AudioManager : MonoBehaviour
         // Fetch the audio database
         _audioClipDatabase = ScriptableObject.CreateInstance<AudioClipDatabase>();
         _audioClipDatabase.PopulateDatabase();
+        
+        // Set the groups to control by mixer later
+        ambienceDoubleSource.SetMixerGroup(ambientGroup);
+        musicDoubleSource.SetMixerGroup(musicGroup);
     }
 
     // TODO add more options later
@@ -45,70 +48,83 @@ public class AudioManager : MonoBehaviour
     {
         mixer.SetFloat("MasterVolume", volume);
     }
+    // TODO add more options later
     
     // Play sound from an audio source. Defaults to audioSource if no alternative source is provided
     public void PlaySound(String clipName, AudioSource source) //= audioSource)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);    // Fetch the clip from database
-        source.clip = c;    // Set the source to play the clip
         source.outputAudioMixerGroup = soundGroup;      // Attach unity soundmixer to this
-        source.Play();
+        source.PlayOneShot(c);      // Play the clip
     }
     
 	public void PlaySound(String clipName){
 		PlaySound(clipName, audioSource);
 	}
-
+    
+    // Play UI sounds from the UI source
+    public void PlayUiSound(String clipName)
+    {
+        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
+        audioSource.outputAudioMixerGroup = uiGroup;
+        audioSource.PlayOneShot(c);
+    }
+    
     // Stop the audio source (Generally shouldn't be necessary)
     public void StopSound()
     {
         audioSource.Stop();
     }
-
-    // Play Ambient sound from ambient source
-    public void PlayAmbienceSound(String clipName)
+    
+    // Cross-fade the ambient sounds
+    public void CrossFadeAmbienceSound(String clipName, float fadeTime, float maxVolume = 1, float delayBeforeCrossFade = 0)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        ambienceSource.clip = c;
-        musicSource.loop = true;
-        ambienceSource.outputAudioMixerGroup = ambientGroup;
-        ambienceSource.Play();
+        ambienceDoubleSource.CrossFade(c, fadeTime, maxVolume, delayBeforeCrossFade);
+    }
+
+    // Fade the ambient source to silence.
+    public void CrossFadeAmbienceToZero(float fadeTime, float delayBeforeCrossFade = 0)
+    {
+        ambienceDoubleSource.CrossFadeToZero(fadeTime, delayBeforeCrossFade);
     }
     
-    // Stop the ambient sound source
-    public void StopAmbienceSound()
-    {
-        ambienceSource.Stop();
-    }
-
-    // Play music sound from the music source
-    public void PlayMusicSound(String clipName)
+    // Just play ambient sound from ambient source (shouldn't be necessary)
+    public void JustPlayAmbienceSound(String clipName)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        musicSource.clip = c;
-        musicSource.loop = true;
-        musicSource.outputAudioMixerGroup = musicGroup;
-        musicSource.Play();
-    }
-
-    // Stop the music sound source
-    public void StopMusicSound()
-    {
-        musicSource.Stop();
+        ambienceDoubleSource.JustPlaySound(c);
     }
     
-    // Play UI sounds from the UI source
-    public void PlayUISound(String clipName)
+    // Just stop playing ambient sounds (shouldn't be necessary)
+    public void JustStopAmbienceSound()
+    {
+        ambienceDoubleSource.JustStopSound();
+    }
+    
+    // Cross-fade the music sounds
+    public void CrossFadeMusicSound(String clipName, float fadeTime, float maxVolume = 1, float delayBeforeCrossFade = 0)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        audioSource.clip = c;
-        audioSource.outputAudioMixerGroup = uiGroup;
-        audioSource.Play();
+        musicDoubleSource.CrossFade(c, fadeTime, maxVolume, delayBeforeCrossFade);
     }
-
-    // Stop the UI sound source (shouldn't be necessary)
-    public void StopUISound()
+    
+    // Fade the music source to silence.
+    public void CrossFadeMusicToZero(float fadeTime, float delayBeforeCrossFade = 0)
     {
-        audioSource.Stop();
+        musicDoubleSource.CrossFadeToZero(fadeTime, delayBeforeCrossFade);
+    }
+    
+    // Just play music sound from music source (shouldn't be necessary)
+    public void JustPlayMusicSound(String clipName)
+    {
+        AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
+        musicDoubleSource.JustPlaySound(c);
+    }
+    
+    // Just stop music sounds (shouldn't be necessary)
+    public void JustStopMusicSound()
+    {
+        musicDoubleSource.JustStopSound();
     }
 }

@@ -34,6 +34,7 @@ public class LevelTransition : MonoBehaviour
                 
                 // inTransition = true;
                 sceneAnimation.SetTrigger("Leave Scene");
+                AudioManager.Instance.PlaySound("Sfx_EnterLevel");
             }
         }
     }
@@ -46,6 +47,7 @@ public class LevelTransition : MonoBehaviour
                 Debug.Log(tagTarget + " has left "+ name);
                 Player.GetComponent<Player>().isPlayerInControl = false;
                 
+                AudioManager.Instance.PlaySound("Sfx_ExitLevel");
                 changedLevel = true;
             }
         }
@@ -57,7 +59,7 @@ public class LevelTransition : MonoBehaviour
         // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
         {
             sceneAnimation.SetTrigger("Enter Scene");
-
+            
             Player.GetComponent<Player>().movePoint.transform.position = exitLocation+exitDirection;
             Player.transform.position = exitLocation;
             

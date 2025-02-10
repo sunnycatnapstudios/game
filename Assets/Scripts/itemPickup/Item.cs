@@ -7,8 +7,12 @@ public abstract class Item: ScriptableObject{
     
 
     public abstract void Use();
+
+    public abstract string GetDesc();
    
-   
+    public abstract string GetFlavour();
+    public abstract Sprite GetSprite();
+
 
 
 }

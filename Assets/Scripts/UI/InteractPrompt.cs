@@ -31,6 +31,7 @@ public class InteractPrompt : MonoBehaviour
     private Image charProfile;
 
     public bool isDialogueOpen = false, dialogueFinished = false;
+    bool afterDialogueCalled = false;
 
     public NPCDialogueHandler NPCDialogueHandler;
 
@@ -157,6 +158,11 @@ public class InteractPrompt : MonoBehaviour
                     // Debug.Log($"Dialogue Interacted with {interactCount} times");
                     if (!isDialogueOpen && !bodyTypeWriter.isTyping)
                     {
+<<<<<<< HEAD
+=======
+                        nameText.text = this.name;
+                        // isDialogueOpen = true;
+>>>>>>> main
                         charProfile.sprite = characterProfile;
                         NPCDialogueHandler.ResetDialogue();
                         string nextLine = NPCDialogueHandler.GetNextLine();
@@ -187,6 +193,25 @@ public class InteractPrompt : MonoBehaviour
                 CloseDialogue();
                 // charProfile.sprite = null;
             }
+        }
+
+        if (dialogueFinished && !afterDialogueCalled && NPCDialogueHandler.afterDialogue != null) {
+            NPCDialogueHandler.afterDialogue();
+            afterDialogueCalled = true;
+        }
+    }
+    void OnDestroy() {
+        if (currentPopUp) {
+            Destroy(currentPopUp);
+            currentPopUp = null;
+        }
+        if (currentInteractBox) {
+            Destroy(currentInteractBox);
+            currentInteractBox = null;
+        }
+        if (isDialogueOpen) {
+            CloseDialogue();
+            // charProfile.sprite = null;
         }
     }
 }
