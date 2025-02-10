@@ -68,6 +68,18 @@ public class Player : MonoBehaviour
         vcam.m_Lens.OrthographicSize = Mathf.MoveTowards(vcam.m_Lens.OrthographicSize,targetSize,targetSize * Time.deltaTime * 2);
     }
 
+    void UpdateMoveHist()
+    {
+        if (moveHist.Count < partyManager.partyCount&&
+            movePoint.position == pointRef)
+        {
+            // for (int i = 0; i<partyManager.partyCount; i++) 
+            {moveHist.Add(movePoint.position);}
+        }
+        if (movePoint.position != pointRef) {moveHist.Add(pointRef);}
+        if (moveHist.Count > partyManager.partyCount) {moveHist.RemoveAt(0);}
+    }
+
 
     void Start()
     {
@@ -89,8 +101,8 @@ public class Player : MonoBehaviour
 
         currStamina = maxStamina;
 
-        moveHist = new List<Vector3>();
-        for (int i = 0; i<partyManager.partyCount; i++) {moveHist.Add(movePoint.position);}
+        // moveHist = new List<Vector3>();
+        // for (int i = 0; i<partyManager.partyCount; i++) {moveHist.Add(movePoint.position); Debug.Log("AAAAAAAAA");}
     }
 
     // Update is called once per frame
@@ -205,10 +217,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-        
-            if (movePoint.position != pointRef){moveHist.Add(pointRef);}
-            if (moveHist.Count > partyManager.partyCount){moveHist.RemoveAt(0);}
-
+            UpdateMoveHist();
         }
         if (!walkAudi.isPlaying && walkAudiCount <=0 && isMoving) {
             walkAudi.Play(); walkAudiCount+=1; walkAudi.Play();

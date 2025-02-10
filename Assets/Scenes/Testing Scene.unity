@@ -1206,12 +1206,12 @@ PrefabInstance:
         type: 3}
       propertyPath: combatUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1773995137}
     - target: {fileID: 6497700935085715838, guid: df773ca1892821b36ae70caa58921358,
         type: 3}
       propertyPath: overworldUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1773995138}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df773ca1892821b36ae70caa58921358, type: 3}
 --- !u!1 &519420028
@@ -6051,6 +6051,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccfc5b2903162cea5bf8daca0154eb07, type: 3}
+--- !u!1 &1773995137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7251264090427772840, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 1773995136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1773995138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7866711808511602118, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 1773995136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1901217011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 210012170400930957, guid: ccfc5b2903162cea5bf8daca0154eb07,

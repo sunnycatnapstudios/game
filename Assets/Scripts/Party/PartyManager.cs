@@ -5,16 +5,16 @@ using UnityEngine;
 public class PartyMember
 {
     public string Name { get; private set; }
-    public int Health { get; set; }
     public int Damage { get; set; }
-    public bool Combatant { get; set; }
+    public int Health { get; set; }
+    public bool isCombatant { get; set; }
 
-    public PartyMember(string name, int health, int damage, bool combatant)
+    public PartyMember(string name, int damage, int health, bool iscombatant)
     {
         Name = name;
-        Health = health;
         Damage = damage;
-        Combatant = combatant;
+        Health = health;
+        isCombatant = iscombatant;
     }
 }
 
@@ -24,19 +24,24 @@ public class PartyManager : MonoBehaviour
     public GameObject partyMemberTemplate;
     public List<GameObject> partyMembers = new List<GameObject>();
     GameObject partySpawn;
+    // public GameObject floatingTextPrefab;
 
+    public Dictionary<string, PartyMember> playerStats = new Dictionary<string, PartyMember>
+    {
+        { "Player", new PartyMember("Player", 50, 350, true)}
+    };
     public Dictionary<string, PartyMember> allPartyMembers = new Dictionary<string, PartyMember>
     {
-        { "MemberA", new PartyMember("MemberA", 100, 20, true)},
-        { "MemberB", new PartyMember("MemberB", 120, 15, false)},
-        { "MemberC", new PartyMember("MemberC", 150, 17, false)},
-        { "MemberD", new PartyMember("MemberD", 80, 25, true)},
-        { "MemberE", new PartyMember("MemberE", 200, 42, true)}
+        { "MemberA", new PartyMember("MemberA", 35, 100, true)},
+        { "MemberB", new PartyMember("MemberB", 7, 120, false)},
+        { "MemberC", new PartyMember("MemberC", 5, 150, false)},
+        { "MemberD", new PartyMember("MemberD", 25, 80, true)},
+        { "MemberE", new PartyMember("MemberE", 42, 170, true)}
     };
-    // public Dictionary<string, RuntimeAnimatorController> partyAnimControllers = new Dictionary<string, RuntimeAnimatorController>();
     public List<RuntimeAnimatorController> partyAnimControllers = new List<RuntimeAnimatorController>();
 
     public List<PartyMember> currentPartyMembers = new List<PartyMember>();
+    public List<PartyMember> currentPlayer = new List<PartyMember>();
     public List<GameObject> spawnedPartyMembers = new List<GameObject>();
     public List<PartyMember> partyMemberList = new List<PartyMember>();
 
@@ -106,9 +111,48 @@ public class PartyManager : MonoBehaviour
         }
     }
 
+    public void TakeDamage(string memberName, int damage)
+    {
+        PartyMember member = currentPartyMembers.Find(m => m.Name == memberName);
+
+        if (member != null)
+        {
+            member.Health -= damage;
+            Debug.Log($"{member.Name} took {damage} damage!");
+
+
+            if (member.Health <= 0)
+            {
+                member.Health = 0;
+                Debug.Log($"{member.Name} has been defeated!");
+                RemoveFromParty(memberName);
+            }
+        }
+    }
+
+    // void ShowFloatingText(string memberName, int damage, Color color)
+    // {
+    //     GameObject memberObject = GameObject.Find(memberName); // Find the GameObject representing the character
+    //     if (memberObject != null && floatingTextPrefab != null)
+    //     {
+    //         // Vector3 spawnPosition = memberObject.transform.position + new Vector3(0, 1.5f, 0);
+    //         Vector3 spawnPosition = floatingTextPrefab.transform.position + new Vector3(0, 1.5f, 0);
+    //         // GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+    //         GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity);
+    //         floatingText.GetComponent<DamageIndicator>().SetText(damage.ToString(), color);
+    //     }
+    // }
+
     void Start()
     {
         partyMemberList = new List<PartyMember>(allPartyMembers.Values);
+        currentPlayer.Add(playerStats["Player"]);
+
+        AddToParty("MemberA");
+        AddToParty("MemberB");
+        AddToParty("MemberC");
+        AddToParty("MemberD");
+        AddToParty("MemberE");
     }
 
     void Update()
