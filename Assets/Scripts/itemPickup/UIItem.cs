@@ -59,11 +59,12 @@ public class UIItem : MonoBehaviour
     }
 
 
-    public void SetdisplayItem(Sprite sprite, int quantity)
+    public void SetdisplayItem( int quantity, Item item)
     {
         this.image.gameObject.SetActive(true);
-        this.image.sprite = sprite;
+        this.image.sprite = item.GetSprite();
         this.quantity.text = quantity.ToString();
+        heldItem= item;
 
         empty = false;
 
