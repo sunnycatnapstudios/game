@@ -6,13 +6,28 @@ using UnityEngine;
 
 public class Ration : Item
 {
-    GameObject ration;
-
+    public Pickupable ration;
+    public Sprite Sprite;
     
+
+    public override string GetDesc()
+    {
+        return "enough food for one person.";
+
+    }
+    public override string GetFlavour()
+    {
+        return "donair poutine";
+    }
 
     public override string GetName()
     {
         return "Ration";
+    }
+
+    public override Sprite GetSprite()
+    {
+        return Sprite;
     }
 
     public override void Use()
