@@ -115,7 +115,7 @@ public class BattleUiHandler : MonoBehaviour
         turnIndicator.SetupTurnIndicator(battleOrder.Count);
 
         // Switch to new battle music
-        AudioManager.Instance.PlayUISound("Sfx_BattleBell_Short");
+        AudioManager.Instance.PlayUiSound("Sfx_BattleBell_Short");
         AudioManager.Instance.CrossFadeAmbienceToZero(1f);
         AudioManager.Instance.CrossFadeMusicSound("Music_JustSynth", 2f, 1f, 1f);
             
@@ -287,6 +287,7 @@ public class BattleUiHandler : MonoBehaviour
     
     public void OnActionButtonPressed(string action)
     {
+        AudioManager.Instance.PlayUiSound("Ui_SelectButton");
         selectedAction = action;
     }
 
@@ -313,6 +314,8 @@ public class BattleUiHandler : MonoBehaviour
             actOptionBList.SetActive(actOption);
             itemOptionBList.SetActive(itemOption);
         }
+        
+        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
     }
     public void Item()
     {
@@ -337,9 +340,11 @@ public class BattleUiHandler : MonoBehaviour
             actOptionBList.SetActive(actOption);
             itemOptionBList.SetActive(itemOption);
         }
+        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
     }
     public void Escape()
     {
+        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
         EndEncounter();
     }
 }

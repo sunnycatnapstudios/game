@@ -54,9 +54,8 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(String clipName, AudioSource source) //= audioSource)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);    // Fetch the clip from database
-        source.clip = c;    // Set the source to play the clip
         source.outputAudioMixerGroup = soundGroup;      // Attach unity soundmixer to this
-        source.Play();
+        source.PlayOneShot(c);      // Play the clip
     }
     
 	public void PlaySound(String clipName){
@@ -64,12 +63,11 @@ public class AudioManager : MonoBehaviour
 	}
     
     // Play UI sounds from the UI source
-    public void PlayUISound(String clipName)
+    public void PlayUiSound(String clipName)
     {
         AudioClip c = _audioClipDatabase.GetAudioClip(clipName);
-        audioSource.clip = c;
         audioSource.outputAudioMixerGroup = uiGroup;
-        audioSource.Play();
+        audioSource.PlayOneShot(c);
     }
     
     // Stop the audio source (Generally shouldn't be necessary)
