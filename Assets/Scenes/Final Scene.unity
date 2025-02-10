@@ -19883,7 +19883,7 @@ GameObject:
   - component: {fileID: 1859029250}
   - component: {fileID: 1859029249}
   m_Layer: 0
-  m_Name: Battle>Main
+  m_Name: BattlevMain
   m_TagString: Main Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19999,7 +19999,7 @@ MonoBehaviour:
   transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: 0, y: -2, z: 0}
   exitDirection: {x: -2, y: 0, z: 0}
-  exitLocation: {x: 1.5, y: -0.5, z: 0}
+  exitLocation: {x: -10.5, y: 8.5, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   playerPosition: {x: 0, y: 0, z: 0}
   refPosition: {x: 0, y: 0, z: 0}
@@ -28729,11 +28729,12 @@ GameObject:
   - component: {fileID: 2124255282}
   - component: {fileID: 2124255287}
   - component: {fileID: 2124255286}
+  - component: {fileID: 2124255288}
   - component: {fileID: 2124255285}
   - component: {fileID: 2124255284}
   - component: {fileID: 2124255283}
   m_Layer: 0
-  m_Name: To Puzzles and Inventory
+  m_Name: Main^Battle
   m_TagString: Diff Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29021,3 +29022,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2124255288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124255281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4363cca338e644ab928a0e8a0c9a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionAnimator: {fileID: 705565803}
+  entranceDirection: {x: 2, y: 0, z: 0}
+  exitDirection: {x: 0, y: 2, z: 0}
+  exitLocation: {x: -1.5, y: -43.5, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
+  playerPosition: {x: 0, y: 0, z: 0}
+  refPosition: {x: 0, y: 0, z: 0}
+  changedLevel: 0
+  inTransition: 0
