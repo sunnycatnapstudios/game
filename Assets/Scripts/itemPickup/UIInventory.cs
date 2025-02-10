@@ -10,10 +10,15 @@ public class UIInventory : MonoBehaviour
     [SerializeField]
     private UIItem itemPrefab;
 
+    [SerializeField]
+    private UIPartyMember memberPrefab;
+
     public Item test;
     //private Sprite image;
     public int quantity;
     public string title, description;
+
+
 
 
     [SerializeField]
@@ -23,6 +28,7 @@ public class UIInventory : MonoBehaviour
     private UIDescription descriptionUI;
 
     List<UIItem> listOfItems= new List<UIItem>();
+    List<UIPartyMember> listOfMembers = new List<UIPartyMember>();
 
 
     public void InitializeInventory(int inventorySlotsAmount) {
@@ -40,6 +46,20 @@ public class UIInventory : MonoBehaviour
         Hide();
         descriptionUI.ResetDescription();
 
+    }
+    List<UIPartyMember> members;
+
+    public void InitializeParty(List<PartyMember> members)
+
+    {
+        foreach (PartyMember member in members)
+        {
+            UIPartyMember person =Instantiate(memberPrefab,Vector3.zero, Quaternion.identity);
+            person.transform.SetParent(contentPanel);
+            listOfMembers.Add(person);
+            listOfMembers.OnItemClick += HandleItemSelection;
+
+        }
     }
 
     private void HandleItemSelection(UIItem item)
@@ -69,6 +89,13 @@ public class UIInventory : MonoBehaviour
         //listOfItems[0].SetdisplayItem(test,quantity);
         
 
+    }
+    public void ClearSelected()
+    {
+        foreach(UIItem item in listOfItems)
+        {
+            item.Deselect();
+        }
     }
 
     public void Hide()

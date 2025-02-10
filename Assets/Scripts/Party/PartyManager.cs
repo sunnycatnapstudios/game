@@ -9,12 +9,15 @@ public class PartyMember
     public int Damage { get; set; }
     public bool Combatant { get; set; }
 
+    private int curHealth;
+
     public PartyMember(string name, int health, int damage, bool combatant)
     {
         Name = name;
         Health = health;
         Damage = damage;
         Combatant = combatant;
+        curHealth = health;
     }
 }
 
