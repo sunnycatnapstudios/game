@@ -53,6 +53,11 @@ public class Inventory : MonoBehaviour
             itemSlot.incCount();
         }
     }
+    public void AddMember(Survivor survivor)
+    {
+        survivors.Add(survivor.GetName(), survivor);
+        inventoryWindow.AddPartyMember();
+    }
 
     public bool hasItemByName(string name) {
         return inventory.ContainsKey(name);

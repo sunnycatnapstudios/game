@@ -417,8 +417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryWindow: {fileID: 391589638070270038}
-  test1: {fileID: 11400000, guid: c264d9f0cfa3ffe45bacd2971f275c63, type: 2}
-  test2: {fileID: 11400000, guid: 7ea66f04ca169e844a9a9805f2c6e4b0, type: 2}
+  test1: {fileID: 0}
+  test2: {fileID: 0}
 --- !u!1 &2533101456322773200
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class DamselDialogue : MonoBehaviour
     public List<string> dialogueLines;
     private List<string> introLines, funnyRetort;
 
+    public Survivor Survivor;
+
     void Start ()
     {
         NPCDialogueHandler = GetComponent<NPCDialogueHandler>();
@@ -30,6 +32,12 @@ public class DamselDialogue : MonoBehaviour
         Debug.Log("got hook");
         PartyManager partyManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>();
         partyManager.AddToParty("MemberB");
+        Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+
+
+        inventory.AddMember(Survivor);
+
+
         Destroy(gameObject);
     }
 }

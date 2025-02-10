@@ -94,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 8947244174977265310}
   SelectedImage: {fileID: 8777334609487985490}
+  nameText: {fileID: 1481223482084663649}
+  description: {fileID: 5632937930378668099}
   profileImages: []
 --- !u!114 &9049002340938461973
 MonoBehaviour:

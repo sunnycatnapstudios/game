@@ -19,6 +19,10 @@ public class UIPartyMember : MonoBehaviour
     private bool empty = true;
     [SerializeField]
     private Image SelectedImage;
+    [SerializeField]
+    private TMP_Text nameText;
+    [SerializeField]
+    private TMP_Text description;
 
     public List<Sprite> profileImages;
     public event Action<UIPartyMember> OnItemClicked;
@@ -71,6 +75,9 @@ public class UIPartyMember : MonoBehaviour
     {
         this.image.gameObject.SetActive(true);
         this.image.sprite = member.GetSprite();
+        nameText.text = member.GetName();
+        description.text = member.GetHealth().ToString();
+        
        
         this.member = member;
 

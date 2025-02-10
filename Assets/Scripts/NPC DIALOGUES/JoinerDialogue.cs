@@ -8,6 +8,7 @@ public class JoinerDialogue : MonoBehaviour
     private InteractPrompt InteractPrompt;
     public List<string> dialogueLines;
     private List<string> introLines, funnyRetort;
+    public Survivor survivor;
 
     void Start ()
     {
@@ -30,6 +31,10 @@ public class JoinerDialogue : MonoBehaviour
         Debug.Log("got hook");
         PartyManager partyManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>();
         partyManager.AddToParty("MemberA");
+        Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+
+        
+        inventory.AddMember(survivor);
         Destroy(gameObject);
     }
 }
