@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueLines: []
+  Survivor: {fileID: 11400000, guid: c264d9f0cfa3ffe45bacd2971f275c63, type: 2}
 --- !u!1 &43973879
 GameObject:
   m_ObjectHideFlags: 0
@@ -23142,6 +23143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueLines: []
+  survivor: {fileID: 11400000, guid: 7ea66f04ca169e844a9a9805f2c6e4b0, type: 2}
 --- !u!1 &271334410
 GameObject:
   m_ObjectHideFlags: 0
