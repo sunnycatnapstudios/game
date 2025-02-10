@@ -3147,12 +3147,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 705565799}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &125216523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 709600197106965942, guid: ccfc5b2903162cea5bf8daca0154eb07,
-    type: 3}
-  m_PrefabInstance: {fileID: 705565799}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &130322890
 GameObject:
   m_ObjectHideFlags: 0
@@ -17201,7 +17195,7 @@ MonoBehaviour:
   enemyAnim: {fileID: 0}
   spriteState: {fileID: 0}
   overworldUI: {fileID: 1279862958}
-  combatUI: {fileID: 125216523}
+  combatUI: {fileID: 2049642864}
 --- !u!1 &1048917153
 GameObject:
   m_ObjectHideFlags: 0
@@ -23985,6 +23979,12 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &2049642864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7251264090427772840, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 705565799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2093316026
 GameObject:
   m_ObjectHideFlags: 0
