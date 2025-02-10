@@ -271,17 +271,17 @@ MonoBehaviour:
   pathReturn: 0
   caught: 0
   demotestFreeze: 0
-  enemySpeed: 3
-  attackSpeed: 5
+  enemySpeed: 2
+  attackSpeed: 3.5
   counter_: 0
-  stunTime: 3
+  stunTime: 4
   stunTimer: 0
   searchTimer: 0
   intervalCheck: 0.4
-  detectRange: 3
+  detectRange: 4
   caughtRange: 1
-  baseRange: 3
-  pursueRange: 5.5
+  baseRange: 4
+  pursueRange: 8
   wakeRange: 4.5
   playerDist: 0
   refX: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 2048
-  pathDist: {x: 5, y: 0}
+  pathDist: {x: 2, y: 3}
   enemyAnim: {fileID: 0}
   spriteState: {fileID: 0}
   overworldUI: {fileID: 0}
