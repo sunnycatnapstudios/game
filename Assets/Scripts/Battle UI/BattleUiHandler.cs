@@ -113,12 +113,13 @@ public class BattleUiHandler : MonoBehaviour
         }
         battleInProgress = true;
         turnIndicator.SetupTurnIndicator(battleOrder.Count);
-        
-        // Stop all sounds, play new music
-        AudioManager.Instance.StopAmbienceSound();
+
+        // Switch to new battle music
         AudioManager.Instance.PlayUISound("Sfx_BattleBell_Short");
+        AudioManager.Instance.CrossFadeAmbienceToZero(1f);
+        AudioManager.Instance.CrossFadeMusicSound("Music_JustSynth", 2f, 1f, 1f);
+            
         yield return new WaitForSecondsRealtime(2.0f);
-        AudioManager.Instance.PlayMusicSound("Music_JustSynth");
         StartCoroutine(TurnLoop());
     }
     public List<CharStats> ShuffleList(List<CharStats> list)
@@ -130,7 +131,7 @@ public class BattleUiHandler : MonoBehaviour
         }
         return list;
     }
-
+    
     private IEnumerator TurnLoop()
     {
 
@@ -277,9 +278,9 @@ public class BattleUiHandler : MonoBehaviour
         overworldUI.SetActive(true);
         combatUI.SetActive(false);
         
-        // Reset Music TODO replace with smarter system
-        AudioManager.Instance.StopMusicSound();
-        AudioManager.Instance.PlayAmbienceSound("Ambient_Forest");
+        // Switch back to environmental sounds
+        AudioManager.Instance.CrossFadeMusicToZero(1f);
+        AudioManager.Instance.CrossFadeAmbienceSound("Ambient_Forest", 1f, 1f, 1f);
         
         Time.timeScale = 1;
     }
