@@ -9,6 +9,10 @@ public class Inventory : MonoBehaviour
     CircleCollider2D circleCollider;
     Dictionary<string, Slot> inventory;
     List<GameObject> itemsInRange;
+    public UIInventory inventoryWindow;
+    private Item selected;
+    private int timer;
+    
 
 
 
@@ -16,6 +20,9 @@ public class Inventory : MonoBehaviour
     {
         inventory = new Dictionary<string, Slot>();
         itemsInRange = new List<GameObject>();
+        inventoryWindow.InitializeInventory(14);
+
+        
 
     }
     private void addItem(Item item)
@@ -80,6 +87,25 @@ public class Inventory : MonoBehaviour
 
 
             }
+        }
+        else if (Input.GetKey(KeyCode.I)&&timer <= 0)
+        {
+            if (inventoryWindow.isActiveAndEnabled == false)
+            {
+                inventoryWindow.Show();
+            }
+            else
+            {
+                inventoryWindow.Hide();
+            }
+            timer = 30;
+
+
+
+        }
+        if (timer > 0)
+        {
+            timer -=1;
         }
     }
 

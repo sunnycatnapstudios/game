@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62504425e4edf9545acdfcabeefee072, type: 3}
   m_Name: Ration
   m_EditorClassIdentifier: 
+  ration: {fileID: 6901073293974106919, guid: 30156cc1fb054fc4386264553d9753b8, type: 3}
+  Sprite: {fileID: -5026382189375324304, guid: 6f50c0858b0ac274b8a6a39f515c04b3, type: 3}
