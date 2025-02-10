@@ -12,6 +12,10 @@ public class Inventory : MonoBehaviour
     public UIInventory inventoryWindow;
     private Item selected;
     private int timer=0;
+
+    Dictionary<string, Survivor> survivors = new Dictionary<string, Survivor>();
+    public Survivor test1;
+    public Survivor test2;
     
 
 
@@ -21,6 +25,15 @@ public class Inventory : MonoBehaviour
         inventory = new Dictionary<string, Slot>();
         itemsInRange = new List<GameObject>();
         inventoryWindow.InitializeInventory(14);
+        if(test1 != null)
+        {
+            survivors.Add(test1.GetName(), test1);
+        }
+        if (test2 != null) {
+            survivors.Add(test2.GetName(), test2);
+
+        }
+        inventoryWindow.InitializeParty(survivors);
 
         
 
@@ -93,7 +106,7 @@ public class Inventory : MonoBehaviour
             //Debug.Log(timer.ToString());
             if (inventoryWindow.isActiveAndEnabled == false)
             {
-                inventoryWindow.Show(inventory);
+                inventoryWindow.Show(inventory,survivors);
             }
             else
             {

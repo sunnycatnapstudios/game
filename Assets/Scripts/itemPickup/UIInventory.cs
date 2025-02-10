@@ -18,7 +18,8 @@ public class UIInventory : MonoBehaviour
     public int quantity;
     public string title, description;
 
-
+    [SerializeField]
+    private RectTransform partyPanel;
 
 
     [SerializeField]
@@ -29,7 +30,7 @@ public class UIInventory : MonoBehaviour
 
     List<UIItem> listOfItems= new List<UIItem>();
     List<UIPartyMember> listOfMembers = new List<UIPartyMember>();
-
+    
 
     public void InitializeInventory(int inventorySlotsAmount) {
         for (int i = 0; i < inventorySlotsAmount; i++)
@@ -47,36 +48,53 @@ public class UIInventory : MonoBehaviour
         descriptionUI.ResetDescription();
 
     }
-    List<UIPartyMember> members;
-
-    public void InitializeParty(List<PartyMember> members)
-
+    
+    public void InitializeParty(Dictionary<string, Survivor> survivors)
     {
-        foreach (PartyMember member in members)
+        foreach (Survivor member in survivors.Values)
         {
-            UIPartyMember person =Instantiate(memberPrefab,Vector3.zero, Quaternion.identity);
-            person.transform.SetParent(contentPanel);
+            UIPartyMember person = Instantiate(memberPrefab, Vector3.zero, Quaternion.identity);
+            person.transform.SetParent(partyPanel);
             listOfMembers.Add(person);
-            listOfMembers.OnItemClick += HandleItemSelection;
+            person.OnItemClicked += HandlePartySelection;
 
         }
     }
 
+
+
+    private void HandlePartySelection(UIPartyMember member)
+    {
+        Debug.Log("here????");
+        
+           
+            Survivor held = member.GetMember();
+            if (held != null)
+            {
+                descriptionUI.SetDescription(held.GetName(), held.GetHealth().ToString());
+                ClearSelected();
+                member.Selected();
+            }
+        
+    }
+
     private void HandleItemSelection(UIItem item)
     {
-        if (item != null)
-        {
-            Debug.Log(item.getItem().GetName());
+       
+           
             Item held = item.getItem();
-
+        if (held != null)
+        {
             descriptionUI.SetDescription(held.GetName(), held.GetDesc());
+            ClearSelected();
             item.Selected();
         }
+        
        }
 
     public void DisplayItem() { }
 
-    public void Show(Dictionary<string, Slot> inventory)
+    public void Show(Dictionary<string, Slot> inventory, Dictionary<string, Survivor> survivors)
     {
         gameObject.SetActive(true);
         descriptionUI.ResetDescription();
@@ -86,8 +104,15 @@ public class UIInventory : MonoBehaviour
             counter++;
             
         }
-        //listOfItems[0].SetdisplayItem(test,quantity);
-        
+        counter = 0;
+        foreach (Survivor member in survivors.Values)
+        {
+            Debug.Log(counter);
+            listOfMembers[counter].SetdisplayItem(member);
+            counter++;
+       
+
+        }
 
     }
     public void ClearSelected()
@@ -95,6 +120,10 @@ public class UIInventory : MonoBehaviour
         foreach(UIItem item in listOfItems)
         {
             item.Deselect();
+        }
+        foreach(UIPartyMember member in listOfMembers)
+        {
+            member.Deselect();
         }
     }
 

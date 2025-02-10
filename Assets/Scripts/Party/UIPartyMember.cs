@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,34 +9,43 @@ using UnityEngine.UI;
 public class UIPartyMember : MonoBehaviour
 {
     
-    public event System.Action<UIPartyMember> OnItemClick;
+    
 
-    private PartyMember member;
+    private Survivor member;
 
-    [SerializeField]
-    private TMP_Text quantity;
+    
     [SerializeField]
     private Image image;
     private bool empty = true;
     [SerializeField]
     private Image SelectedImage;
 
-    public void OnPointerClick(BaseEventData data)
+    public List<Sprite> profileImages;
+    public event Action<UIPartyMember> OnItemClicked;
+
+    void Awake()
+    {
+        ResetData();
+        Deselect();
+
+    }
+
+    public void OnPointerClicked(BaseEventData data)
     {
 
         PointerEventData pointerData = (PointerEventData)data;
+        Debug.Log("hssere");
         if (pointerData.button == PointerEventData.InputButton.Left)
         {
 
-            Debug.Log("here");
-            OnItemClick?.Invoke(this);
-
+            Debug.Log("hssere");
+            OnItemClicked?.Invoke(this);
 
         }
     }
 
 
-        public void Deselect()
+    public void Deselect()
     {
         SelectedImage.enabled = false;
 
@@ -51,21 +61,20 @@ public class UIPartyMember : MonoBehaviour
 
     }
 
-    public PartyMember GetMember()
+    public Survivor GetMember()
     {
         return member;
     }
 
 
-    public void SetdisplayItem(PartyMember member, int quantity)
+    public void SetdisplayItem(Survivor member)
     {
         this.image.gameObject.SetActive(true);
         this.image.sprite = member.GetSprite();
-        this.quantity.text = quantity.ToString();
+       
         this.member = member;
 
         empty = false;
 
     }
-}
 }
