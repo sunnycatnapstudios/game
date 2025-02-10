@@ -22,9 +22,8 @@ public class CharStats
 
 public class BattleUiHandler : MonoBehaviour
 {
-    public Animator partyUIAnimator;
-    public Animator enemyUIAnimator;
-    public bool actOption = false, itemOption = false;
+    public Animator partyUIAnimator, enemyUIAnimator, enemyStatsAnimator;
+    public bool actOption = false, itemOption = false, canSelect = false;
     public GameObject overworldUI, combatUI, actOptionBList, itemOptionBList, enemySlot;
 
     // public List<PartySlot> partySlots;
@@ -47,13 +46,14 @@ public class BattleUiHandler : MonoBehaviour
     public TurnIndicator turnIndicator;
     public GameObject floatingTextPrefab;
     public TextMeshProUGUI enemyName;
-    private string selectedAction = "";
+    private string selectedAction = "", selectedTarget = null;
     CharStats enemyStats;
     
     void OnEnable()
     {
         partyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         enemyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        enemyStatsAnimator .updateMode = AnimatorUpdateMode.UnscaledTime;
 
         currentEnemies = new List<CharStats>(L1Enemies.Values);
 
@@ -158,8 +158,9 @@ public class BattleUiHandler : MonoBehaviour
             if (CheckForBattleEnd())
             {
                 Debug.Log("Battle has ended!");
+
+                enemyUIAnimator.Play("Handy Stop");
                 battleInProgress = false;
-                EndEncounter();
                 yield break;
             }
 
@@ -190,13 +191,44 @@ public class BattleUiHandler : MonoBehaviour
                 battleOrder.Remove(enemyStats);
             }
         }
-        if (selectedAction == "Defend")
+
+        else if (selectedAction == "Defend" || selectedAction == "Heal")
         {
+            canSelect = true;
+
+            selectedTarget = null;
+            while (selectedTarget == null)
+            {
+                yield return null;
+            }
+
+            Debug.Log($"Target chosen: {selectedTarget}");
             
-        }
-        if (selectedAction == "Heal")
-        {
-            
+            if (selectedAction == "Defend")
+            {
+                Debug.Log($"{selectedTarget} is protected by {player.Name}!");
+            }
+            else if (selectedAction == "Heal")
+            {
+                CharStats healTarget = battleOrder.Find(member => member.Name == selectedTarget);
+                int healAmount = Random.Range(30, 50);
+                healTarget.Health+=100;
+
+                foreach (GameObject mem in partySlots) {
+                    if (mem.GetComponent<PartySlot>().Name == healTarget.Name)
+                        {
+                            if (healTarget.Health > mem.GetComponent<PartySlot>().maxHealth) {
+                                healTarget.Health = (int)mem.GetComponent<PartySlot>().maxHealth;
+                                mem.GetComponent<PartySlot>().UpdateHealthBar(healTarget.Health);
+                                Debug.Log($"HEALTH EXCEEDED THE MAX, CURRENT HEALTH IS NOW {healTarget.Health}");
+                            } else {
+                                mem.GetComponent<PartySlot>().UpdateHealthBar(healTarget.Health);
+                            }
+                        }
+                    }
+                Debug.Log($"{selectedTarget} was healed by {player.Name} for {healAmount} HP!");
+            }
+            canSelect = false;
         }
 
         enemySlot.GetComponent<EnemyHealthbar>().UpdateHealthBar(enemyStats.Health);
@@ -239,6 +271,22 @@ public class BattleUiHandler : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
     }
 
+    public void ReceiveTargetSelection(string targetName)
+    {
+        selectedTarget = targetName;
+        Debug.Log($"Target selected: {selectedTarget}");
+    }
+    private IEnumerator WaitForTargetSelection(System.Action<string> callback)
+    {
+        string selectedTarget = null;
+        while (string.IsNullOrEmpty(selectedTarget))
+        {
+            yield return null;
+        }
+        callback(selectedTarget); // Return the selected name
+    }
+
+
     void ShowFloatingText(int damage, Color color)
     {
         {
@@ -249,41 +297,16 @@ public class BattleUiHandler : MonoBehaviour
         }
     }
 
-    // Used to check whether all players or all enemies are dead
+
     private bool CheckForBattleEnd()
     {
         bool playersAlive = battleOrder.Exists(c => !c.IsEnemy);
         bool enemiesAlive = battleOrder.Exists(c => c.IsEnemy);
 
         return !playersAlive || !enemiesAlive;
+        // return false;
     }
 
-    // Called when the battle should end. Use to transition back to overworld 
-    private void EndEncounter()
-    {
-        if (partyUIAnimator != null)
-        {
-            partyUIAnimator.ResetTrigger("Open");
-            partyUIAnimator.ResetTrigger("Close");
-            partyUIAnimator.ResetTrigger("Reset");
-
-            if (itemOption||actOption) {
-                partyUIAnimator.SetTrigger("Close");
-                actOption = itemOption = false;
-            }
-        }
-        actOptionBList.SetActive(actOption);
-        itemOptionBList.SetActive(itemOption);
-        overworldUI.SetActive(true);
-        combatUI.SetActive(false);
-        
-        // Reset Music TODO replace with smarter system
-        AudioManager.Instance.StopMusicSound();
-        AudioManager.Instance.PlayAmbienceSound("Ambient_Forest");
-        
-        Time.timeScale = 1;
-    }
-    
     public void OnActionButtonPressed(string action)
     {
         selectedAction = action;
@@ -339,6 +362,21 @@ public class BattleUiHandler : MonoBehaviour
     }
     public void Escape()
     {
-        EndEncounter();
+        if (partyUIAnimator != null)
+        {
+            partyUIAnimator.ResetTrigger("Open");
+            partyUIAnimator.ResetTrigger("Close");
+            partyUIAnimator.ResetTrigger("Reset");
+
+            if (itemOption||actOption) {
+                partyUIAnimator.SetTrigger("Close");
+                actOption = itemOption = false;
+            }
+        }
+        actOptionBList.SetActive(actOption);
+        itemOptionBList.SetActive(itemOption);
+        overworldUI.SetActive(true);
+        combatUI.SetActive(false);
+        Time.timeScale = 1;
     }
 }

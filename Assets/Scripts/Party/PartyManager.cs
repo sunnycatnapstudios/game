@@ -148,11 +148,11 @@ public class PartyManager : MonoBehaviour
         partyMemberList = new List<PartyMember>(allPartyMembers.Values);
         currentPlayer.Add(playerStats["Player"]);
 
-        AddToParty("MemberA");
-        AddToParty("MemberB");
-        AddToParty("MemberC");
-        AddToParty("MemberD");
-        AddToParty("MemberE");
+        // AddToParty("MemberA");
+        // AddToParty("MemberB");
+        // AddToParty("MemberC");
+        // AddToParty("MemberD");
+        // AddToParty("MemberE");
     }
 
     void Update()
