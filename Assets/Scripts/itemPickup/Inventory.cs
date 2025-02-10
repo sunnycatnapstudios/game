@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     List<GameObject> itemsInRange;
     public UIInventory inventoryWindow;
     private Item selected;
-    private int timer;
+    private int timer=0;
     
 
 
@@ -88,11 +88,12 @@ public class Inventory : MonoBehaviour
 
             }
         }
-        else if (Input.GetKey(KeyCode.I)&&timer <= 0)
+        else if (Input.GetKey(KeyCode.I)&&timer <= 1)
         {
+            //Debug.Log(timer.ToString());
             if (inventoryWindow.isActiveAndEnabled == false)
             {
-                inventoryWindow.Show();
+                inventoryWindow.Show(inventory);
             }
             else
             {

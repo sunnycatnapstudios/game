@@ -44,18 +44,29 @@ public class UIInventory : MonoBehaviour
 
     private void HandleItemSelection(UIItem item)
     {
-        Debug.Log(item.name);
-        Item held = item.getItem();
-        descriptionUI.SetDescription(held.GetName(),held.GetDesc( ));
-    }
+        if (item != null)
+        {
+            Debug.Log(item.getItem().GetName());
+            Item held = item.getItem();
+
+            descriptionUI.SetDescription(held.GetName(), held.GetDesc());
+            item.Selected();
+        }
+       }
 
     public void DisplayItem() { }
 
-    public void Show()
+    public void Show(Dictionary<string, Slot> inventory)
     {
         gameObject.SetActive(true);
         descriptionUI.ResetDescription();
-        listOfItems[0].SetdisplayItem(test,quantity);
+        int counter = 0;
+        foreach(Slot Slot in inventory.Values) {
+            listOfItems[counter].SetdisplayItem(Slot.GetItem(),Slot.getCount());
+            counter++;
+            
+        }
+        //listOfItems[0].SetdisplayItem(test,quantity);
         
 
     }
