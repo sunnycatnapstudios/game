@@ -10310,7 +10310,7 @@ GameObject:
   - component: {fileID: 771855562}
   - component: {fileID: 771855561}
   m_Layer: 0
-  m_Name: Main>Battle
+  m_Name: Level Door C
   m_TagString: Battle UI Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10584,8 +10584,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: 2, y: 0, z: 0}
-  exitDirection: {x: 0, y: 2, z: 0}
-  exitLocation: {x: -1.5, y: -43.5, z: 0}
+  exitDirection: {x: 2, y: 0, z: 0}
+  exitLocation: {x: -25.5, y: -3.5, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   playerPosition: {x: 0, y: 0, z: 0}
   refPosition: {x: 0, y: 0, z: 0}
@@ -17527,8 +17527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionAnimator: {fileID: 705565803}
   entranceDirection: {x: -2, y: 0, z: 0}
-  exitDirection: {x: 0, y: 2, z: 0}
-  exitLocation: {x: -12.5, y: -11.5, z: 0}
+  exitDirection: {x: -2, y: 0, z: 0}
+  exitLocation: {x: 1.5, y: -0.5, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   playerPosition: {x: 0, y: 0, z: 0}
   refPosition: {x: 0, y: 0, z: 0}
@@ -29035,7 +29035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnimator: {fileID: 705565803}
-  entranceDirection: {x: 2, y: 0, z: 0}
+  entranceDirection: {x: 0, y: 2, z: 0}
   exitDirection: {x: 0, y: 2, z: 0}
   exitLocation: {x: -1.5, y: -43.5, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
