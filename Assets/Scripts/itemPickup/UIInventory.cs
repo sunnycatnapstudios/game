@@ -45,7 +45,8 @@ public class UIInventory : MonoBehaviour
     private void HandleItemSelection(UIItem item)
     {
         Debug.Log(item.name);
-        descriptionUI.SetDescription(name, description);
+        Item held = item.getItem();
+        descriptionUI.SetDescription(held.GetName(),held.GetDesc( ));
     }
 
     public void DisplayItem() { }
@@ -54,7 +55,7 @@ public class UIInventory : MonoBehaviour
     {
         gameObject.SetActive(true);
         descriptionUI.ResetDescription();
-        listOfItems[0].SetdisplayItem(test.GetSprite(),quantity);
+        listOfItems[0].SetdisplayItem(test,quantity);
         
 
     }
