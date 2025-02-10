@@ -34,10 +34,15 @@ public class UIItem : MonoBehaviour
 
     public void OnPointerClick(BaseEventData data)
     {
+        
         PointerEventData pointerData = (PointerEventData)data; 
         if (pointerData.button == PointerEventData.InputButton.Left)
         {
-            OnItemClick?.Invoke(this);
+            
+                Debug.Log("here");
+                OnItemClick?.Invoke(this);
+                
+          
         }
 
 

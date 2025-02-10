@@ -9,6 +9,11 @@ public class Slot
     public Slot(Item item){
         this.item = item;
     }
+    public Item GetItem()
+    {
+        return item; 
+
+    }
 
     public void incCount()
     {
