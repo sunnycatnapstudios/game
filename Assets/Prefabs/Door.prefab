@@ -50,7 +50,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   closeAudio: {fileID: 8300000, guid: 1e582d7cced33e74b95b486a1eea3ea9, type: 3}
   lockedAudio: {fileID: 8300000, guid: 1e582d7cced33e74b95b486a1eea3ea9, type: 3}
-  openAudio: {fileID: 8300000, guid: 36956492a74c8eb47992c690c800402b, type: 3}
+  openAudio: {fileID: 8300000, guid: 23802cc61f418c348b956e69d407d8e0, type: 3}
   unlockAudio: {fileID: 8300000, guid: f15d51e18a9b7064e9e5d40ae8d45859, type: 3}
   closed: {fileID: 7822533284659186966, guid: f59c122c4eb43f1dcbdfc750e3a782c2, type: 3}
   open: {fileID: -4935834299494285922, guid: f59c122c4eb43f1dcbdfc750e3a782c2, type: 3}
