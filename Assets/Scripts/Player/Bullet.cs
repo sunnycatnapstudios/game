@@ -75,6 +75,8 @@ public class Bullet : MonoBehaviour
             ChangeBulletCount(bulletCount-1);
             shoot = true; sprender.enabled = true; circollider2D.enabled = true;
             refCheck = transform.position;
+            // TODO replace with better method later
+            AudioManager.Instance.PlaySound("Sfx_EnterLevel");
         }
         if (shoot) {
             if (Physics2D.OverlapCircle((transform.position), .2f, enemy)) {

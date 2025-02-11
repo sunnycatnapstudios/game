@@ -153,6 +153,8 @@ public class InteractPrompt : MonoBehaviour
                 interactCount++;
                 if (CompareTag("Interactable"))
                 {
+                    // TODO replace with smarter method later
+                    AudioManager.Instance.PlayUiSound("Ui_SelectButton");
                     Debug.Log($"YEP, YOU'VE TAPPED {this.name} {interactCount} TIMES!!!");
                 }
                 else if (CompareTag("NPC"))

@@ -95,6 +95,9 @@ public class Inventory : MonoBehaviour
                 Item item = curObj.GetComponent<Pickupable>().GetItem();
                 addItem(item);
                 Debug.Log("did");
+                
+                // TODO replace with better method later
+                AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
                 foreach (string slot in inventory.Keys) {
                     Debug.Log(slot + inventory[slot].getCount().ToString());
                     
