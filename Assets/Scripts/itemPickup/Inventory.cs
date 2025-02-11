@@ -11,7 +11,10 @@ public class Inventory : MonoBehaviour
     List<GameObject> itemsInRange;
     public UIInventory inventoryWindow;
     private Item selected;
+    private Item inUse;
     private int timer=0;
+
+    
 
     Dictionary<string, Survivor> survivors = new Dictionary<string, Survivor>();
     public Survivor test1;

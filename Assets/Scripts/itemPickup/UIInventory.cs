@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
@@ -30,6 +31,13 @@ public class UIInventory : MonoBehaviour
 
     List<UIItem> listOfItems= new List<UIItem>();
     List<UIPartyMember> listOfMembers = new List<UIPartyMember>();
+
+    [SerializeField]
+    private Button useButton;
+
+    private Survivor selectedMember;
+    private Item selectedItem;
+    private bool itemInUse;
     
 
     public void InitializeInventory(int inventorySlotsAmount) {
@@ -39,13 +47,32 @@ public class UIInventory : MonoBehaviour
             item.transform.SetParent(contentPanel);
             listOfItems.Add(item);
             item.OnItemClick += HandleItemSelection;
+            useButton.onClick.AddListener(onUseCLick);
         }
     
+    }
+    private void HideButton()
+    {
+        useButton.enabled = false;
+
+
+    }
+
+    private void DisplayButton()
+    {
+        useButton.enabled = true;
     }
     private void Awake()
     {
         Hide();
         descriptionUI.ResetDescription();
+        HideButton();
+
+    }
+
+
+    void onUseCLick()
+    {
 
     }
     
