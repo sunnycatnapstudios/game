@@ -161,7 +161,7 @@ public class PartyManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) {
+        if (false && Input.GetKeyDown(KeyCode.P)) {
             if (currentPartyMembers.Count<allPartyMembers.Count)
             {
                 // Debug.Log("Added PartyMember");
@@ -183,7 +183,7 @@ public class PartyManager : MonoBehaviour
                 Debug.Log("Spawned All Party Members");
             }
         }
-        if (Input.GetKeyDown(KeyCode.O)) {
+        if (false && Input.GetKeyDown(KeyCode.O)) {
             if (currentPartyMembers.Count>0)
             {
                 // Debug.Log("Removed PartyMember");
