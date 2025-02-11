@@ -161,6 +161,7 @@ public class BattleUiHandler : MonoBehaviour
                 Debug.Log("Battle has ended!");
 
                 enemyUIAnimator.Play("Handy Stop");
+                EndEncounter();
                 battleInProgress = false;
                 yield break;
             }
