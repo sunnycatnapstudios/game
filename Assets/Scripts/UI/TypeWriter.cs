@@ -83,6 +83,8 @@ public class TypeWriter : MonoBehaviour
 		if (hasStartedTyping && !isTyping)
         {
             hasStartedTyping = false;
+			StartCoroutine("TypeWriterTMP");
+			
         }
     }
 }
