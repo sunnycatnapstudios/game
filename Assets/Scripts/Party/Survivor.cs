@@ -11,6 +11,8 @@ public class Survivor : ScriptableObject
     public int Health;
     public bool isCombatant;
 
+    private bool fed;
+
     public string GetName()
     {
         return Name;
@@ -20,6 +22,14 @@ public class Survivor : ScriptableObject
         return Health;
     }
 
+    public void SetFed()
+    {
+        fed = true;
+    }
+    public bool GetFed()
+    {
+        return fed;
+    }
     
 
     private int curHealth { get; set; }

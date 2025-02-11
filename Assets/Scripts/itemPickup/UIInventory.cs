@@ -35,9 +35,10 @@ public class UIInventory : MonoBehaviour
     [SerializeField]
     private Button useButton;
 
-    private Survivor selectedMember;
-    private Item selectedItem;
+    private UIPartyMember selectedMember;
+    private UIItem selectedItem;
     private bool itemInUse;
+    private UIItem usingItem;
     
 
     public void InitializeInventory(int inventorySlotsAmount) {
@@ -47,20 +48,21 @@ public class UIInventory : MonoBehaviour
             item.transform.SetParent(contentPanel);
             listOfItems.Add(item);
             item.OnItemClick += HandleItemSelection;
+        
             useButton.onClick.AddListener(onUseCLick);
         }
     
     }
     private void HideButton()
     {
-        useButton.enabled = false;
+        useButton.gameObject.SetActive(false);
 
 
     }
 
     private void DisplayButton()
     {
-        useButton.enabled = true;
+        useButton.gameObject.SetActive(true);
     }
     private void Awake()
     {
@@ -73,7 +75,27 @@ public class UIInventory : MonoBehaviour
 
     void onUseCLick()
     {
+        if (itemInUse) {
 
+            if (selectedMember != null)
+            {
+
+                selectedMember.GetMember().SetFed();
+                selectedMember.SetdisplayItem(selectedMember.GetMember());
+
+                //redraw panel
+                itemInUse = false;
+                usingItem = null;
+                selectedMember = null;
+            }
+
+        }
+        else
+        {
+            itemInUse = true;
+            usingItem = selectedItem;
+
+        }
     }
     
     public void InitializeParty(Dictionary<string, Survivor> survivors)
@@ -111,6 +133,7 @@ public class UIInventory : MonoBehaviour
                 descriptionUI.SetDescription(held.GetName(), held.GetHealth().ToString());
                 ClearSelected();
                 member.Selected();
+                DisplayButton();
             }
         
     }
@@ -125,6 +148,13 @@ public class UIInventory : MonoBehaviour
             descriptionUI.SetDescription(held.GetName(), held.GetDesc());
             ClearSelected();
             item.Selected();
+            itemInUse = false;
+            usingItem = null;
+            if (item.getItem().getUsable() == true)
+            {
+                DisplayButton();
+                selectedItem = item.getItem();
+            }
         }
         
        }
@@ -162,6 +192,10 @@ public class UIInventory : MonoBehaviour
         {
             member.Deselect();
         }
+        HideButton();
+        //itemInUse = false;
+        //usingItem = null;
+        selectedMember = null;
     }
 
     public void Hide()

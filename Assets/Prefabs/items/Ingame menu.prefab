@@ -823,6 +823,7 @@ MonoBehaviour:
   partyPanel: {fileID: 3601746471365770684}
   contentPanel: {fileID: 3601746471830807343}
   descriptionUI: {fileID: 3601746470529534515}
+  useButton: {fileID: 8996776169770612942}
 --- !u!1 &3601746471975407862
 GameObject:
   m_ObjectHideFlags: 0

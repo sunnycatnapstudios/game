@@ -30,6 +30,11 @@ public class Ration : Item
         return Sprite;
     }
 
+    public override bool getUsable()
+    {
+        return true;
+    }
+
     public override void Use()
     {
         

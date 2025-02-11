@@ -29,6 +29,11 @@ public class Key : Item
         return sprite;
     }
 
+    public override bool getUsable()
+    {
+        return false;
+    }
+
     public override void Use()
     {
        
