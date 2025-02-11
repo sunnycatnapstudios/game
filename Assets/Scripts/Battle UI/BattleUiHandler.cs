@@ -194,7 +194,7 @@ public class BattleUiHandler : MonoBehaviour
             }
         }
 
-        else if (selectedAction == "Defend" || selectedAction == "Heal")
+        if (selectedAction == "Defend" || selectedAction == "Heal")
         {
             canSelect = true;
 
@@ -210,7 +210,7 @@ public class BattleUiHandler : MonoBehaviour
             {
                 Debug.Log($"{selectedTarget} is protected by {player.Name}!");
             }
-            else if (selectedAction == "Heal")
+            if (selectedAction == "Heal")
             {
                 CharStats healTarget = battleOrder.Find(member => member.Name == selectedTarget);
                 int healAmount = Random.Range(30, 50);
