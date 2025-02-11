@@ -64,7 +64,8 @@ public class UIInventory : MonoBehaviour
     public void AddPartyMember()
     {
         UIPartyMember person = Instantiate(memberPrefab, Vector3.zero, Quaternion.identity);
-        person.transform.SetParent(partyPanel);
+        person.transform.SetParent(partyPanel, false);
+        // person.transform.localScale = Vector3.one;
         listOfMembers.Add(person);
         person.OnItemClicked += HandlePartySelection;
 
