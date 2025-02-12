@@ -1,5 +1,5 @@
 name: Build and deploy
-on: [push]
+on: pull_request
 env:
   PROJECT_NAME: DOUBTS_HORIZON
 jobs:
