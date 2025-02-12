@@ -1,13 +1,12 @@
 name: Build and deploy
 on: [push]
-environment:
-  name: CI/CD to Itch
 env:
   PROJECT_NAME: DOUBTS_HORIZON
 jobs:
   buildAndTestForLinuxBasedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-22.04
+    environment: CI/CD to Itch
     strategy:
       fail-fast: false
       matrix:
