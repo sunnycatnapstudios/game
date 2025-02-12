@@ -52,3 +52,6 @@ jobs:
           ITCH_GAME: ${{ vars.ITCH_GAME }}
           ITCH_USER: ${{ vars.ITCH_USER }}
           PACKAGE: build/${{ matrix.unityVersion }}/${{ matrix.targetPlatform }}
+      - uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: https://${{ vars.ITCH_USER }}.itch.io/${{ vars.ITCH_GAME }}
