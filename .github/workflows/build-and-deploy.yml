@@ -49,6 +49,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: html5
-          ITCH_GAME: ${{ vars.ITCH_GAME }}-${{ github.ref }}
+          ITCH_GAME: ${{ vars.ITCH_GAME }}
           ITCH_USER: ${{ vars.ITCH_USER }}
           PACKAGE: build/${{ matrix.unityVersion }}/${{ matrix.targetPlatform }}
