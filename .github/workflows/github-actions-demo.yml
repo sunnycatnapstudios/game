@@ -1,6 +1,8 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
+environment:
+  name: CI/CD to Itch
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-22.04
