@@ -1,24 +1,18 @@
 name: Build and deploy
-
-on:
-  push:
-    branches:
-      - main
-
+on: [push]
 env:
-  PROJECT_NAME: YOUR_GAME
-
+  PROJECT_NAME: DOUBTS_HORIZON
 jobs:
   buildAndTestForLinuxBasedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         projectPath:
           - ./
         unityVersion:
-          - 2022.3.12f1
+          - 2019.4.18f1
         targetPlatform:
           - WebGL # Must be valid options for Unity: https://docs.unity3d.com/ScriptReference/BuildTarget.html
     steps:
