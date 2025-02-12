@@ -32,7 +32,7 @@ public class PartyManager : MonoBehaviour
 
     public Dictionary<string, PartyMember> playerStats = new Dictionary<string, PartyMember>
     {
-        { "Player", new PartyMember("Player", 50, 350, true)}
+        { "Player", new PartyMember("Player", 50, 150, true)}
     };
     public Dictionary<string, PartyMember> allPartyMembers = new Dictionary<string, PartyMember>
     {

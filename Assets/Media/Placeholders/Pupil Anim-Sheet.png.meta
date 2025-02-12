@@ -1,0 +1,4007 @@
+fileFormatVersion: 2
+guid: 1aef02f3f907acc418e6a396a1abd826
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7471377367408979271
+    second: Pupil Anim-Sheet_0
+  - first:
+      213: -4274619003694035805
+    second: Pupil Anim-Sheet_1
+  - first:
+      213: -3337395321765791018
+    second: Pupil Anim-Sheet_2
+  - first:
+      213: -2126081783409514135
+    second: Pupil Anim-Sheet_3
+  - first:
+      213: 2854031038061424490
+    second: Pupil Anim-Sheet_4
+  - first:
+      213: -560993546518798984
+    second: Pupil Anim-Sheet_5
+  - first:
+      213: -6553925934861951697
+    second: Pupil Anim-Sheet_6
+  - first:
+      213: 5851387561464684301
+    second: Pupil Anim-Sheet_7
+  - first:
+      213: -7174982291642853636
+    second: Pupil Anim-Sheet_8
+  - first:
+      213: 6337382973335588256
+    second: Pupil Anim-Sheet_9
+  - first:
+      213: 2289652045968479496
+    second: Pupil Anim-Sheet_10
+  - first:
+      213: -7638626209150690883
+    second: Pupil Anim-Sheet_11
+  - first:
+      213: 2693570022682182655
+    second: Pupil Anim-Sheet_12
+  - first:
+      213: 6258387465489788944
+    second: Pupil Anim-Sheet_13
+  - first:
+      213: -155962145249190601
+    second: Pupil Anim-Sheet_14
+  - first:
+      213: 3230550404333332121
+    second: Pupil Anim-Sheet_15
+  - first:
+      213: -3628104543568966934
+    second: Pupil Anim-Sheet_16
+  - first:
+      213: 3055111513775245628
+    second: Pupil Anim-Sheet_17
+  - first:
+      213: -8523446531336684904
+    second: Pupil Anim-Sheet_18
+  - first:
+      213: -4302354227667988171
+    second: Pupil Anim-Sheet_19
+  - first:
+      213: 4181945339209271773
+    second: Pupil Anim-Sheet_20
+  - first:
+      213: 1664440105612160961
+    second: Pupil Anim-Sheet_21
+  - first:
+      213: -1464923509319515045
+    second: Pupil Anim-Sheet_22
+  - first:
+      213: -8273963934650471144
+    second: Pupil Anim-Sheet_23
+  - first:
+      213: 3224590991758513879
+    second: Pupil Anim-Sheet_24
+  - first:
+      213: 4828392575962479648
+    second: Pupil Anim-Sheet_25
+  - first:
+      213: 5653296578891256258
+    second: Pupil Anim-Sheet_26
+  - first:
+      213: -5442088343884459969
+    second: Pupil Anim-Sheet_27
+  - first:
+      213: -8599191281889270646
+    second: Pupil Anim-Sheet_28
+  - first:
+      213: -7861020767753957539
+    second: Pupil Anim-Sheet_29
+  - first:
+      213: 1559626733661420878
+    second: Pupil Anim-Sheet_30
+  - first:
+      213: -9052424447521999862
+    second: Pupil Anim-Sheet_31
+  - first:
+      213: -3287599107258738693
+    second: Pupil Anim-Sheet_32
+  - first:
+      213: 2958957235656607690
+    second: Pupil Anim-Sheet_33
+  - first:
+      213: -3679519142128183127
+    second: Pupil Anim-Sheet_34
+  - first:
+      213: -1019471916790586641
+    second: Pupil Anim-Sheet_35
+  - first:
+      213: 3399066978918824585
+    second: Pupil Anim-Sheet_36
+  - first:
+      213: 2388395686511213351
+    second: Pupil Anim-Sheet_37
+  - first:
+      213: -3246346272926081017
+    second: Pupil Anim-Sheet_38
+  - first:
+      213: 1977052510850079632
+    second: Pupil Anim-Sheet_39
+  - first:
+      213: 9124381389887941938
+    second: Pupil Anim-Sheet_40
+  - first:
+      213: 2685131005329305713
+    second: Pupil Anim-Sheet_41
+  - first:
+      213: -6896410787732557154
+    second: Pupil Anim-Sheet_42
+  - first:
+      213: 7749189973422229990
+    second: Pupil Anim-Sheet_43
+  - first:
+      213: 7196419561737887147
+    second: Pupil Anim-Sheet_44
+  - first:
+      213: 3243380702418001327
+    second: Pupil Anim-Sheet_45
+  - first:
+      213: 5673144974883135642
+    second: Pupil Anim-Sheet_46
+  - first:
+      213: 2185621262189958236
+    second: Pupil Anim-Sheet_47
+  - first:
+      213: -9065152798468917052
+    second: Pupil Anim-Sheet_48
+  - first:
+      213: 1523940758625099001
+    second: Pupil Anim-Sheet_49
+  - first:
+      213: 1764213584889021926
+    second: Pupil Anim-Sheet_50
+  - first:
+      213: -4677675923973824206
+    second: Pupil Anim-Sheet_51
+  - first:
+      213: 6609925763519328990
+    second: Pupil Anim-Sheet_52
+  - first:
+      213: -9090358563908486457
+    second: Pupil Anim-Sheet_53
+  - first:
+      213: 2111509034201468989
+    second: Pupil Anim-Sheet_54
+  - first:
+      213: -5028309184933682635
+    second: Pupil Anim-Sheet_55
+  - first:
+      213: 713733723749150609
+    second: Pupil Anim-Sheet_56
+  - first:
+      213: -5260985963195116875
+    second: Pupil Anim-Sheet_57
+  - first:
+      213: 6497201216605554188
+    second: Pupil Anim-Sheet_58
+  - first:
+      213: 4920596583756401030
+    second: Pupil Anim-Sheet_59
+  - first:
+      213: 2165044877323201328
+    second: Pupil Anim-Sheet_60
+  - first:
+      213: 5381250149027388661
+    second: Pupil Anim-Sheet_61
+  - first:
+      213: 3137104857554280145
+    second: Pupil Anim-Sheet_62
+  - first:
+      213: 7320640248838936562
+    second: Pupil Anim-Sheet_63
+  - first:
+      213: -956775919176466267
+    second: Pupil Anim-Sheet_64
+  - first:
+      213: -4152394838643605539
+    second: Pupil Anim-Sheet_65
+  - first:
+      213: -2509035657308905027
+    second: Pupil Anim-Sheet_66
+  - first:
+      213: 1699868902718055246
+    second: Pupil Anim-Sheet_67
+  - first:
+      213: -1566064064162452026
+    second: Pupil Anim-Sheet_68
+  - first:
+      213: 2547702539932685160
+    second: Pupil Anim-Sheet_69
+  - first:
+      213: 2167020501534369110
+    second: Pupil Anim-Sheet_70
+  - first:
+      213: -1966694222716279364
+    second: Pupil Anim-Sheet_71
+  - first:
+      213: 8834189123482567063
+    second: Pupil Anim-Sheet_72
+  - first:
+      213: 1651323324239061088
+    second: Pupil Anim-Sheet_73
+  - first:
+      213: -2762771511068459616
+    second: Pupil Anim-Sheet_74
+  - first:
+      213: 6168802953468585434
+    second: Pupil Anim-Sheet_75
+  - first:
+      213: 1710044839121448094
+    second: Pupil Anim-Sheet_76
+  - first:
+      213: 8672619645838359347
+    second: Pupil Anim-Sheet_77
+  - first:
+      213: 7613017636599017150
+    second: Pupil Anim-Sheet_78
+  - first:
+      213: 1207003835483124640
+    second: Pupil Anim-Sheet_79
+  - first:
+      213: 98114433542675575
+    second: Pupil Anim-Sheet_80
+  - first:
+      213: 7050026808670375781
+    second: Pupil Anim-Sheet_81
+  - first:
+      213: -3008321083161793072
+    second: Pupil Anim-Sheet_82
+  - first:
+      213: -992034827152008102
+    second: Pupil Anim-Sheet_83
+  - first:
+      213: 6293696851325510443
+    second: Pupil Anim-Sheet_84
+  - first:
+      213: 3653714829737319976
+    second: Pupil Anim-Sheet_85
+  - first:
+      213: 2619405487549946923
+    second: Pupil Anim-Sheet_86
+  - first:
+      213: 6522149333206497767
+    second: Pupil Anim-Sheet_87
+  - first:
+      213: -4856777579065450211
+    second: Pupil Anim-Sheet_88
+  - first:
+      213: 7694763043201315643
+    second: Pupil Anim-Sheet_89
+  - first:
+      213: 8925946872502704637
+    second: Pupil Anim-Sheet_90
+  - first:
+      213: -9086258729943755445
+    second: Pupil Anim-Sheet_91
+  - first:
+      213: 7191013218584067030
+    second: Pupil Anim-Sheet_92
+  - first:
+      213: -2535039112713750642
+    second: Pupil Anim-Sheet_93
+  - first:
+      213: 7048144727533601606
+    second: Pupil Anim-Sheet_94
+  - first:
+      213: 1590232587320139226
+    second: Pupil Anim-Sheet_95
+  - first:
+      213: -4408837204347445998
+    second: Pupil Anim-Sheet_96
+  - first:
+      213: 7708125105390672368
+    second: Pupil Anim-Sheet_97
+  - first:
+      213: -1700383891100777595
+    second: Pupil Anim-Sheet_98
+  - first:
+      213: -442694784320885751
+    second: Pupil Anim-Sheet_99
+  - first:
+      213: 7418841870147378878
+    second: Pupil Anim-Sheet_100
+  - first:
+      213: -7894497212835426352
+    second: Pupil Anim-Sheet_101
+  - first:
+      213: -9129200636503392169
+    second: Pupil Anim-Sheet_102
+  - first:
+      213: -3072041279970832489
+    second: Pupil Anim-Sheet_103
+  - first:
+      213: 171498541843016552
+    second: Pupil Anim-Sheet_104
+  - first:
+      213: 6456593229047414461
+    second: Pupil Anim-Sheet_105
+  - first:
+      213: -6790871206782966036
+    second: Pupil Anim-Sheet_106
+  - first:
+      213: 256216002158620119
+    second: Pupil Anim-Sheet_107
+  - first:
+      213: 3791958125603845886
+    second: Pupil Anim-Sheet_108
+  - first:
+      213: -5847335359803997683
+    second: Pupil Anim-Sheet_109
+  - first:
+      213: -5847238535002282409
+    second: Pupil Anim-Sheet_110
+  - first:
+      213: -491715097844541881
+    second: Pupil Anim-Sheet_111
+  - first:
+      213: 4724135097482274115
+    second: Pupil Anim-Sheet_112
+  - first:
+      213: 4604122487496041671
+    second: Pupil Anim-Sheet_113
+  - first:
+      213: -7616065943477981203
+    second: Pupil Anim-Sheet_114
+  - first:
+      213: -7222207624630047590
+    second: Pupil Anim-Sheet_115
+  - first:
+      213: -6886556113010218862
+    second: Pupil Anim-Sheet_116
+  - first:
+      213: 2243042180575271025
+    second: Pupil Anim-Sheet_117
+  - first:
+      213: 7239634847531135358
+    second: Pupil Anim-Sheet_118
+  - first:
+      213: -4768850501885009148
+    second: Pupil Anim-Sheet_119
+  - first:
+      213: 870695483120203117
+    second: Pupil Anim-Sheet_120
+  - first:
+      213: -2262795673510123255
+    second: Pupil Anim-Sheet_121
+  - first:
+      213: -6503650936804989813
+    second: Pupil Anim-Sheet_122
+  - first:
+      213: -3658887534208010732
+    second: Pupil Anim-Sheet_123
+  - first:
+      213: 9023418829796406742
+    second: Pupil Anim-Sheet_124
+  - first:
+      213: -7223975994542663748
+    second: Pupil Anim-Sheet_125
+  - first:
+      213: -7521278089609722188
+    second: Pupil Anim-Sheet_126
+  - first:
+      213: 684223528729626642
+    second: Pupil Anim-Sheet_127
+  - first:
+      213: -37499193414870722
+    second: Pupil Anim-Sheet_128
+  - first:
+      213: -2668217792454591497
+    second: Pupil Anim-Sheet_129
+  - first:
+      213: -9077403040195640449
+    second: Pupil Anim-Sheet_130
+  - first:
+      213: -3042406990715596566
+    second: Pupil Anim-Sheet_131
+  - first:
+      213: 358970371709141624
+    second: Pupil Anim-Sheet_132
+  - first:
+      213: -2521296242602152756
+    second: Pupil Anim-Sheet_133
+  - first:
+      213: -5811715379198307748
+    second: Pupil Anim-Sheet_134
+  - first:
+      213: -6993891876798996178
+    second: Pupil Anim-Sheet_135
+  - first:
+      213: -6652150137576419136
+    second: Pupil Anim-Sheet_136
+  - first:
+      213: -2709009363337010932
+    second: Pupil Anim-Sheet_137
+  - first:
+      213: 802321164705992326
+    second: Pupil Anim-Sheet_138
+  - first:
+      213: -3306126403944526469
+    second: Pupil Anim-Sheet_139
+  - first:
+      213: -1095732840795049771
+    second: Pupil Anim-Sheet_140
+  - first:
+      213: -8419521241270048317
+    second: Pupil Anim-Sheet_141
+  - first:
+      213: -4998731537851627089
+    second: Pupil Anim-Sheet_142
+  - first:
+      213: 5843019390098546241
+    second: Pupil Anim-Sheet_143
+  - first:
+      213: 4271841249000696652
+    second: Pupil Anim-Sheet_144
+  - first:
+      213: 6748469323108513757
+    second: Pupil Anim-Sheet_145
+  - first:
+      213: -4130119416134355892
+    second: Pupil Anim-Sheet_146
+  - first:
+      213: 854570489507583658
+    second: Pupil Anim-Sheet_147
+  - first:
+      213: -2571313013004563389
+    second: Pupil Anim-Sheet_148
+  - first:
+      213: 8766625383504913816
+    second: Pupil Anim-Sheet_149
+  - first:
+      213: 696204566743794378
+    second: Pupil Anim-Sheet_150
+  - first:
+      213: 4682360116457008544
+    second: Pupil Anim-Sheet_151
+  - first:
+      213: 5828560382348871569
+    second: Pupil Anim-Sheet_152
+  - first:
+      213: 4194923516713253196
+    second: Pupil Anim-Sheet_153
+  - first:
+      213: 5383712659981058922
+    second: Pupil Anim-Sheet_154
+  - first:
+      213: -5667659678970138717
+    second: Pupil Anim-Sheet_155
+  - first:
+      213: -7635297023084445681
+    second: Pupil Anim-Sheet_156
+  - first:
+      213: 2912990622394346469
+    second: Pupil Anim-Sheet_157
+  - first:
+      213: 1656730943132875982
+    second: Pupil Anim-Sheet_158
+  - first:
+      213: -6598355206823576615
+    second: Pupil Anim-Sheet_159
+  - first:
+      213: -6856257712355753075
+    second: Pupil Anim-Sheet_160
+  - first:
+      213: 7203609397184545605
+    second: Pupil Anim-Sheet_161
+  - first:
+      213: 3664902465744149068
+    second: Pupil Anim-Sheet_162
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 3
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 3
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 3
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b2d1b09ed5505890800000000000000
+      internalID: -7471377367408979271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3acceaef9a08da4c0800000000000000
+      internalID: -4274619003694035805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da791b13a03fa1d0800000000000000
+      internalID: -3337395321765791018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9696278e1e3ae72e0800000000000000
+      internalID: -2126081783409514135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f27999b1e8b9720800000000000000
+      internalID: 2854031038061424490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87dd57a7753f638f0800000000000000
+      internalID: -560993546518798984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d55502617cb05a0800000000000000
+      internalID: -6553925934861951697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0fdd343cfd443150800000000000000
+      internalID: 5851387561464684301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6d8e4de975d6c90800000000000000
+      internalID: -7174982291642853636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0adc643cc38e2f750800000000000000
+      internalID: 6337382973335588256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 805923b976a76cf10800000000000000
+      internalID: 2289652045968479496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db995971fe52ef590800000000000000
+      internalID: -7638626209150690883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 2400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3cc9b1aab716520800000000000000
+      internalID: 2693570022682182655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010b643dd324ad650800000000000000
+      internalID: 6258387465489788944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d93065149e5ddf0800000000000000
+      internalID: -155962145249190601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996684ff97835dc20800000000000000
+      internalID: 3230550404333332121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea4790e32266adc0800000000000000
+      internalID: -3628104543568966934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3987cf2cbfe56a20800000000000000
+      internalID: 3055111513775245628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a34a5f982a6b980800000000000000
+      internalID: -8523446531336684904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53113f1ff97fa44c0800000000000000
+      internalID: -4302354227667988171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd94bad0121490a30800000000000000
+      internalID: 4181945339209271773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf2dec1577491710800000000000000
+      internalID: 1664440105612160961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5444eb64db8babe0800000000000000
+      internalID: -1464923509319515045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81de3c683a9fc2d80800000000000000
+      internalID: -8273963934650471144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d6d0b12c6c00cc20800000000000000
+      internalID: 3224590991758513879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 2200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c70664775e10340800000000000000
+      internalID: 4828392575962479648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c19eba394b847e40800000000000000
+      internalID: 5653296578891256258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3019721c71d974b0800000000000000
+      internalID: -5442088343884459969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84aa5fe61989a880800000000000000
+      internalID: -8599191281889270646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5f8e0ed24b08e290800000000000000
+      internalID: -7861020767753957539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d77124048e4a510800000000000000
+      internalID: 1559626733661420878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04b3614de35f5280800000000000000
+      internalID: -9052424447521999862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf793f7c70a1062d0800000000000000
+      internalID: -3287599107258738693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac742e8bde3501920800000000000000
+      internalID: 2958957235656607690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8133dc5d8bfecc0800000000000000
+      internalID: -3679519142128183127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2e53d61bb1ad1f0800000000000000
+      internalID: -1019471916790586641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a77368869eb2f20800000000000000
+      internalID: 3399066978918824585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72b739df839452120800000000000000
+      internalID: 2388395686511213351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 2000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 700e350c349a2f2d0800000000000000
+      internalID: -3246346272926081017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b5383a8c6ef6b10800000000000000
+      internalID: 1977052510850079632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23da473f78050ae70800000000000000
+      internalID: 9124381389887941938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1707a044c60834520800000000000000
+      internalID: 2685131005329305713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9277046de60b40a0800000000000000
+      internalID: -6896410787732557154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e9c9de4937aa8b60800000000000000
+      internalID: 7749189973422229990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bad1f009671ded360800000000000000
+      internalID: 7196419561737887147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad5bfe809dc20d20800000000000000
+      internalID: 3243380702418001327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90a33b0c4f0bbe40800000000000000
+      internalID: 5673144974883135642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c549f5245f2e45e10800000000000000
+      internalID: 2185621262189958236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c83f9c1f8b123280800000000000000
+      internalID: -9065152798468917052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc9698bb00262510800000000000000
+      internalID: 1523940758625099001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e58a3388eebb7810800000000000000
+      internalID: 1764213584889021926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 231a421d78e851fb0800000000000000
+      internalID: -4677675923973824206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2b546067c2bbb50800000000000000
+      internalID: 6609925763519328990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cafd458c0f88d180800000000000000
+      internalID: -9090358563908486457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d305b9387469d4d10800000000000000
+      internalID: 2111509034201468989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 532a13bff6bd73ab0800000000000000
+      internalID: -5028309184933682635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19fe84c4a01b7e900800000000000000
+      internalID: 713733723749150609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2507fe3293df6b0800000000000000
+      internalID: -5260985963195116875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0682063512ba2a50800000000000000
+      internalID: 6497201216605554188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6890dc1c588794440800000000000000
+      internalID: 4920596583756401030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03be0a358d8cb0e10800000000000000
+      internalID: 2165044877323201328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fc9b4cdf7a0eaa40800000000000000
+      internalID: 5381250149027388661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dedca13f3c398b20800000000000000
+      internalID: 3137104857554280145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f7d8781583289560800000000000000
+      internalID: 7320640248838936562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a0c6d7ee59d8b2f0800000000000000
+      internalID: -956775919176466267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf7b7305eabf56c0800000000000000
+      internalID: -4152394838643605539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db16055fc5d1e2dd0800000000000000
+      internalID: -2509035657308905027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e432e3fb2c5279710800000000000000
+      internalID: 1699868902718055246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cda710f709344ae0800000000000000
+      internalID: -1566064064162452026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8635c0636f14b5320800000000000000
+      internalID: 2547702539932685160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655e1fe2aadc21e10800000000000000
+      internalID: 2167020501534369110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5ee214606e4b4e0800000000000000
+      internalID: -1966694222716279364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7914cc7c338599a70800000000000000
+      internalID: 8834189123482567063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060269670ddaae610800000000000000
+      internalID: 1651323324239061088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0adf13fc2f9a8a9d0800000000000000
+      internalID: -2762771511068459616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad520ea3a9dfb9550800000000000000
+      internalID: 6168802953468585434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ce2d198bc4bb710800000000000000
+      internalID: 1710044839121448094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33bf44e4e955b5870800000000000000
+      internalID: 8672619645838359347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebea44a743fd6a960800000000000000
+      internalID: 7613017636599017150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a37188e79320c010800000000000000
+      internalID: 1207003835483124640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c56a6be829c5100800000000000000
+      internalID: 98114433542675575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56f47c3a70ab6d160800000000000000
+      internalID: 7050026808670375781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dda2d3e9eb4046d0800000000000000
+      internalID: -3008321083161793072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5cd9caa4959b32f0800000000000000
+      internalID: -992034827152008102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_84
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b23604bd0f3b75750800000000000000
+      internalID: 6293696851325510443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_85
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ed119874a94b230800000000000000
+      internalID: 3653714829737319976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_86
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2c9f18a96ff95420800000000000000
+      internalID: 2619405487549946923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_87
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e9f2d14344538a50800000000000000
+      internalID: 6522149333206497767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_88
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11e8be2682499cb0800000000000000
+      internalID: -4856777579065450211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_89
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3371dc183a49ca60800000000000000
+      internalID: 7694763043201315643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_90
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9588b83655fdb70800000000000000
+      internalID: 8925946872502704637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b45196083df17e180800000000000000
+      internalID: -9086258729943755445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_92
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db77d43c6c9bc360800000000000000
+      internalID: 7191013218584067030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_93
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87b9f2bb5bb1dcd0800000000000000
+      internalID: -2535039112713750642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_94
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 643ce2a794a00d160800000000000000
+      internalID: 7048144727533601606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_95
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add977ddc14a11610800000000000000
+      internalID: 1590232587320139226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_96
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21d1852fbe9a0d2c0800000000000000
+      internalID: -4408837204347445998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_97
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f9d417a1f2c8fa60800000000000000
+      internalID: 7708125105390672368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_98
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583442d2cd50768e0800000000000000
+      internalID: -1700383891100777595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_99
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ca2ac607b3bd9f0800000000000000
+      internalID: -442694784320885751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_100
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebeddeacf5505f660800000000000000
+      internalID: 7418841870147378878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_101
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df02ac9c9c117290800000000000000
+      internalID: -7894497212835426352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_102
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75002f1c3609e4180800000000000000
+      internalID: -9129200636503392169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_103
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f80047bbaed55d0800000000000000
+      internalID: -3072041279970832489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_104
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bec02e309416200800000000000000
+      internalID: 171498541843016552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_105
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe3094555d6a9950800000000000000
+      internalID: 6456593229047414461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_106
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6e544fd9af1c1a0800000000000000
+      internalID: -6790871206782966036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_107
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd6f62b8134e8300800000000000000
+      internalID: 256216002158620119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_108
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef6f5c713ddbf9430800000000000000
+      internalID: 3791958125603845886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_109
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d024d4488771adea0800000000000000
+      internalID: -5847335359803997683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_110
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 756a63c488f6adea0800000000000000
+      internalID: -5847238535002282409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_111
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 746974649b31d29f0800000000000000
+      internalID: -491715097844541881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_112
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345e26477df7f8140800000000000000
+      internalID: 4724135097482274115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_113
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c4e699320125ef30800000000000000
+      internalID: 4604122487496041671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_114
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def6b05406c4e4690800000000000000
+      internalID: -7616065943477981203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_115
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ceec72e6095cb90800000000000000
+      internalID: -7222207624630047590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_116
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2982b36a3b90e60a0800000000000000
+      internalID: -6886556113010218862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1781865aaf2e02f10800000000000000
+      internalID: 2243042180575271025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_118
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e71f1ae5989587460800000000000000
+      internalID: 7239634847531135358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_119
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40363382cb3a1ddb0800000000000000
+      internalID: -4768850501885009148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_120
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d65bae2cde4551c00800000000000000
+      internalID: 870695483120203117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_121
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9096321e25fe890e0800000000000000
+      internalID: -2262795673510123255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_122
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b842a984ee36eb5a0800000000000000
+      internalID: -6503650936804989813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_123
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4163d6a5c25093dc0800000000000000
+      internalID: -3658887534208010732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_124
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5f5991e9f993d70800000000000000
+      internalID: 9023418829796406742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_125
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb7d5537b184fbb90800000000000000
+      internalID: -7223975994542663748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_126
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b642eb4d6d0f9790800000000000000
+      internalID: -7521278089609722188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_127
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218c4e89ca9de7900800000000000000
+      internalID: 684223528729626642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_128
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e399429aea6ca7ff0800000000000000
+      internalID: -37499193414870722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_129
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fbfd59fd0698fad0800000000000000
+      internalID: -2668217792454591497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_130
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7386127706960280800000000000000
+      internalID: -9077403040195640449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_131
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae05b3816f237c5d0800000000000000
+      internalID: -3042406990715596566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_132
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8720d92b6a15bf400800000000000000
+      internalID: 358970371709141624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_133
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccceb2efc6e820dd0800000000000000
+      internalID: -2521296242602152756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_134
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52d53787a3a85fa0800000000000000
+      internalID: -5811715379198307748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_135
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e21e7eda464b0fe90800000000000000
+      internalID: -6993891876798996178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_136
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c01139c1b0dea3a0800000000000000
+      internalID: -6652150137576419136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_137
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c012715465aa76ad0800000000000000
+      internalID: -2709009363337010932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_138
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68e041239da622b00800000000000000
+      internalID: 802321164705992326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_139
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dc85e5d874e12d0800000000000000
+      internalID: -3306126403944526469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_140
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d07ea769cc2bc0f0800000000000000
+      internalID: -1095732840795049771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_141
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c92e332a0ad72b80800000000000000
+      internalID: -8419521241270048317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_142
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa9cfc69620f0aab0800000000000000
+      internalID: -4998731537851627089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_143
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e1b8a7d23961150800000000000000
+      internalID: 5843019390098546241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_144
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4b2c879bf0a84b30800000000000000
+      internalID: 4271841249000696652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_145
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd7f08d281167ad50800000000000000
+      internalID: 6748469323108513757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_146
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c443e59f54edea6c0800000000000000
+      internalID: -4130119416134355892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_147
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa691ae155b0cdb00800000000000000
+      internalID: 854570489507583658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_148
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c0685207cd05cd0800000000000000
+      internalID: -2571313013004563389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_149
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895abb6b65f49a970800000000000000
+      internalID: 8766625383504913816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_150
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac2c4c36d5a69a900800000000000000
+      internalID: 696204566743794378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_151
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad60ebb7b51bf040800000000000000
+      internalID: 4682360116457008544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_152
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197c1d569c433e050800000000000000
+      internalID: 5828560382348871569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_153
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4930a976bc573a30800000000000000
+      internalID: 4194923516713253196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_154
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a63c1fed32ac6ba40800000000000000
+      internalID: 5383712659981058922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_155
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3af2e2fec8d6851b0800000000000000
+      internalID: -5667659678970138717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_156
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f004470afc9f90690800000000000000
+      internalID: -7635297023084445681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_157
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ebebd199850d6820800000000000000
+      internalID: 2912990622394346469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_158
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc35d9d304edf610800000000000000
+      internalID: 1656730943132875982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_159
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db7e6326eeed64a0800000000000000
+      internalID: -6598355206823576615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_160
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83c086cfeda9d0a0800000000000000
+      internalID: -6856257712355753075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pupil Anim-Sheet_161
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543c9d3949c58f360800000000000000
+      internalID: 7203609397184545605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

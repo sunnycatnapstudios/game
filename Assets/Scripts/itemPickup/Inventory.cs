@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
 
             }
         }
-        else if (Input.GetKey(KeyCode.I)&&timer <= 1)
+        else if (Input.GetKeyDown(KeyCode.I)&&timer <= 1)
         {
             //Debug.Log(timer.ToString());
             if (inventoryWindow.isActiveAndEnabled == false)
