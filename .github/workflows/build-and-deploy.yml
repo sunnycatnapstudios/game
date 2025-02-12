@@ -1,5 +1,8 @@
 name: Build and deploy
 on: pull_request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 env:
   PROJECT_NAME: DOUBTS_HORIZON
 jobs:
