@@ -61,7 +61,6 @@ public class InteractPrompt : MonoBehaviour
         else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
 
         isDialogueOpen = true;
-        Debug.Log("Dialogue Opened");
     }
 
     void UpdateDialogue(string text)
@@ -70,7 +69,6 @@ public class InteractPrompt : MonoBehaviour
         bodyTypeWriter.hasStartedTyping = true;
         if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
         else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
-        Debug.Log("Dialogue Updated");
     }
 
     void CloseDialogue()
@@ -169,16 +167,14 @@ public class InteractPrompt : MonoBehaviour
                         string nextLine = NPCDialogueHandler.GetNextLine();
 
                         if (nextLine != null) {OpenDialogue(nextLine); dialogueFinished = false;}
-                        // OpenDialogue("Testng 1, 2\nTesting 1, 2...");
                     }
-                    else if (!bodyTypeWriter.isTyping)
+                    else if (!bodyTypeWriter.isTyping && !bodyTypeWriter.hasStartedTyping)
                     {
                         string nextLine = NPCDialogueHandler.GetNextLine();
 
                         if (nextLine != null) {UpdateDialogue(nextLine);}
                         else {CloseDialogue();Debug.Log("Finished Dialogue Segment"); dialogueFinished = true;}
 
-                        // UpdateDialogue("Yep, this seems to be working");
                     }
                 }
             }

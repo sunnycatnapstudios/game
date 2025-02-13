@@ -64,9 +64,12 @@ public class Inventory : MonoBehaviour
     }
 
     public void removeItemByName(string name) {
+        Debug.Log("removing " + name);
         Slot slot = inventory[name];
         slot.decCount();
+        Debug.Log("new count is " + slot.getCount().ToString());
         if (slot.getCount() == 0) {
+            Debug.Log("inside if");
             inventory.Remove(name);
         }
     }
@@ -109,7 +112,7 @@ public class Inventory : MonoBehaviour
 
             }
         }
-        else if (Input.GetKey(KeyCode.I)&&timer <= 1)
+        else if (Input.GetKeyDown(KeyCode.I)&&timer <= 1)
         {
             //Debug.Log(timer.ToString());
             if (inventoryWindow.isActiveAndEnabled == false)

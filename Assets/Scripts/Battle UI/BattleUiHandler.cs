@@ -22,9 +22,8 @@ public class CharStats
 
 public class BattleUiHandler : MonoBehaviour
 {
-    public Animator partyUIAnimator;
-    public Animator enemyUIAnimator;
-    public bool actOption = false, itemOption = false;
+    public Animator partyUIAnimator, enemyUIAnimator, enemyStatsAnimator;
+    public bool actOption = false, itemOption = false, canSelect = false;
     public GameObject overworldUI, combatUI, actOptionBList, itemOptionBList, enemySlot;
 
     // public List<PartySlot> partySlots;
@@ -47,13 +46,15 @@ public class BattleUiHandler : MonoBehaviour
     public TurnIndicator turnIndicator;
     public GameObject floatingTextPrefab;
     public TextMeshProUGUI enemyName;
-    private string selectedAction = "";
+    private string selectedAction = "", selectedTarget = null;
     CharStats enemyStats;
+    public TextMeshProUGUI damageButtonText;
     
     void OnEnable()
     {
         partyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         enemyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        enemyStatsAnimator .updateMode = AnimatorUpdateMode.UnscaledTime;
 
         currentEnemies = new List<CharStats>(L1Enemies.Values);
 
@@ -152,6 +153,7 @@ public class BattleUiHandler : MonoBehaviour
             }
             else if (!currentCombatant.IsEnemy)// Player turn
             {
+                damageButtonText.text = $"Attack:{currentCombatant.Attack}";
                 yield return PlayerTurn(currentCombatant);
             }
 
@@ -159,8 +161,10 @@ public class BattleUiHandler : MonoBehaviour
             if (CheckForBattleEnd())
             {
                 Debug.Log("Battle has ended!");
-                battleInProgress = false;
+
+                enemyUIAnimator.Play("Handy Stop");
                 EndEncounter();
+                battleInProgress = false;
                 yield break;
             }
 
@@ -177,13 +181,67 @@ public class BattleUiHandler : MonoBehaviour
         {
             yield return null;
         }
+        
+        while (selectedAction == "Heal" || selectedAction == "Defend")
+        {
+            canSelect = true;
+            selectedTarget = null;
+
+            while (selectedTarget == null)
+            {
+                yield return null;
+
+                // If the action is changed mid-selection, restart decision phase
+                if (selectedAction == "Attack")
+                {
+                    Debug.Log("Action switched to Attack. Restarting action selection...");
+                    break;  // Go back to the start of the loop
+                }
+            }
+
+            // If we broke out of the loop due to switching to Attack, restart the process
+            if (selectedAction == "Attack") continue;
+
+            Debug.Log($"Target chosen: {selectedTarget}");
+
+            if (selectedAction == "Defend")
+            {
+                Debug.Log($"{selectedTarget} is protected by {player.Name}!");
+            }
+            else if (selectedAction == "Heal")
+            {
+                CharStats healTarget = battleOrder.Find(member => member.Name == selectedTarget);
+                int healAmount = Random.Range(30, 50);
+                healTarget.Health += healAmount;
+
+                foreach (GameObject mem in partySlots)
+                {
+                    if (mem.GetComponent<PartySlot>().Name == healTarget.Name)
+                    {
+                        if (healTarget.Health > mem.GetComponent<PartySlot>().maxHealth)
+                        {
+                            healTarget.Health = (int)mem.GetComponent<PartySlot>().maxHealth;
+                        }
+                        mem.GetComponent<PartySlot>().UpdateHealthBar(healTarget.Health);
+                        mem.GetComponent<PartySlot>().ShowHealthChange();
+                        ShowFloatingText(healAmount, Color.green, mem.transform.position, true);
+                    }
+                }
+
+                Debug.Log($"{selectedTarget} was healed by {player.Name} for {healAmount} HP!");
+            }
+
+            canSelect = false;
+            break; // Move forward in the turn after completing Heal/Defend
+        }
 
         if (selectedAction == "Attack")
         {
-            enemyStats.Health -= player.Attack;
-            Debug.Log($"{player.Name} attacks {enemyStats.Name} for {player.Attack} damage!");
+            int playerDamage = (int)Random.Range(player.Attack*.8f, player.Attack*1.6f);
+            enemyStats.Health -= playerDamage;
+            Debug.Log($"{player.Name} attacks {enemyStats.Name} for {playerDamage} damage!");
 
-            ShowFloatingText(player.Attack, Color.red);
+            ShowFloatingText(playerDamage, Color.red, (enemySlot.transform.position+(new Vector3(-80f,0f,0f))), false);
 
             if (enemyStats.Health <= 0)
             {
@@ -191,14 +249,52 @@ public class BattleUiHandler : MonoBehaviour
                 battleOrder.Remove(enemyStats);
             }
         }
-        if (selectedAction == "Defend")
-        {
+
+        // if (selectedAction == "Defend" || selectedAction == "Heal")
+        // {
+        //     canSelect = true;
+
+        //     selectedTarget = null;
+        //     while (selectedTarget == null)
+        //     {
+        //         yield return null;
+                
+        //         if (selectedAction == "Attack")
+        //         {
+        //             Debug.Log("Action switched to Attack. Restarting turn...");
+        //             StartCoroutine(PlayerTurn(player));
+        //             yield break; // Stop current coroutine
+        //         }
+        //     }
+
+        //     Debug.Log($"Target chosen: {selectedTarget}");
             
-        }
-        if (selectedAction == "Heal")
-        {
-            
-        }
+        //     if (selectedAction == "Defend")
+        //     {
+        //         Debug.Log($"{selectedTarget} is protected by {player.Name}!");
+        //     }
+        //     if (selectedAction == "Heal")
+        //     {
+        //         CharStats healTarget = battleOrder.Find(member => member.Name == selectedTarget);
+        //         int healAmount = Random.Range(30, 50);
+        //         healTarget.Health+=100;
+
+        //         foreach (GameObject mem in partySlots) {
+        //             if (mem.GetComponent<PartySlot>().Name == healTarget.Name)
+        //                 {
+        //                     if (healTarget.Health > mem.GetComponent<PartySlot>().maxHealth) {
+        //                         healTarget.Health = (int)mem.GetComponent<PartySlot>().maxHealth;
+        //                         mem.GetComponent<PartySlot>().UpdateHealthBar(healTarget.Health);
+        //                         Debug.Log($"HEALTH EXCEEDED THE MAX, CURRENT HEALTH IS NOW {healTarget.Health}");
+        //                     } else {
+        //                         mem.GetComponent<PartySlot>().UpdateHealthBar(healTarget.Health);
+        //                     }
+        //                 }
+        //             }
+        //         Debug.Log($"{selectedTarget} was healed by {player.Name} for {healAmount} HP!");
+        //     }
+        //     canSelect = false;
+        // }
 
         enemySlot.GetComponent<EnemyHealthbar>().UpdateHealthBar(enemyStats.Health);
         foreach (GameObject mem in partySlots) {
@@ -206,12 +302,12 @@ public class BattleUiHandler : MonoBehaviour
         }
 
         Debug.Log($"Player chose {selectedAction}");
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(.5f);
     }
 
     private IEnumerator EnemyTurn(CharStats enemy)
     {
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(1f);
         // Select a random target from the player's party
         List<CharStats> playerParty = battleOrder.FindAll(c => !c.IsEnemy); // Exclude Will from selection
         if (playerParty.Count > 0)
@@ -219,16 +315,20 @@ public class BattleUiHandler : MonoBehaviour
             CharStats target = playerParty[Random.Range(0, playerParty.Count)];
 
             // Simulate attack
-            Debug.Log($"{enemy.Name} attacks {target.Name} for {enemy.Attack} damage!");
-            partyManager.TakeDamage(target.Name, enemy.Attack);
-            // partySlots.UpdateHealthBar(target.Health-enemy.Attack);
-            target.Health -= enemy.Attack;
-            foreach (GameObject mem in partySlots) {
-                if (mem.GetComponent<PartySlot>().Name == target.Name) {mem.GetComponent<PartySlot>().UpdateHealthBar(target.Health);}
+            int enemyDamage = (int)Random.Range(enemy.Attack*.6f, enemy.Attack*1.2f);
+            Debug.Log($"{enemy.Name} attacks {target.Name} for {enemyDamage} damage!");
+            partyManager.TakeDamage(target.Name, enemyDamage);
+            target.Health -= enemyDamage;
+            foreach (GameObject mem in partySlots)
+            {
+                if (mem.GetComponent<PartySlot>().Name == target.Name)
+                {
+                    mem.GetComponent<PartySlot>().UpdateHealthBar(target.Health);
+                    mem.GetComponent<PartySlot>().ShowHealthChange();
+                    ShowFloatingText(enemyDamage, Color.red, mem.transform.position, false);
+                    StartCoroutine(mem.GetComponent<PartySlot>().JutterHealthBar(0.2f, 10f));
+                }
             }
-
-            ShowFloatingText(enemy.Attack, Color.red);
-
             // Check if target is defeated
             if (target.Health <= 0)
             {
@@ -236,27 +336,43 @@ public class BattleUiHandler : MonoBehaviour
                 battleOrder.Remove(target);
             }
         }
-
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(.3f);
     }
 
-    void ShowFloatingText(int damage, Color color)
+    public void ReceiveTargetSelection(string targetName)
     {
+        selectedTarget = targetName;
+        Debug.Log($"Target selected: {selectedTarget}");
+    }
+    private IEnumerator WaitForTargetSelection(System.Action<string> callback)
+    {
+        string selectedTarget = null;
+        while (string.IsNullOrEmpty(selectedTarget))
         {
-            Vector3 spawnPosition = floatingTextPrefab.transform.position + new Vector3(0, 1.5f, 0);
-            GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity, GameObject.FindGameObjectWithTag("Combat UI").transform);
-            floatingText.SetActive(true);
-            floatingText.GetComponent<DamageIndicator>().SetText(damage.ToString(), color);
+            yield return null;
         }
+        callback(selectedTarget); // Return the selected name
     }
 
-    // Used to check whether all players or all enemies are dead
+
+    void ShowFloatingText(int damage, Color color, Vector3 targetTransform, bool ishealing)
+    {
+        Vector3 spawnPosition = targetTransform + new Vector3(0, 20f, 0);
+        GameObject floatingText = Instantiate(floatingTextPrefab, spawnPosition, Quaternion.identity, GameObject.FindGameObjectWithTag("Combat UI").transform);
+        floatingText.SetActive(true);
+        floatingText.GetComponent<DamageIndicator>().SetText(damage.ToString(), color);
+        floatingText.GetComponent<DamageIndicator>().isHealing = ishealing;
+        floatingText.GetComponent<DamageIndicator>().textMesh.color = color;
+    }
+
+
     private bool CheckForBattleEnd()
     {
         bool playersAlive = battleOrder.Exists(c => !c.IsEnemy);
         bool enemiesAlive = battleOrder.Exists(c => c.IsEnemy);
 
         return !playersAlive || !enemiesAlive;
+        // return false;
     }
 
     // Called when the battle should end. Use to transition back to overworld 
@@ -277,6 +393,8 @@ public class BattleUiHandler : MonoBehaviour
         itemOptionBList.SetActive(itemOption);
         overworldUI.SetActive(true);
         combatUI.SetActive(false);
+
+        turnIndicator.ClearTurnIndicators();
         
         // Switch back to environmental sounds
         AudioManager.Instance.CrossFadeMusicToZero(1f);
@@ -288,7 +406,14 @@ public class BattleUiHandler : MonoBehaviour
     public void OnActionButtonPressed(string action)
     {
         AudioManager.Instance.PlayUiSound("Ui_SelectButton");
+
+        if (selectedAction == "Heal" || selectedAction == "Defend"){
+            selectedTarget = null;
+            canSelect = false;
+        }
+
         selectedAction = action;
+        Debug.Log("Current Action: " + selectedAction);
     }
 
     public void Act()
@@ -311,7 +436,8 @@ public class BattleUiHandler : MonoBehaviour
                 partyUIAnimator.SetTrigger("Open");
                 actOption = true;
             }
-            actOptionBList.SetActive(actOption);
+            // actOptionBList.SetActive(actOption);
+            StartCoroutine(WaitForCloseThenToggle(actOptionBList, actOption));
             itemOptionBList.SetActive(itemOption);
         }
         
@@ -337,8 +463,10 @@ public class BattleUiHandler : MonoBehaviour
                 partyUIAnimator.SetTrigger("Open");
                 itemOption = true;
             }
+            
             actOptionBList.SetActive(actOption);
-            itemOptionBList.SetActive(itemOption);
+            // itemOptionBList.SetActive(itemOption);
+            StartCoroutine(WaitForCloseThenToggle(itemOptionBList, itemOption));
         }
         AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
     }
@@ -346,5 +474,36 @@ public class BattleUiHandler : MonoBehaviour
     {
         AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
         EndEncounter();
+    }
+
+    private IEnumerator WaitForCloseThenToggle(GameObject targetContent, bool state)
+    {
+        AnimatorStateInfo stateInfo = partyUIAnimator.GetCurrentAnimatorStateInfo(0);
+
+        // while (stateInfo.IsName("Slot Closed") && stateInfo.normalizedTime < 1.0f || stateInfo.IsName("Reset"))
+        // {
+        //     yield return null; // Wait for next frame
+        //     stateInfo = partyUIAnimator.GetCurrentAnimatorStateInfo(0); // Update state info
+
+        //     if (stateInfo.IsName("Slot Open")) {break;}
+        // }
+        if (!state)
+        {
+            while (!stateInfo.IsName("Slot Closed") || stateInfo.normalizedTime < 1.0f)
+            {
+                yield return null;
+                stateInfo = partyUIAnimator.GetCurrentAnimatorStateInfo(0);
+            }
+        } else // If opening, activate immediately when "Slot Open" starts
+        {
+            while ((stateInfo.IsName("Slot Closed") && stateInfo.normalizedTime < 1.0f) || stateInfo.IsName("Reset"))
+            {
+                yield return null;
+                stateInfo = partyUIAnimator.GetCurrentAnimatorStateInfo(0);
+
+                if (stateInfo.IsName("Slot Open")) {break;}
+            }
+        }
+        targetContent.SetActive(state);
     }
 }

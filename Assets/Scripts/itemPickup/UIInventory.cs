@@ -36,7 +36,7 @@ public class UIInventory : MonoBehaviour
         for (int i = 0; i < inventorySlotsAmount; i++)
         {
             UIItem item = Instantiate(itemPrefab,Vector3.zero, Quaternion.identity);
-            item.transform.SetParent(contentPanel);
+            item.transform.SetParent(contentPanel, false);
             listOfItems.Add(item);
             item.OnItemClick += HandleItemSelection;
         }
@@ -54,7 +54,7 @@ public class UIInventory : MonoBehaviour
         foreach (Survivor member in survivors.Values)
         {
             UIPartyMember person = Instantiate(memberPrefab, Vector3.zero, Quaternion.identity);
-            person.transform.SetParent(partyPanel);
+            person.transform.SetParent(partyPanel, false);
             listOfMembers.Add(person);
             person.OnItemClicked += HandlePartySelection;
 
@@ -64,7 +64,8 @@ public class UIInventory : MonoBehaviour
     public void AddPartyMember()
     {
         UIPartyMember person = Instantiate(memberPrefab, Vector3.zero, Quaternion.identity);
-        person.transform.SetParent(partyPanel);
+        person.transform.SetParent(partyPanel, false);
+        // person.transform.localScale = Vector3.one;
         listOfMembers.Add(person);
         person.OnItemClicked += HandlePartySelection;
 

@@ -14,8 +14,7 @@ public class TypeWriter : MonoBehaviour
 	[SerializeField] string leadingChar = "";
 	[SerializeField] bool leadingCharBeforeDelay = false;
 
-	public bool hasStartedTyping = false, isTextActive = false;
-	public bool isTyping = false, skipTyping = false;
+	public bool hasStartedTyping = false, isTyping = false, skipTyping = false;
 	public float textChirp;
 
 	public void StartTypewriter(string newText)
@@ -23,7 +22,6 @@ public class TypeWriter : MonoBehaviour
 		_tmpProText.text = "";
 		if (isTyping) StopAllCoroutines();
 		writer = newText;
-		StartCoroutine("TypeWriterTMP");
 	}
 
     IEnumerator TypeWriterTMP()
@@ -85,6 +83,8 @@ public class TypeWriter : MonoBehaviour
 		if (hasStartedTyping && !isTyping)
         {
             hasStartedTyping = false;
+			StartCoroutine("TypeWriterTMP");
+			
         }
     }
 }

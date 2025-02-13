@@ -76,4 +76,13 @@ public class TurnIndicator : MonoBehaviour
             yield return null; // Wait for the next frame
         }
     }
+    public void ClearTurnIndicators()
+    {
+        foreach (Image turnImage in turnOrderImages)
+        {
+            Destroy(turnImage.gameObject); // Destroy the GameObject of each turn indicator image
+        }
+        turnOrderImages.Clear(); // Clear the list of turn indicator images
+        targetPositions.Clear(); // Clear the list of target positions
+    }
 }
