@@ -1,4 +1,4 @@
-name: Lint Changes on ${{ github.ref }}
+name: Lint Changed Files
 on: push
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
