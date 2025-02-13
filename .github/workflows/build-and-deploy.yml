@@ -10,6 +10,8 @@ jobs:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-22.04
     environment: CI/CD to Itch
+    permissions:
+      pull-requests: write
     strategy:
       fail-fast: false
       matrix:
