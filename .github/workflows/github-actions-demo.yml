@@ -22,4 +22,6 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "${{ secrets.TEST_SECRET }}"
       - run: echo "${{ vars.ITCH_GAME }}"
+      - run: echo "${{ github.actor }}"
+      - run: echo "${{ github.triggering_actor }}"
 
