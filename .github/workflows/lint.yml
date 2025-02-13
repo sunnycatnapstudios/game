@@ -1,0 +1,17 @@
+name: Lint Changed Files
+on: push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  buildAndTestForLinuxBasedPlatforms:
+    name: Lint ${{ github.ref }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: super-linter/super-linter@v7.2.1
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          EDITORCONFIG_FILE_NAME: .editorconfig
