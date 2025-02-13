@@ -140,9 +140,7 @@ public class UIInventory : MonoBehaviour
 
     private void HandleItemSelection(UIItem item)
     {
-       
-           
-            Item held = item.getItem();
+        Item held = item.getItem();
         if (held != null)
         {
             descriptionUI.SetDescription(held.GetName(), held.GetDesc());
@@ -153,7 +151,7 @@ public class UIInventory : MonoBehaviour
             if (item.getItem().getUsable() == true)
             {
                 DisplayButton();
-                selectedItem = item.getItem();
+                selectedItem = item;
             }
         }
         
