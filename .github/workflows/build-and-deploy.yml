@@ -68,22 +68,18 @@ jobs:
             const botComment = comments.find(comment => comment.user.id === 41898282)
             const commentBody = "https://${{ vars.ITCH_USER }}.itch.io/${{ vars.ITCH_GAME }}-${{ github.actor }}"
 
-            if (context.payload.pull_request.head.repo.full_name !== 'actions/github-script') {
-              console.log('Not attempting to write comment on PR from fork');
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              })
             } else {
-              if (botComment) {
-                await github.rest.issues.updateComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  comment_id: botComment.id,
-                  body: commentBody
-                })
-              } else {
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: context.payload.number,
-                  body: commentBody
-                })
-              }
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.number,
+                body: commentBody
+              })
             }
