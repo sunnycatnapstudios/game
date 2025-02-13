@@ -1,11 +1,10 @@
-name: Lint Changed Files
+name: Lint Changes on ${{ github.ref }}
 on: push
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  buildAndTestForLinuxBasedPlatforms:
-    name: Lint ${{ github.ref }}
+  Lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,4 +13,4 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-        run: dotnet format --verify-no-changes --verbosity diagnostic --include `git diff --name-only HEAD main`
+      - run: dotnet format --verify-no-changes --verbosity diagnostic --include `git diff --name-only HEAD main`
