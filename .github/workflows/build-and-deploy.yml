@@ -60,5 +60,5 @@ jobs:
               owner: context.repo.owner,
               issue_number: context.issue.number,
               repo: context.repo.repo,
-              body: https://${{ vars.ITCH_USER }}.itch.io/${{ vars.ITCH_GAME }}
+              body: "https://${{ vars.ITCH_USER }}.itch.io/${{ vars.ITCH_GAME }}"
             })
