@@ -144,13 +144,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partyCount: 0
   partyMemberTemplate: {fileID: 7390693599374058831}
-  partyMembers: []
+  player: {fileID: 11400000, guid: 75a6896792c93e54891ca83b5446b57f, type: 2}
   partyAnimControllers:
   - {fileID: 9100000, guid: b7ebaf1ad5021b94488991b85cf9c177, type: 2}
   - {fileID: 9100000, guid: 4114f537b7ab6d04b9e5a76a756ae683, type: 2}
   - {fileID: 9100000, guid: ffcf3fd7ed2c1024ab6b6aad59d0e314, type: 2}
   - {fileID: 9100000, guid: 9b454cd6a9bc678428b46c5d51ed0f67, type: 2}
   - {fileID: 9100000, guid: 9a882ddb0f3cb7b43903c67235503f7e, type: 2}
+  currentPartyMembers: []
   spawnedPartyMembers: []
 --- !u!114 &210012170400930956
 MonoBehaviour:
