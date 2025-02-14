@@ -21,6 +21,14 @@ public class Survivor : ScriptableObject
     private bool isCombatant;
     public bool IsCombatant { get { return isCombatant; } }
 
+    private int curHealth;
+    public int CurHealth { get { return curHealth; } set { curHealth = value; } }
+
+    public void Start() {
+        curHealth = health;
+    }
+
+
     [SerializeField]
     public RuntimeAnimatorController Animcontroller;
 
@@ -32,15 +40,11 @@ public class Survivor : ScriptableObject
     {
         return health;
     }
-    public void Start()
-    {
-        curHealth = health;
-    }
+    
 
 
 
-    private int curHealth;
-    public int CurHealth { get { return curHealth; } set { curHealth = value; } }
+   
 
     public void AddHealth(int health)
     {
@@ -56,7 +60,13 @@ public class Survivor : ScriptableObject
     public Sprite GetWalkingSprite;
 
     public Sprite GetSprite() { return Sprite; }
-    
+
+    public override string ToString() {
+
+
+        return $"{name}: hp:{curHealth}/{health} dmg:{damage}";
+    }
+
 
 
 

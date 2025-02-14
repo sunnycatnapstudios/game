@@ -71,6 +71,7 @@ public class PartyManager : MonoBehaviour
     {
         if (!currentPartyMembers.Contains(member))
         {
+            member.CurHealth = member.Health;
             currentPartyMembers.Add(member);
             Debug.Log($"{member.GetName()} has joined the party!");
             UpdatePartyCount();
@@ -137,6 +138,7 @@ public class PartyManager : MonoBehaviour
 //         AddToParty("MemberC");
 //         AddToParty("MemberD");
 //         AddToParty("MemberE");
+        player.CurHealth = player.Health;
     }
 
     void Update()

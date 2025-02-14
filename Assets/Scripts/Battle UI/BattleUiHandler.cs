@@ -325,6 +325,7 @@ public class BattleUiHandler : MonoBehaviour
                 }
             }
             // Check if target is defeated
+            Debug.Log(guyGettingHit.ToString());
             if (guyGettingHit.Health <= 0)
             {
                 Debug.Log($"{target.Name} has been defeated!");
