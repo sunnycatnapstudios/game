@@ -307,7 +307,13 @@ public class BattleUiHandler : MonoBehaviour
         if (playerParty.Count > 0)
         {
             CharStats target = playerParty[Random.Range(0, playerParty.Count)];
-            Survivor guyGettingHit = partyManager.currentPartyMembers[0];
+            Survivor guyGettingHit;
+            if (target.Name == partyManager.getPlayer().Name) {
+
+                 guyGettingHit = partyManager.getPlayer();
+            } else {
+                 guyGettingHit = partyManager.currentPartyMembers.Find(c=>c.Name ==target.Name);
+            }
 
             // Simulate attack
             int enemyDamage = (int)Random.Range(enemy.Attack*.6f, enemy.Attack*1.2f);
