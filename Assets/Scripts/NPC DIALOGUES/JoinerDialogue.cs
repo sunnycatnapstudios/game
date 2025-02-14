@@ -31,10 +31,10 @@ public class JoinerDialogue : MonoBehaviour
         Debug.Log("got hook");
         PartyManager partyManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>();
         partyManager.AddToParty(survivor);
-        Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        
 
         
-        inventory.AddMember(survivor);
+        
         Destroy(gameObject);
     }
 }

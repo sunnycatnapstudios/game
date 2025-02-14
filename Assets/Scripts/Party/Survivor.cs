@@ -32,7 +32,7 @@ public class Survivor : ScriptableObject
     {
         return health;
     }
-    public Survivor()
+    public void Start()
     {
         curHealth = health;
     }

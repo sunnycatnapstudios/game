@@ -35,7 +35,7 @@ public class DamselDialogue : MonoBehaviour
         Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 
 
-        inventory.AddMember(Survivor);
+       
 
 
         Destroy(gameObject);

@@ -313,7 +313,7 @@ public class BattleUiHandler : MonoBehaviour
             int enemyDamage = (int)Random.Range(enemy.Attack*.6f, enemy.Attack*1.2f);
             Debug.Log($"{enemy.Name} attacks {target.Name} for {enemyDamage} damage!");
             partyManager.TakeDamage(guyGettingHit, enemyDamage);
-            target.Health -= enemyDamage;
+            //target.Health -= enemyDamage;
             foreach (GameObject mem in partySlots)
             {
                 if (mem.GetComponent<PartySlot>().Name == target.Name)
@@ -325,7 +325,7 @@ public class BattleUiHandler : MonoBehaviour
                 }
             }
             // Check if target is defeated
-            if (target.Health <= 0)
+            if (guyGettingHit.Health <= 0)
             {
                 Debug.Log($"{target.Name} has been defeated!");
                 battleOrder.Remove(target);
