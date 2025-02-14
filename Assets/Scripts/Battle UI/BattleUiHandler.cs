@@ -69,8 +69,8 @@ public class BattleUiHandler : MonoBehaviour
         CharStats playerStats = new CharStats(player.Name, player.Damage, player.Health, false);
         //CharStats playerStats = new CharStats("player.Name", 21, 321, false);
         battleOrder.Add(playerStats);
-        partySlots[0].GetComponent<PartySlot>().Name = "player.Name";
-        partySlots[0].GetComponent<PartySlot>().SetHealth(321);
+        partySlots[0].GetComponent<PartySlot>().Name = player.Name;
+        partySlots[0].GetComponent<PartySlot>().SetHealth(player.CurHealth);
         partySlots[0].GetComponent<PartySlot>().profile.sprite = player.GetSprite();
 
         int slotIndex = 1;
