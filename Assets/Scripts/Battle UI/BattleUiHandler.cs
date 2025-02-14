@@ -63,7 +63,7 @@ public class BattleUiHandler : MonoBehaviour
     public IEnumerator StartBattle()
     {
         battleOrder.Clear();
-
+        partyManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>();
         Survivor player = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>().getPlayer();
             Debug.Log(player);
         // CharStats playerStats = new CharStats(player.Name, player.Damage, player.Health, false);

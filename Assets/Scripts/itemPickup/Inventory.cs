@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        inventoryWindow = GameObject.FindGameObjectWithTag("Overworld UI").GetComponent<UIInventory>();
         inventory = new Dictionary<string, Slot>();
         itemsInRange = new List<GameObject>();
         inventoryWindow.InitializeInventory(14);
