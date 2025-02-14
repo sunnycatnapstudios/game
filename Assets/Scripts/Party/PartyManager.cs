@@ -29,6 +29,8 @@ public class PartyManager : MonoBehaviour
     public List<GameObject> spawnedPartyMembers = new List<GameObject>();
    
 
+
+   
     void AssignAnimator(GameObject memberObject,Survivor member)
     {
         Animator anim = memberObject.GetComponent<Animator>();
