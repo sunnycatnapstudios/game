@@ -38,7 +38,7 @@ public class InteractPrompt : MonoBehaviour
 
     [Serializable]
     private struct AudioClips {
-        public AudioClip sfxPickup;
+        public AudioClip sfxOnInteract;
     }
     [SerializeField] private AudioClips audioClips;
 
@@ -157,7 +157,7 @@ public class InteractPrompt : MonoBehaviour
                 interactCount++;
                 if (CompareTag("Interactable"))
                 {
-                    AudioManager.Instance.PlayUiSound(audioClips.sfxPickup);
+                    AudioManager.Instance.PlayUiSound(audioClips.sfxOnInteract);
                     Debug.Log($"YEP, YOU'VE TAPPED {this.name} {interactCount} TIMES!!!");
                 }
                 else if (CompareTag("NPC"))
