@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class CharStats
 {
@@ -49,7 +51,19 @@ public class BattleUiHandler : MonoBehaviour
     private string selectedAction = "", selectedTarget = null;
     CharStats enemyStats;
     public TextMeshProUGUI damageButtonText;
-    
+
+    [Serializable]
+    private struct AudioClips {
+        public AudioClip battleMusic;
+        [HideInInspector] public AudioClip oldAmbience;      // Use to swap back to old scene
+        [HideInInspector] public AudioClip oldMusic;         // Use to swap back to old scene
+        public AudioClip sfxBell;
+        public AudioClip uiSelected;
+        public AudioClip uiUnselected;
+        public AudioClip uiDrawer;
+    }
+    [SerializeField] private AudioClips audioClips;
+
     void OnEnable()
     {
         partyUIAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
@@ -109,11 +123,14 @@ public class BattleUiHandler : MonoBehaviour
         battleInProgress = true;
         turnIndicator.SetupTurnIndicator(battleOrder.Count);
 
-        // Switch to new battle music
-        AudioManager.Instance.PlayUiSound("Sfx_BattleBell_Short");
+        // Switch to new music
+        audioClips.oldAmbience = AudioManager.Instance.AmbienceCurrentClip;
+        audioClips.oldMusic = AudioManager.Instance.MusicCurrentClip;
+
+        AudioManager.Instance.PlayUiSound(audioClips.sfxBell);
         AudioManager.Instance.CrossFadeAmbienceToZero(1f);
-        AudioManager.Instance.CrossFadeMusicSound("Music_JustSynth", 2f, 1f, 1f);
-            
+        AudioManager.Instance.CrossFadeMusicSound(audioClips.battleMusic, 2f, 1f, 1f);
+
         yield return new WaitForSecondsRealtime(2.0f);
         StartCoroutine(TurnLoop());
     }
@@ -126,7 +143,7 @@ public class BattleUiHandler : MonoBehaviour
         }
         return list;
     }
-    
+
     private IEnumerator TurnLoop()
     {
 
@@ -163,7 +180,7 @@ public class BattleUiHandler : MonoBehaviour
             }
 
             currentTurnIndex++;
-            
+
         }
     }
     private IEnumerator PlayerTurn(CharStats player)
@@ -175,7 +192,7 @@ public class BattleUiHandler : MonoBehaviour
         {
             yield return null;
         }
-        
+
         while (selectedAction == "Heal" || selectedAction == "Defend")
         {
             canSelect = true;
@@ -252,7 +269,7 @@ public class BattleUiHandler : MonoBehaviour
         //     while (selectedTarget == null)
         //     {
         //         yield return null;
-                
+
         //         if (selectedAction == "Attack")
         //         {
         //             Debug.Log("Action switched to Attack. Restarting turn...");
@@ -262,7 +279,7 @@ public class BattleUiHandler : MonoBehaviour
         //     }
 
         //     Debug.Log($"Target chosen: {selectedTarget}");
-            
+
         //     if (selectedAction == "Defend")
         //     {
         //         Debug.Log($"{selectedTarget} is protected by {player.Name}!");
@@ -377,7 +394,7 @@ public class BattleUiHandler : MonoBehaviour
         // return false;
     }
 
-    // Called when the battle should end. Use to transition back to overworld 
+    // Called when the battle should end. Use to transition back to overworld
     private void EndEncounter()
     {
         if (partyUIAnimator != null)
@@ -397,17 +414,17 @@ public class BattleUiHandler : MonoBehaviour
         combatUI.SetActive(false);
 
         turnIndicator.ClearTurnIndicators();
-        
-        // Switch back to environmental sounds
-        AudioManager.Instance.CrossFadeMusicToZero(1f);
-        AudioManager.Instance.CrossFadeAmbienceSound("Ambient_Forest", 1f, 1f, 1f);
-        
+
+        // Switch back to original sounds
+        AudioManager.Instance.CrossFadeAmbienceSound(audioClips.oldAmbience, 1f, 1f, 1f);
+        AudioManager.Instance.CrossFadeMusicSound(audioClips.oldMusic, 1f, 1f, 1f);
+
         Time.timeScale = 1;
     }
-    
+
     public void OnActionButtonPressed(string action)
     {
-        AudioManager.Instance.PlayUiSound("Ui_SelectButton");
+        AudioManager.Instance.PlayUiSound(audioClips.uiSelected);
 
         if (selectedAction == "Heal" || selectedAction == "Defend"){
             selectedTarget = null;
@@ -442,8 +459,8 @@ public class BattleUiHandler : MonoBehaviour
             StartCoroutine(WaitForCloseThenToggle(actOptionBList, actOption));
             itemOptionBList.SetActive(itemOption);
         }
-        
-        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
+
+        AudioManager.Instance.PlayUiSound(audioClips.uiDrawer);
     }
     public void Item()
     {
@@ -465,16 +482,16 @@ public class BattleUiHandler : MonoBehaviour
                 partyUIAnimator.SetTrigger("Open");
                 itemOption = true;
             }
-            
+
             actOptionBList.SetActive(actOption);
             // itemOptionBList.SetActive(itemOption);
             StartCoroutine(WaitForCloseThenToggle(itemOptionBList, itemOption));
         }
-        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
+        AudioManager.Instance.PlayUiSound(audioClips.uiDrawer);
     }
     public void Escape()
     {
-        AudioManager.Instance.PlayUiSound("Ui_SelectDrawer");
+        AudioManager.Instance.PlayUiSound(audioClips.uiDrawer);
         EndEncounter();
     }
 

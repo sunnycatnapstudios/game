@@ -574,6 +574,11 @@ MonoBehaviour:
   _isHighlighted: 0
   battleUiHandler: {fileID: 0}
   playerHealthIndicator: {fileID: 0}
+  defaultImagePosition: {x: 0, y: 0, z: 0}
+  initialBarPosition: {x: 0, y: 0, z: 0}
+  _isHighlighted: 0
+  battleUiHandler: {fileID: 0}
+  playerHealthIndicator: {fileID: 0}
 --- !u!1 &7901107716096265686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1614,14 @@ MonoBehaviour:
   floatingTextPrefab: {fileID: 8117628085070202528}
   enemyName: {fileID: 7901107716246076664}
   damageButtonText: {fileID: 0}
+  audioClips:
+    battleMusic: {fileID: 8300000, guid: 32bf3b4052153f15aaae718c6ff2a8ba, type: 3}
+    oldAmbience: {fileID: 0}
+    oldMusic: {fileID: 0}
+    sfxBell: {fileID: 8300000, guid: a6bc35b0ac6c5da2b9d9c7062b2506d5, type: 3}
+    uiSelected: {fileID: 8300000, guid: 1f1f7aee441eb6c9a8d68cbb546ce7b0, type: 3}
+    uiUnselected: {fileID: 8300000, guid: 1f1f7aee441eb6c9a8d68cbb546ce7b0, type: 3}
+    uiDrawer: {fileID: 8300000, guid: b42079d2d16c1705d8fda510d7cc8624, type: 3}
 --- !u!114 &7901107716330422356
 MonoBehaviour:
   m_ObjectHideFlags: 0

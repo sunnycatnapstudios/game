@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelTransition : MonoBehaviour
-{
+public class LevelTransition : MonoBehaviour {
     private string tagTarget = "Player";
+
     // public Scene sceneToLoad;
     public GameObject transitionAnimator;
 
@@ -18,11 +19,17 @@ public class LevelTransition : MonoBehaviour
     public Vector3 refPosition;
     public bool changedLevel, inTransition;
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    [Serializable]
+    private struct AudioClips {
+        public AudioClip sfxEnterTransition;
+        public AudioClip sfxExitTransition;
+    }
 
+    [SerializeField] private AudioClips audioClips;
+
+    private void OnTriggerEnter2D(Collider2D other) {
         // if (other.CompareTag(tagTarget)&& !inTransition)
-        if (other.CompareTag(tagTarget))
-        {
+        if (other.CompareTag(tagTarget)) {
             // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
             {
                 Debug.Log(tagTarget + " has entered " + name);
@@ -31,55 +38,52 @@ public class LevelTransition : MonoBehaviour
                 Player.GetComponent<Player>().movePoint.transform.position += entranceDirection;
                 Player.GetComponent<Player>().isPlayerInControl = true;
                 Player.GetComponent<Player>().moveSpeed = 3f;
-                
+
                 // inTransition = true;
                 sceneAnimation.SetTrigger("Leave Scene");
-                AudioManager.Instance.PlaySound("Sfx_EnterLevel");
+                AudioManager.Instance.PlaySound(audioClips.sfxEnterTransition);
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag(tagTarget))
-        {
+        if (other.CompareTag(tagTarget)) {
             // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
             {
-                Debug.Log(tagTarget + " has left "+ name);
+                Debug.Log(tagTarget + " has left " + name);
                 Player.GetComponent<Player>().isPlayerInControl = false;
-                
-                AudioManager.Instance.PlaySound("Sfx_ExitLevel");
+
+                AudioManager.Instance.PlaySound(audioClips.sfxExitTransition);
                 changedLevel = true;
             }
         }
     }
 
-    void ChangeLevel()
-    {
+    void ChangeLevel() {
         // if (CompareTag("Same Level") && !inTransition)
         // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
         {
             sceneAnimation.SetTrigger("Enter Scene");
-            
-            Player.GetComponent<Player>().movePoint.transform.position = exitLocation+exitDirection;
+
+            Player.GetComponent<Player>().movePoint.transform.position = exitLocation + exitDirection;
             Player.transform.position = exitLocation;
-            
+
             int i = 0;
-            foreach (GameObject partyMember in Player.GetComponent<PartyManager>().spawnedPartyMembers)
-            {
-                partyMember.transform.position = exitLocation+exitDirection;
-                Player.GetComponent<Player>().moveHist[i] = exitLocation+exitDirection; i++;
+            foreach (GameObject partyMember in Player.GetComponent<PartyManager>().spawnedPartyMembers) {
+                partyMember.transform.position = exitLocation + exitDirection;
+                Player.GetComponent<Player>().moveHist[i] = exitLocation + exitDirection;
+                i++;
             }
 
             Player.GetComponent<Player>().isPlayerInControl = false;
-            
+
             changedLevel = false;
 
             // inTransition = true;
         }
     }
 
-    void Start()
-    {
+    void Start() {
         // if (sceneToLoad == null) {
         //     Debug.Log(this.name + "has no scene to load");
         // }
@@ -91,12 +95,10 @@ public class LevelTransition : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    void Update() {
         // if (CompareTag("Same Level")||CompareTag("Battle UI Level"))
         {
-            if (changedLevel && !sceneAnimation.GetCurrentAnimatorStateInfo(0).IsName("Scene Transition In"))
-            {
+            if (changedLevel && !sceneAnimation.GetCurrentAnimatorStateInfo(0).IsName("Scene Transition In")) {
                 ChangeLevel();
             }
         }
