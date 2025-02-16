@@ -22674,8 +22674,9 @@ MonoBehaviour:
   changedLevel: 0
   inTransition: 0
   audioClips:
-    sfxEnterTransition: {fileID: 0}
-    sfxExitTransition: {fileID: 0}
+    sfxEnterTransition: {fileID: 8300000, guid: b65ad0b7590da48d480603a1c3ea23f3,
+      type: 3}
+    sfxExitTransition: {fileID: 8300000, guid: 30a48f6110694570b8b46e0f4da417fa, type: 3}
 --- !u!483693784 &168759583
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -22936,7 +22937,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &181162047
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23495,7 +23496,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &271334415
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23845,8 +23846,9 @@ MonoBehaviour:
   changedLevel: 0
   inTransition: 0
   audioClips:
-    sfxEnterTransition: {fileID: 0}
-    sfxExitTransition: {fileID: 0}
+    sfxEnterTransition: {fileID: 8300000, guid: b65ad0b7590da48d480603a1c3ea23f3,
+      type: 3}
+    sfxExitTransition: {fileID: 8300000, guid: 30a48f6110694570b8b46e0f4da417fa, type: 3}
 --- !u!114 &336822359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24237,7 +24239,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &459218824
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25591,8 +25593,9 @@ MonoBehaviour:
   changedLevel: 0
   inTransition: 0
   audioClips:
-    sfxEnterTransition: {fileID: 0}
-    sfxExitTransition: {fileID: 0}
+    sfxEnterTransition: {fileID: 8300000, guid: b65ad0b7590da48d480603a1c3ea23f3,
+      type: 3}
+    sfxExitTransition: {fileID: 8300000, guid: 30a48f6110694570b8b46e0f4da417fa, type: 3}
 --- !u!1 &826893598
 GameObject:
   m_ObjectHideFlags: 0
@@ -32497,7 +32500,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &1047770476
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32884,8 +32887,9 @@ MonoBehaviour:
   changedLevel: 0
   inTransition: 0
   audioClips:
-    sfxEnterTransition: {fileID: 0}
-    sfxExitTransition: {fileID: 0}
+    sfxEnterTransition: {fileID: 8300000, guid: b65ad0b7590da48d480603a1c3ea23f3,
+      type: 3}
+    sfxExitTransition: {fileID: 8300000, guid: 30a48f6110694570b8b46e0f4da417fa, type: 3}
 --- !u!1001 &1087248791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33252,7 +33256,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!50 &1166367098
 Rigidbody2D:
   serializedVersion: 4
@@ -33887,7 +33891,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &1427184478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35742,7 +35746,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &1818800190
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35924,8 +35928,9 @@ MonoBehaviour:
   changedLevel: 0
   inTransition: 0
   audioClips:
-    sfxEnterTransition: {fileID: 0}
-    sfxExitTransition: {fileID: 0}
+    sfxEnterTransition: {fileID: 8300000, guid: b65ad0b7590da48d480603a1c3ea23f3,
+      type: 3}
+    sfxExitTransition: {fileID: 8300000, guid: 30a48f6110694570b8b46e0f4da417fa, type: 3}
 --- !u!483693784 &1859029253
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -36186,7 +36191,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &1887495468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36799,7 +36804,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &2013483584
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40224,7 +40229,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 0}
 --- !u!212 &2046889728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -45422,8 +45427,9 @@ MonoBehaviour:
   changedLevel: 0
   inTransition: 0
   audioClips:
-    sfxEnterTransition: {fileID: 0}
-    sfxExitTransition: {fileID: 0}
+    sfxEnterTransition: {fileID: 8300000, guid: b65ad0b7590da48d480603a1c3ea23f3,
+      type: 3}
+    sfxExitTransition: {fileID: 8300000, guid: 30a48f6110694570b8b46e0f4da417fa, type: 3}
 --- !u!4 &210012169496756639
 Transform:
   m_ObjectHideFlags: 0
@@ -45761,7 +45767,7 @@ MonoBehaviour:
   reloadSpeed: 0.1
   audioClips:
     sfxDrawSlingshot: {fileID: 0}
-    sfxBulletShot: {fileID: 0}
+    sfxBulletShot: {fileID: 8300000, guid: 23802cc61f418c348b956e69d407d8e0, type: 3}
 --- !u!4 &396053557346313690
 Transform:
   m_ObjectHideFlags: 0
@@ -46227,7 +46233,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 8300000, guid: 23802cc61f418c348b956e69d407d8e0, type: 3}
 --- !u!212 &3299673890537269110
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46317,7 +46323,7 @@ MonoBehaviour:
   dialogueFinished: 0
   NPCDialogueHandler: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxOnInteract: {fileID: 8300000, guid: 23802cc61f418c348b956e69d407d8e0, type: 3}
 --- !u!61 &3299673890677685201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52356,7 +52362,7 @@ MonoBehaviour:
   test1: {fileID: 0}
   test2: {fileID: 0}
   audioClips:
-    sfxPickup: {fileID: 0}
+    sfxPickup: {fileID: 8300000, guid: 23802cc61f418c348b956e69d407d8e0, type: 3}
 --- !u!222 &7251264088389145945
 CanvasRenderer:
   m_ObjectHideFlags: 0
