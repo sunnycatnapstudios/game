@@ -574,6 +574,11 @@ MonoBehaviour:
   _isHighlighted: 0
   battleUiHandler: {fileID: 0}
   playerHealthIndicator: {fileID: 0}
+  defaultImagePosition: {x: 0, y: 0, z: 0}
+  initialBarPosition: {x: 0, y: 0, z: 0}
+  _isHighlighted: 0
+  battleUiHandler: {fileID: 0}
+  playerHealthIndicator: {fileID: 0}
 --- !u!1 &7901107716096265686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,7 +1599,8 @@ MonoBehaviour:
   - {fileID: 7901107715771790225}
   - {fileID: 7901107715881914211}
   - {fileID: 7901107716459336698}
-  partyManager: {fileID: 0}
+  partyManager: {fileID: 8920071011522045586, guid: ccfc5b2903162cea5bf8daca0154eb07,
+    type: 3}
   currentTurnIndex: 0
   profileImages:
   - {fileID: 6976219667641568234, guid: d068f37a9b8556241a344075120966b1, type: 3}

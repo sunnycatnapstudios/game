@@ -27,6 +27,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        //inventoryWindow = GameObject.FindWithTag("Inventory").GetComponentInChildren<UIInventory>();
         inventory = new Dictionary<string, Slot>();
         itemsInRange = new List<GameObject>();
         inventoryWindow.InitializeInventory(14);
@@ -38,7 +39,7 @@ public class Inventory : MonoBehaviour
             survivors.Add(test2.GetName(), test2);
 
         }
-        inventoryWindow.InitializeParty(survivors);
+        inventoryWindow.InitializeParty();
 
 
 
@@ -58,11 +59,11 @@ public class Inventory : MonoBehaviour
             itemSlot.incCount();
         }
     }
-    public void AddMember(Survivor survivor)
-    {
-        survivors.Add(survivor.GetName(), survivor);
-        inventoryWindow.AddPartyMember();
-    }
+    //public void AddMember(Survivor survivor)
+    //{
+    //    survivors.Add(survivor.GetName(), survivor);
+    //    inventoryWindow.AddPartyMember();
+    //}
 
     public bool hasItemByName(string name) {
         return inventory.ContainsKey(name);
@@ -121,7 +122,7 @@ public class Inventory : MonoBehaviour
             //Debug.Log(timer.ToString());
             if (inventoryWindow.isActiveAndEnabled == false)
             {
-                inventoryWindow.Show(inventory,survivors);
+                inventoryWindow.Show(inventory);
             }
             else
             {
