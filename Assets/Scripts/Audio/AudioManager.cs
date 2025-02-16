@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour {
 
     [Header("Audio Sources")] // Audio Source game objects within the scene
     public AudioSource audioSource; // Source for sound effects (sfx), including the UI
+
     public AudioSource uiAudioSource; // Source for the UI sfx. Separate from general sound source
     public DoubleAudioSource ambienceDoubleSource; // Double source for ambient sounds
     public DoubleAudioSource musicDoubleSource; // Double source for music sounds
@@ -108,23 +109,18 @@ public class AudioManager : MonoBehaviour {
 
     // For fetching the current/other clip in the sources
     public AudioClip AmbienceCurrentClip {
-        get {
-            return ambienceDoubleSource.CurrentClip;
-        }
+        get { return ambienceDoubleSource.CurrentClip; }
     }
+
     public AudioClip AmbienceOtherClip {
-        get {
-            return ambienceDoubleSource.OtherClip;
-        }
+        get { return ambienceDoubleSource.OtherClip; }
     }
+
     public AudioClip MusicCurrentClip {
-        get {
-            return musicDoubleSource.CurrentClip;
-        }
+        get { return musicDoubleSource.CurrentClip; }
     }
+
     public AudioClip MusicOtherClip {
-        get {
-            return musicDoubleSource.OtherClip;
-        }
+        get { return musicDoubleSource.OtherClip; }
     }
 }

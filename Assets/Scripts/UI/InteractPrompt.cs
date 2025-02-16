@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InteractPrompt : MonoBehaviour
-{
+public class InteractPrompt : MonoBehaviour {
     public LayerMask playerLayer;
     public Player player;
     private float interactRange = 1.5f;
@@ -40,9 +39,11 @@ public class InteractPrompt : MonoBehaviour
     private struct AudioClips {
         public AudioClip sfxOnInteract;
     }
+
     [SerializeField] private AudioClips audioClips;
 
-    void OnDrawGizmos() { // Draws a Debug for NPC interact radius
+    void OnDrawGizmos() {
+        // Draws a Debug for NPC interact radius
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, interactRange);
     }
@@ -55,32 +56,36 @@ public class InteractPrompt : MonoBehaviour
     //     }
     // }
 
-    void OpenDialogue(string text)
-    {
+    void OpenDialogue(string text) {
         // dialogueBox.SetActive(true);
         bodyTypeWriter.skipTyping = false;
         dialogueAnimator.SetTrigger("SlideIn");
         screenPanelAnimator.SetTrigger("Darken Screen");
         bodyTypeWriter.hasStartedTyping = true;
 
-        if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
-        else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
+        if (bodyTypeWriter != null) {
+            bodyTypeWriter.StartTypewriter(text);
+        } else {
+            dialogueText.text = text;
+            Debug.LogWarning("Typewriter isn't attached");
+        } // If typewriter isn't active
 
         isDialogueOpen = true;
     }
 
-    void UpdateDialogue(string text)
-    {
+    void UpdateDialogue(string text) {
         bodyTypeWriter.skipTyping = false;
         bodyTypeWriter.hasStartedTyping = true;
-        if (bodyTypeWriter != null) {bodyTypeWriter.StartTypewriter(text);}
-        else {dialogueText.text = text; Debug.LogWarning("Typewriter isn't attached");} // If typewriter isn't active
+        if (bodyTypeWriter != null) {
+            bodyTypeWriter.StartTypewriter(text);
+        } else {
+            dialogueText.text = text;
+            Debug.LogWarning("Typewriter isn't attached");
+        } // If typewriter isn't active
     }
 
-    void CloseDialogue()
-    {
-        if (isDialogueOpen)
-        {
+    void CloseDialogue() {
+        if (isDialogueOpen) {
             dialogueAnimator.ResetTrigger("SlideIn");
             screenPanelAnimator.ResetTrigger("Darken Screen");
             dialogueAnimator.Play("Dialogue Disappear");
@@ -93,16 +98,13 @@ public class InteractPrompt : MonoBehaviour
         }
     }
 
-    IEnumerator DeactivateAfterDelay(float delay)
-    {
+    IEnumerator DeactivateAfterDelay(float delay) {
         yield return new WaitForSeconds(delay);
         // charProfile.sprite = null;
     }
 
-    void Start()
-    {
+    void Start() {
         if (CompareTag("NPC")) {
-
             nameText = GameObject.FindGameObjectWithTag("Name Card").GetComponent<TMP_Text>();
             dialogueText = GameObject.FindGameObjectWithTag("Dialogue Text").GetComponent<TMP_Text>();
             charProfile = GameObject.FindGameObjectWithTag("Character Profile").GetComponent<Image>();
@@ -125,75 +127,78 @@ public class InteractPrompt : MonoBehaviour
         // }
     }
 
-    void Update()
-    {
+    void Update() {
         bool playerInRange = Physics2D.OverlapCircle(transform.position, interactRange, playerLayer);
 
-        if (playerInRange)
-        {
-            if (currentPopUp == null)
-            {
-                currentPopUp = Instantiate(popUpPrefab, Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f), Quaternion.identity, GameObject.FindGameObjectWithTag("Overworld UI").transform);
+        if (playerInRange) {
+            if (currentPopUp == null) {
+                currentPopUp = Instantiate(popUpPrefab,
+                    Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f), Quaternion.identity,
+                    GameObject.FindGameObjectWithTag("Overworld UI").transform);
                 currentPopUp.transform.SetSiblingIndex(0);
                 popUpText = currentPopUp.GetComponentInChildren<TMP_Text>();
                 popUpAnimator = currentPopUp.GetComponent<Animator>();
             } else {
-                currentPopUp.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f);
+                currentPopUp.transform.position =
+                    Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f);
             }
 
-            if (currentInteractBox == null && CompareTag("Interactable"))
-            {
+            if (currentInteractBox == null && CompareTag("Interactable")) {
                 if (Input.GetKeyDown(KeyCode.E)) {
-                    currentInteractBox = Instantiate(interactBoxPrefab, Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.7f), Quaternion.identity, GameObject.FindGameObjectWithTag("Overworld UI").transform);
+                    currentInteractBox = Instantiate(interactBoxPrefab,
+                        Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.7f), Quaternion.identity,
+                        GameObject.FindGameObjectWithTag("Overworld UI").transform);
                     interactBoxText = currentInteractBox.GetComponentInChildren<TMP_Text>();
                     interactBoxText.text = this.interactBoxTextReplacement;
                     popUpAnimator = currentInteractBox.GetComponent<Animator>();
                 }
             } else if (CompareTag("Interactable")) {
-                currentInteractBox.transform.position = Camera.main.WorldToScreenPoint((transform.position + Vector3.up*1.7f));
+                currentInteractBox.transform.position =
+                    Camera.main.WorldToScreenPoint((transform.position + Vector3.up * 1.7f));
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+            if (Input.GetKeyDown(KeyCode.E)) {
                 interactCount++;
-                if (CompareTag("Interactable"))
-                {
+                if (CompareTag("Interactable")) {
                     AudioManager.Instance.PlayUiSound(audioClips.sfxOnInteract);
                     Debug.Log($"YEP, YOU'VE TAPPED {this.name} {interactCount} TIMES!!!");
-                }
-                else if (CompareTag("NPC"))
-                {
+                } else if (CompareTag("NPC")) {
                     // Debug.Log($"Dialogue Interacted with {interactCount} times");
-                    if (!isDialogueOpen && !bodyTypeWriter.isTyping)
-                    {
+                    if (!isDialogueOpen && !bodyTypeWriter.isTyping) {
                         nameText.text = this.name;
                         // isDialogueOpen = true;
                         charProfile.sprite = characterProfile;
                         NPCDialogueHandler.ResetDialogue();
                         string nextLine = NPCDialogueHandler.GetNextLine();
 
-                        if (nextLine != null) {OpenDialogue(nextLine); dialogueFinished = false;}
-                    }
-                    else if (!bodyTypeWriter.isTyping && !bodyTypeWriter.hasStartedTyping)
-                    {
+                        if (nextLine != null) {
+                            OpenDialogue(nextLine);
+                            dialogueFinished = false;
+                        }
+                    } else if (!bodyTypeWriter.isTyping && !bodyTypeWriter.hasStartedTyping) {
                         string nextLine = NPCDialogueHandler.GetNextLine();
 
-                        if (nextLine != null) {UpdateDialogue(nextLine);}
-                        else {CloseDialogue();Debug.Log("Finished Dialogue Segment"); dialogueFinished = true;}
-
+                        if (nextLine != null) {
+                            UpdateDialogue(nextLine);
+                        } else {
+                            CloseDialogue();
+                            Debug.Log("Finished Dialogue Segment");
+                            dialogueFinished = true;
+                        }
                     }
                 }
             }
-        } else
-        {
+        } else {
             if (currentPopUp) {
                 Destroy(currentPopUp);
                 currentPopUp = null;
             }
+
             if (currentInteractBox) {
                 Destroy(currentInteractBox);
                 currentInteractBox = null;
             }
+
             if (isDialogueOpen) {
                 CloseDialogue();
                 // charProfile.sprite = null;
@@ -205,15 +210,18 @@ public class InteractPrompt : MonoBehaviour
             afterDialogueCalled = true;
         }
     }
+
     void OnDestroy() {
         if (currentPopUp) {
             Destroy(currentPopUp);
             currentPopUp = null;
         }
+
         if (currentInteractBox) {
             Destroy(currentInteractBox);
             currentInteractBox = null;
         }
+
         if (isDialogueOpen) {
             CloseDialogue();
             // charProfile.sprite = null;
