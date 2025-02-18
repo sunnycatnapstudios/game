@@ -19,6 +19,7 @@ public class Follower : MonoBehaviour
     }
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (order!=0) {transform.position = Player.transform.position;}
 
         spriteState = GetComponent<SpriteRenderer>();

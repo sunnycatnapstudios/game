@@ -1,0 +1,92 @@
+name: Build and deploy
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  PROJECT_NAME: DOUBTS_HORIZON
+jobs:
+  buildAndTestForLinuxBasedPlatforms:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-22.04
+    environment: CI/CD to Itch
+    permissions:
+      pull-requests: write
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - ./
+        unityVersion:
+          - 2019.4.18f1
+        targetPlatform:
+          - WebGL # Must be valid options for Unity: https://docs.unity3d.com/ScriptReference/BuildTarget.html
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Unity builds take some time, so we do some caching to make builds faster
+      - uses: actions/cache@v4
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ env.PROJECT_NAME }}-${{ matrix.unityVersion }}-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-${{ env.PROJECT_NAME }}-${{ matrix.unityVersion }}-
+            Library-${{ env.PROJECT_NAME }}-
+            Library-
+      # We use Game CI (https://game.ci/) to buld the project
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: ${{ env.PROJECT_NAME }}
+          buildsPath: build/${{ matrix.unityVersion }}/${{ matrix.targetPlatform }}
+      # Publish the build to itch.io
+      - uses: manleydev/butler-publish-itchio-action@v1.0.3
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: html5
+          ITCH_GAME: ${{ vars.ITCH_GAME }}-${{ github.actor }}
+          ITCH_USER: ${{ vars.ITCH_USER }}
+          PACKAGE: build/${{ matrix.unityVersion }}/${{ matrix.targetPlatform }}
+      - run: echo "Published to " + "https://${{ vars.ITCH_USER }}.itch.io/${{ vars.ITCH_GAME }}-${{ github.actor }}"
+      - uses: actions/github-script@v7
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          script: |
+            // Get the existing comments.
+            const {data: comments} = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.number,
+            })
+
+            // Find any comment already made by the bot.
+            const botComment = comments.find(comment => comment.user.id === 41898282)
+            const commentBody = "https://${{ vars.ITCH_USER }}.itch.io/${{ vars.ITCH_GAME }}-${{ github.actor }}"
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.number,
+                body: commentBody
+              })
+            }

@@ -1,0 +1,19 @@
+name: Lint Changed Files
+on: push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - if: ${{ github.head_ref || github.ref_name == 'main' }}
+        run: dotnet format dummy.csproj --no-restore --verify-no-changes --verbosity diagnostic
+      - if: ${{ github.head_ref || github.ref_name != 'main' }}
+        run: echo "Checking -" `git diff --name-only HEAD origin/main`; dotnet format dummy.csproj --no-restore --verify-no-changes --verbosity diagnostic --include `git diff --name-only HEAD origin/main`

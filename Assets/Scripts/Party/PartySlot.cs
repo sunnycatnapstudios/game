@@ -57,6 +57,7 @@ public class PartySlot : MonoBehaviour
     {
         maxHealth = currentHealth;
         healthBarBar.fillAmount = currentHealth/maxHealth;
+        UpdateHealthBar(currentHealth);
     }
 
     public void UpdateHealthBar(float currentHealth)
