@@ -23,6 +23,10 @@ TagManager:
   - Main Level
   - Map Bounds
   - Combat UI
+  - Stats Manager
+  - Stamina Bar
+  - EnemyUI
+  - PartyCombatUI
   layers:
   - Default
   - TransparentFX
