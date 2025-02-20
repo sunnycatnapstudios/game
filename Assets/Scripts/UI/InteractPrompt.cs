@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractPrompt : MonoBehaviour {
+public class InteractPrompt : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+ {
     public LayerMask playerLayer;
     public Player player;
     private float interactRange = 1.5f;
@@ -33,7 +36,6 @@ public class InteractPrompt : MonoBehaviour {
     public bool isDialogueOpen = false, dialogueFinished = false;
 
     public NPCDialogueHandler npcDialogueHandler;
-    private Dictionary<string, Action> dialogueChoices;
 
     [Serializable]
     private struct AudioClips {
@@ -101,11 +103,6 @@ public class InteractPrompt : MonoBehaviour {
     IEnumerator DeactivateAfterDelay(float delay) {
         yield return new WaitForSeconds(delay);
         // charProfile.sprite = null;
-    }
-
-    void AddDialogueChoice(string id, Action callBack) {
-        Debug.Assert(!dialogueChoices.ContainsKey(id));
-        dialogueChoices.Add(id, callBack);
     }
 
     void Start() {
@@ -212,7 +209,44 @@ public class InteractPrompt : MonoBehaviour {
 
         if (dialogueFinished && npcDialogueHandler.afterDialogue != null) {
             npcDialogueHandler.afterDialogue();
+            npcDialogueHandler.afterDialogue = null;
         }
+    }
+
+    void LateUpdate() {
+        if (!isDialogueOpen) {
+            return;
+        }
+
+        // Check if mouse intersects with any links. (based on TMP Example 12a)
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(dialogueText, Input.mousePosition, Camera.main);
+        if (linkIndex == -1) {
+            return;
+        }
+
+        TMP_LinkInfo linkInfo = dialogueText.textInfo.linkInfo[linkIndex];
+
+        Action callBack = npcDialogueHandler.GetDialogueChoice(linkInfo.GetLinkID());
+        if (callBack != null) {
+            Debug.Log("Gonna call callback.");
+            callBack();
+        } else {
+            Debug.Log("callabck was null");
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        Debug.Log("OnPointerEnter()");
+    }
+
+
+    public void OnPointerExit(PointerEventData eventData) {
+        Debug.Log("OnPointerExit()");
+    }
+
+
+    public void OnPointerClick(PointerEventData eventData) {
+        Debug.Log("OnPointerClick()");
     }
 
     void OnDestroy() {

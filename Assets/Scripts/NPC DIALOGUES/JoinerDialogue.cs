@@ -12,16 +12,21 @@ public class JoinerDialogue : MonoBehaviour {
         npcDialogueHandler = GetComponent<NPCDialogueHandler>();
         InteractPrompt = GetComponent<InteractPrompt>();
 
+        string FirstJoinTag = "FirstJoin";
         npcDialogueHandler.dialogueLines = new List<string> {
             "It's dangerous to go alone!",
-            "<link=\"FirstJoin\"><b><#d4af37>Take me</color></b></link>."
+            $"<link=\"{FirstJoinTag}\"><b><#d4af37>Take me</color></b></link>."
         };
         npcDialogueHandler.afterDialogue = new Action(AfterDialogue);
+        npcDialogueHandler.AddDialogueChoice(FirstJoinTag, FirstJoin);
     }
     void Update() {
     }
     void AfterDialogue() {
-        Debug.Log("Completed dialogue");
+        Debug.Log("Completed dialogue.");
+    }
+    void FirstJoin() {
+        Debug.Log("FirstJoin callback.");
         PartyManager partyManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PartyManager>();
         partyManager.AddToParty(survivor);
         Destroy(gameObject);
